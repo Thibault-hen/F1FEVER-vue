@@ -26,6 +26,8 @@ const flagSrc = computed(() => {
 })
 
 const altText = computed(() => {
-  return flagSrc.value ? `Flag of ${props.nationality} nationality` : 'Flag not found'
+  const countryCode = getFlagCode(props.nationality)
+  if (countryCode === 'xx') return 'Flag not found'
+  else return `Flag of ${props.country} nationality`
 })
 </script>
