@@ -1,5 +1,6 @@
 <script setup>
 import GrandPrixPreview from '@/components/Home/GrandPrixPreview.vue'
+import GrandPrixList from '@/components/Home/CurrentSeasonGrandPrixList.vue'
 </script>
 
 <template>
@@ -56,8 +57,14 @@ import GrandPrixPreview from '@/components/Home/GrandPrixPreview.vue'
           </div>
         </div>
       </div>
-
-      <GrandPrixPreview />
+      <div class="xl:flex xl:space-x-2 mt-6">
+        <div class="flex-none w-full xl:w-1/3 mb-6">
+          <GrandPrixPreview />
+        </div>
+        <div class="flex-grow">
+          <GrandPrixList />
+        </div>
+      </div>
     </section>
   </div>
 </template>

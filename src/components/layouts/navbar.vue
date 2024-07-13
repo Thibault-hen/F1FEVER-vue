@@ -52,7 +52,7 @@ const toggleMobileNav = (event) => {
 
 // Adjust mobile nav visibility based on window width
 const handleResize = () => {
-  isMobileActive.value = window.innerWidth <= 1024
+  if (!isMobileActive) isMobileActive.value = window.innerWidth <= 1024
 }
 
 // Watch for resize events
@@ -61,12 +61,12 @@ onMounted(() => {
   handleResize() // Initial check on mount
 })
 </script>
-
 <template>
   <nav
-    class="text-gray-400 lg:flex lg:flex-col lg:w-64 bg-transparent shadow-md border-r dark:border-slate-50/[0.06] border-gray-00 w-full transition-all duration-200 ease-in lg:min-h-screen"
+    class="fixed z-50 top-0 left-0 text-gray-400 dark:bg-dark-1 lg:bg-transparent lg:flex lg:flex-col lg:w-64 bg-white shadow-md border-r dark:border-slate-50/[0.06] border-gray-300 w-full transition-all duration-200 ease-in lg:min-h-screen"
   >
-    <div class="flex flex-col flex-grow text-white">
+    <div class="z-99 relative w-full border-t border-solid !border-[2px] gradient-bar"></div>
+    <div class="lg:flex lg:flex-col lg:flex-grow text-white">
       <div
         class="p-2 flex items-center shadow-inner dark:bg-dark-1 bg-gray-100 border-b dark:border-zinc-700 border-gray-300"
       >
@@ -86,10 +86,8 @@ onMounted(() => {
         </span>
       </div>
       <div
-        :class="[
-          isMobileActive ? 'flex flex-col border-b border-zinc-700' : 'hidden ',
-          'lg:flex lg:flex-col flex-grow'
-        ]"
+        class="lg:flex lg:flex-col flex-grow"
+        :class="isMobileActive ? 'flex flex-col border-b border-zinc-700' : 'hidden'"
       >
         <RouterLink
           to="/"

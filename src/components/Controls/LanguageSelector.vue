@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-end">
+  <div class="fixed right-10 xl:top-5 z-40">
     <div class="relative">
       <Listbox v-model="selectedLanguage">
         <!-- ListboxButton -->
@@ -49,7 +49,6 @@ const languages = ref([
 const selectedLanguage = ref(
   JSON.parse(localStorage.getItem('selectedLanguage')) || languages.value[0]
 )
-console.log(selectedLanguage)
 
 const flagSrc = computed(() => {
   return selectedLanguage.value.flag
