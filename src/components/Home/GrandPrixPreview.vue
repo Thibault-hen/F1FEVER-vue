@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative flex flex-col bg-white dark:bg-dark-2 rounded p-2 dark:text-white border border-slate-50/[0.06] shadow transition-all duration-200 ease-in"
+    class="lg:ml-4 relative flex flex-col bg-white dark:bg-dark-2 rounded p-2 dark:text-white border border-slate-50/[0.06] shadow"
   >
     <!-- Label for Latest Grand Prix -->
     <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold rounded px-2 py-1">
@@ -8,13 +8,10 @@
     </div>
     <div clas="flex">
       <div class="p-2 flex flex-col items-center">
-        <CountryFlag v-if="circuit?.country" :country="circuit.country" class="mx-auto" />
-        <a
-          href=""
-          class="text-center font-bold hover:text-red-500 text-xl transition-transform duration-100 hover:scale-105"
-        >
+        <span class="font-bold text-xl">
+          <CountryFlag v-if="circuit?.country" :country="circuit.country" class="mx-auto" />
           {{ grandPrixInfo.name }}
-        </a>
+        </span>
       </div>
       <div class="flex justify-center space-x-2">
         <box-icon name="calendar-event" color="red"></box-icon>
@@ -36,6 +33,13 @@
       <div class="ml-2 flex-grow">{{ result.name }}</div>
       <div class="w-20 text-right">{{ result.time }}</div>
     </div>
+
+    <RouterLink
+      :to="`/grand-prix/${grandPrixInfo.year}/${grandPrixInfo.slug}`"
+      class="rounded bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br text-white inline-flex px-4 py-2 self-start mx-auto tracking-wider transition ease-in-out hover:scale-110"
+    >
+      Full result
+    </RouterLink>
   </div>
 </template>
 
@@ -44,6 +48,7 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import NationalityFlag from '../UI/NationalityFlag.vue'
 import CountryFlag from '../UI/CountryFlag.vue'
+import { RouterLink } from 'vue-router'
 
 const grandPrixInfo = ref({})
 const raceResults = ref([])

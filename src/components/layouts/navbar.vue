@@ -71,10 +71,12 @@ onMounted(() => {
         class="p-2 flex items-center shadow-inner dark:bg-dark-1 bg-gray-100 border-b dark:border-zinc-700 border-gray-300"
       >
         <img src="/racing-car.png" alt="Logo" class="h-8 ml-2 mr-4" />
-        <span
+        <RouterLink
+          to="/"
           class="self-center whitespace-nowrap dark:text-white text-gray-600 uppercase w-0 visible text-sm p-4 tracking-widest font"
-          >Formula1FEver</span
         >
+          Formula1FEver
+        </RouterLink>
         <span class="lg:hidden flex ml-auto" @click="toggleMobileNav">
           <box-icon
             class="mr-4"

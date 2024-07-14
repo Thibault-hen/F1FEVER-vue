@@ -57,11 +57,11 @@ import GrandPrixList from '@/components/Home/CurrentSeasonGrandPrixList.vue'
           </div>
         </div>
       </div>
-      <div class="xl:flex xl:space-x-2 mt-6">
-        <div class="flex-none w-full xl:w-1/3 mb-6">
+      <div class="xl:flex mt-6">
+        <div class="flex-none xl:w-1/3 mb-6 xl:order-2">
           <GrandPrixPreview />
         </div>
-        <div class="flex-grow">
+        <div class="flex-grow xl:order-1">
           <GrandPrixList />
         </div>
       </div>

@@ -16,29 +16,29 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path: '/grand-prix',
-      name: 'grand-prix',
+      path: '/grand-prix/:year?/:slug?',
+      name: 'grand-prix'
     },
     {
       path: '/drivers',
-      name: 'drivers',
+      name: 'drivers'
     },
     {
       path: '/constructors',
-      name: 'constructors',
+      name: 'constructors'
     },
     {
       path: '/circuits',
-      name: 'circuits',
+      name: 'circuits'
     },
     {
       path: '/records',
-      name: 'records',
+      name: 'records'
     },
     {
       path: '/analysis',
-      name: 'analysis',
-    },
+      name: 'analysis'
+    }
   ]
 })
 
