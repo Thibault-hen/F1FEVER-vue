@@ -19,6 +19,11 @@ const messages = {
       dark: 'Dark',
       light: 'Light'
     },
+    countdown: {
+      days: 'in {days} day',
+      days_plural: 'in {days} days',
+      today: 'today'
+    },
     home: {
       welcome: {
         title: 'Welcome to FORMULA1FEVER',
@@ -37,6 +42,19 @@ const messages = {
       analysis: {
         title: 'Data analysis',
         description: 'Detailed race report and lap times comparison between drivers'
+      },
+      current_grandprix: {
+        label: 'Current season Grand Prix list',
+        name: 'Name',
+        location: 'Location',
+        time: 'Time',
+        date: 'Date',
+        status: 'Status',
+        status_completed: 'Completed',
+        status_upcoming: 'Upcoming'
+      },
+      latest_grandprix: {
+        label: 'Latest Grand prix'
       }
     }
   },
@@ -55,6 +73,11 @@ const messages = {
     theme: {
       dark: 'Sombre',
       light: 'Clair'
+    },
+    countdown: {
+      days: 'dans {days} jour',
+      days_plural: 'dans {days} jours',
+      today: "aujourd'hui"
     },
     home: {
       welcome: {
@@ -75,6 +98,19 @@ const messages = {
       analysis: {
         title: 'Analyse de données',
         description: 'Rapport de course détaillé et comparaison de temps aux tours entres pilotes.'
+      },
+      current_grandprix: {
+        label: 'Liste Grand Prix saison actuelle',
+        name: 'Nom',
+        location: 'Lieu',
+        time: 'Heure',
+        date: 'Date',
+        status: 'État',
+        status_completed: 'Terminé',
+        status_upcoming: 'Prochainement'
+      },
+      latest_grandprix: {
+        label: 'Dernier Grand Prix'
       }
     }
   }

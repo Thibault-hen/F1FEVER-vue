@@ -26,4 +26,38 @@ body {
 .gradient-bar {
   -o-border-image: linear-gradient(139deg, #fb1717, #640101, #570e0e, #420909) 3;
   border-image: linear-gradient(139deg, #fb1717, #630101, #5f1010, #4b0c0c) 3;
+  animation: gradient-animation 5s infinite linear; /* Animation settings */
+}
+
+@keyframes gradient-animation {
+  0% {
+    border-image: linear-gradient(139deg, #fb1717, #640101, #570e0e, #2b0606) 3;
+  }
+  50% {
+    border-image: linear-gradient(139deg, #420909, #570e0e, #640101, #fb1717) 3;
+  }
+  100% {
+    border-image: linear-gradient(139deg, #fb1717, #630101, #5f1010, #2b0606) 3;
+  }
+}
+
+/* Scrollbar restyling */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ef4444;
+  border-radius: 25px;
+}
+
+@media screen and (max-width: 1024px) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: red transparent;
+  }
 }

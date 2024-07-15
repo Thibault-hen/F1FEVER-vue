@@ -70,10 +70,10 @@ onMounted(() => {
       <div
         class="p-2 flex items-center shadow-inner dark:bg-dark-1 bg-gray-100 border-b dark:border-zinc-700 border-gray-300"
       >
-        <img src="/racing-car.png" alt="Logo" class="h-8 ml-2 mr-4" />
+        <img src="/racing-car.png" alt="Logo" class="ml-2 h-8" />
         <RouterLink
           to="/"
-          class="self-center whitespace-nowrap dark:text-white text-gray-600 uppercase w-0 visible text-sm p-4 tracking-widest font"
+          class="lg:mx-auto uppercase text-black dark:text-white text-sm p-4 tracking-widest font-bold"
         >
           Formula1FEver
         </RouterLink>

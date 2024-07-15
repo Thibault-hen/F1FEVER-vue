@@ -1,5 +1,7 @@
 <template>
-  <img :src="flagSrc" :alt="altText" height="26" width="26" class="rounded" />
+  <div class="rounded">
+    <img :src="flagSrc" :alt="altText" height="26" width="26" class="rounded" />
+  </div>
 </template>
 
 <script setup>
