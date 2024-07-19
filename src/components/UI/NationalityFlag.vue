@@ -1,6 +1,6 @@
 <template>
   <div class="rounded">
-    <img :src="flagSrc" :alt="altText" height="26" width="26" class="rounded" />
+    <img :src="flagSrc" :alt="altText" height="26" width="26" class="rounded border border-black" />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ const getFlagCode = (nationality) => {
   return nationalityCodeDict[nationality] || 'xx'
 }
 const getFlagSrc = (code) => {
-  return `src/assets/flags/4x3/${code.toLowerCase()}.svg`
+  return new URL(`../../assets/flags/4x3/${code.toLowerCase()}.svg`, import.meta.url).href
 }
 
 const flagSrc = computed(() => {

@@ -88,13 +88,13 @@ onMounted(() => {
         </span>
       </div>
       <div
-        class="lg:flex lg:flex-col flex-grow"
+        class="lg:flex lg:flex-col flex-grow text-sm text-black dark:text-white"
         :class="isMobileActive ? 'flex flex-col border-b border-zinc-700' : 'hidden'"
       >
         <RouterLink
           to="/"
-          active-class="border-r-4 text-red-500 dark:text-red-500 dark:text-red-500 transition-all duration-200 ease-in"
-          class="tracking-wider flex p-4 border-red-500 hover:text-red-500 dark:hover:text-red-500 dark:text-white text-gray-600 items-center"
+          active-class="border-r-4 text-red-500 dark:text-red-500 transition-all duration-200 ease-in"
+          class="tracking-wider flex p-4 border-red-500 hover:text-red-500 items-center"
           :class="{ 'border-r-0': isMobileActive }"
         >
           <box-icon
@@ -108,10 +108,9 @@ onMounted(() => {
         <RouterLink
           to="/standings"
           :class="{
-            'border-r-4 text-red-500 dark:text-red-500 transition-all duration-200 ease-in':
-              isStandingsActive
+            'border-r-4 text-red-500 transition-all duration-200 ease-in': isStandingsActive
           }"
-          class="tracking-wider flex p-4 border-red-500 hover:text-red-500 dark:hover:text-red-500 dark:text-white text-gray-600 items-center"
+          class="tracking-wider flex p-4 border-red-500 hover:text-red-500 items-center"
         >
           <box-icon
             class="mr-4"
@@ -124,10 +123,9 @@ onMounted(() => {
         <RouterLink
           to="/grand-prix"
           :class="{
-            'border-r-4 text-red-500 dark:text-red-600 transition-all duration-200 ease-in':
-              isGrandPrixActive
+            'border-r-4 text-red-500 transition-all duration-200 ease-in': isGrandPrixActive
           }"
-          class="tracking-wider flex p-4 border-red-500 hover:text-red-500 dark:hover:text-red-500 dark:text-white text-gray-600 items-center"
+          class="tracking-wider flex p-4 border-red-500 hover:text-red-500 items-center"
         >
           <box-icon
             class="mr-4"
@@ -139,7 +137,7 @@ onMounted(() => {
 
         <button
           @click="toggleBrowse"
-          class="tracking-widest w-full flex justify-between p-4 focus:outline-none hover:text-red-500 dark:hover:text-red-500 dark:text-white text-gray-600 items-center"
+          class="tracking-widest w-full flex justify-between p-4 focus:outline-none hover:text-red-500 items-center"
         >
           <span class="flex">
             <box-icon class="mr-4" name="category" :color="isDark ? 'white' : 'black'"></box-icon>
@@ -165,10 +163,9 @@ onMounted(() => {
             <RouterLink
               to="/drivers"
               :class="{
-                'border-r-4 text-red-500 dark:text-red-600 transition-all duration-200 ease-in':
-                  isDriversActive
+                'border-r-4 text-red-500 transition-all duration-200 ease-in': isDriversActive
               }"
-              class="tracking-wider flex p-4 border-red-500 hover:text-red-500 dark:hover:text-red-500 dark:text-white text-gray-600 items-center"
+              class="tracking-wider flex p-4 border-red-500 hover:text-red-500 items-center"
             >
               <box-icon
                 class="mr-4"
@@ -180,10 +177,9 @@ onMounted(() => {
             <RouterLink
               to="/constructors"
               :class="{
-                'border-r-4 text-red-500 dark:text-red-600 transition-all duration-200 ease-in':
-                  isConstructorsActive
+                'border-r-4 text-red-500 transition-all duration-200 ease-in': isConstructorsActive
               }"
-              class="tracking-wider flex p-4 border-red-500 hover:text-red-500 dark:hover:text-red-500 dark:text-white text-gray-600 items-center"
+              class="tracking-wider flex p-4 border-red-500 hover:text-red-500 items-center"
             >
               <box-icon
                 class="mr-4"
@@ -195,10 +191,9 @@ onMounted(() => {
             <RouterLink
               to="/circuits"
               :class="{
-                'border-r-4 text-red-500 dark:text-red-600 transition-all duration-200 ease-in':
-                  isCircuitsActive
+                'border-r-4 text-red-500 transition-all duration-200 ease-in': isCircuitsActive
               }"
-              class="tracking-wider flex p-4 border-red-500 hover:text-red-500 dark:hover:text-red-500 dark:text-white text-gray-600"
+              class="tracking-wider flex p-4 border-red-500 hover:text-red-500"
             >
               <box-icon
                 class="mr-4"
@@ -213,10 +208,9 @@ onMounted(() => {
         <RouterLink
           to="/records"
           :class="{
-            'border-r-4 text-red-500 dark:text-red-600 transition-all duration-200 ease-in':
-              isRecordsActive
+            'border-r-4 text-red-500 transition-all duration-200 ease-in': isRecordsActive
           }"
-          class="tracking-wider flex items-center p-4 border-red-500 hover:text-red-500 dark:hover:text-red-500 dark:text-white text-gray-600"
+          class="tracking-wider flex items-center p-4 border-red-500 hover:text-red-500"
         >
           <box-icon
             class="mr-4"
@@ -229,10 +223,9 @@ onMounted(() => {
         <RouterLink
           to="/analysis"
           :class="{
-            'border-r-4 text-red-500 dark:text-red-600 transition-all duration-200 ease-in':
-              isAnalysisActive
+            'border-r-4 text-red-500 transition-all duration-200 ease-in': isAnalysisActive
           }"
-          class="tracking-wider flex items-center p-4 border-red-500 hover:text-red-500 dark:hover:text-red-500 dark:text-white text-gray-600"
+          class="tracking-wider flex items-center p-4 border-red-500 hover:text-red-500"
         >
           <box-icon
             class="mr-4"

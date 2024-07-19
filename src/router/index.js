@@ -1,43 +1,74 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
+import StandingsView from '../views/StandingsView.vue'
+import NotFoundView from '../views/NotFoundView.vue'
+import { checkSeason } from '@/services/seasonService'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: HomeView
     },
     {
       path: '/standings/:season?',
-      name: 'standings',
-      component: AboutView
+      name: 'Standings',
+      component: StandingsView,
+      beforeEnter: async (to, from, next) => {
+        const season = to.params.season
+
+        if (season) {
+          const isValidSeason = await checkSeason(season)
+          if (isValidSeason) {
+            next()
+          } else {
+            next({
+              name: 'NotFound',
+              params: { pathMatch: to.path.substring(1).split('/') },
+              query: to.hash,
+              hash: to.hash
+            })
+          }
+        } else {
+          next()
+        }
+      }
     },
     {
       path: '/grand-prix/:year?/:slug?',
-      name: 'grand-prix'
+      name: 'Grand-prix'
     },
     {
       path: '/drivers',
-      name: 'drivers'
+      name: 'Drivers'
     },
     {
       path: '/constructors',
-      name: 'constructors'
+      name: 'Constructors'
     },
     {
       path: '/circuits',
-      name: 'circuits'
+      name: 'Circuits'
     },
     {
       path: '/records',
-      name: 'records'
+      name: 'Records'
     },
     {
       path: '/analysis',
-      name: 'analysis'
+      name: 'Analysis'
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFoundView
+    },
+    {
+      path: '/standings/:pathMatch(.*)*',
+      name: 'StandingsNotFound',
+      component: NotFoundView
     }
   ]
 })

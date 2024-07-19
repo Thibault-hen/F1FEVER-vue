@@ -2,45 +2,57 @@
   <div
     class="relative p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-2 border border-slate-50/[0.06] shadow rounded"
   >
-    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold rounded px-2 py-1">
+    <div
+      class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold rounded px-2 py-1 uppercase tracking-wide"
+    >
       {{ $t('home.current_grandprix.label') }}
     </div>
     <div v-if="isLoading" class="flex justify-center items-center h-full">
       <Loader />
     </div>
     <div v-else>
-      <div class="mt-4 overflow-x-auto">
-        <table class="dark:text-white min-w-full">
-          <thead>
-            <tr class="text-left text-lg border-b">
-              <th class="px-2 py-4 font-bold min-w-56">{{ $t('home.current_grandprix.name') }}</th>
-              <th class="px-2 py-4 font-bold min-w-24">
+      <div class="mt-6 overflow-x-auto">
+        <table
+          class="dark:text-white min-w-full leading-normal border-separate border-spacing-y-0.5 text-xs md:text-sm mt-2"
+        >
+          <thead class="bg-gray-100 dark:bg-dark-1">
+            <tr class="text-left border-b tracking-wide text-sm md:text-base">
+              <th class="px-2 py-4 font-bold min-w-64 rounded-l-lg">
+                {{ $t('home.current_grandprix.name') }}
+              </th>
+              <th class="px-2 py-4 font-bold">
                 {{ $t('home.current_grandprix.location') }}
               </th>
-              <th class="px-2 py-4 font-bold min-w-16">{{ $t('home.current_grandprix.time') }}</th>
-              <th class="px-2 py-4 font-bold min-w-24">{{ $t('home.current_grandprix.date') }}</th>
-              <th class="px-2 py-4 font-bold min-w-16">
+              <th class="px-2 py-4 font-bold">{{ $t('home.current_grandprix.time') }}</th>
+              <th class="px-2 py-4 font-bold">{{ $t('home.current_grandprix.date') }}</th>
+              <th class="px-2 py-4 font-bold rounded-r-lg">
                 {{ $t('home.current_grandprix.status') }}
               </th>
             </tr>
           </thead>
-          <tbody class="text-left">
-            <tr v-for="(grandPrix, index) in grandPrixList" :key="index">
-              <td class="px-4 py-4">
-                <RouterLink
-                  :to="`/grand-prix/${grandPrix.year}/${grandPrix.slug}`"
-                  class="flex font-bold hover:text-red-500 transition-transform duration-100 hover:scale-105"
-                >
+          <tbody class="dark:bg-dark-1 bg-gray-100">
+            <tr
+              v-for="(grandPrix, index) in grandPrixList"
+              :key="index"
+              class="hover:bg-red-500/10 transition-all ease-in-out duration-100"
+            >
+              <td class="px-4 py-4 rounded-l-lg">
+                <div class="flex">
                   <CountryFlag :country="grandPrix.country" class="mr-2" />
-                  {{ grandPrix.name }}
-                </RouterLink>
+                  <RouterLink
+                    :to="`/grand-prix/${grandPrix.year}/${grandPrix.slug}`"
+                    class="font-bold hover:text-red-500 text-nowrap"
+                  >
+                    {{ grandPrix.name }}
+                  </RouterLink>
+                </div>
               </td>
-              <td class="px-2 py-4">{{ grandPrix.location }}</td>
-              <td class="px-2 py-4">{{ grandPrix.time.slice(0, 5) }}</td>
-              <td class="px-2 py-4">{{ grandPrix.date }}</td>
-              <td class="px-2 py-4">
+              <td class="px-2 text-nowrap">{{ grandPrix.location }}</td>
+              <td class="px-2 text-nowrap">{{ grandPrix.time.slice(0, 5) }}</td>
+              <td class="px-2 text-nowrap">{{ grandPrix.date }}</td>
+              <td class="px-2 rounded-r-lg border-b border-transparent text-nowrap">
                 <span
-                  class="rounded-md p-1 text-white"
+                  class="rounded-md py-1 px-2 text-white text-center items-center text-nowrap rounded-r-lg"
                   :class="isUpcoming[index] ? 'bg-blue-500' : 'bg-green-700'"
                 >
                   {{

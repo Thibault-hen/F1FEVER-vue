@@ -11,6 +11,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@headlessui/tailwindcss": "^0.2.1",
     "@headlessui/vue": "^1.7.22",
     "@vueuse/core": "^10.11.0",
     "axios": "^1.7.2",

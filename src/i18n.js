@@ -100,7 +100,7 @@ const messages = {
         description: 'Rapport de course détaillé et comparaison de temps aux tours entres pilotes.'
       },
       current_grandprix: {
-        label: 'Liste Grand Prix saison actuelle',
+        label: 'Grand Prix saison actuelle',
         name: 'Nom',
         location: 'Lieu',
         time: 'Heure',

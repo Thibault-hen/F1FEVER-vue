@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"');
+@import url(https://fonts.bunny.net/css?family=bai-jamjuree:500);
 
 @tailwind base;
 @tailwind components;
@@ -17,7 +17,7 @@ html {
 body {
   transition: all 0.3s ease;
   line-height: 1.6;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Bai Jamjuree', sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

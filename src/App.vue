@@ -11,8 +11,9 @@ import NextGrandPrix from '@/components/UI/NextGrandPrix.vue'
       <NextGrandPrix />
 
       <LanguageSelector />
-
-      <router-view></router-view>
+      <div class="container mx-auto py-12">
+        <router-view></router-view>
+      </div>
     </main>
   </div>
 </template>

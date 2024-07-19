@@ -1,11 +1,15 @@
 <template>
-  <div v-if="!isLoading" class="flex items-center">
-    <CountryFlag :country="nextGrandPrix.country" class="mr-2" />
-    <span class="text-lg font-bold text-red-500 uppercase tracking-widest">
-      {{ nextGrandPrix.name }} GP
-    </span>
-    <span class="text-lg dark:text-white font-bold uppercase">&nbsp;{{ countdown }}</span>
-  </div>
+  <transition name="fade">
+    <div v-if="!isLoading && nextGrandPrix.name" class="flex items-center">
+      <CountryFlag :country="nextGrandPrix.country" class="mr-2" />
+      <span class="text-sm md:text-lg font-bold text-red-500 uppercase tracking-widest">
+        {{ nextGrandPrix.name }} GP
+      </span>
+      <span class="text-sm md:text-lg dark:text-white font-bold uppercase"
+        >&nbsp;{{ countdown }}</span
+      >
+    </div>
+  </transition>
 </template>
 
 <script setup>
@@ -46,7 +50,19 @@ const fetchData = async () => {
     isLoading.value = false
   }
 }
+
 onMounted(() => {
   fetchData()
 })
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
