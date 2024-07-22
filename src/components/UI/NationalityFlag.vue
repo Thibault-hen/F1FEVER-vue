@@ -1,7 +1,5 @@
 <template>
-  <div class="rounded">
-    <img :src="flagSrc" :alt="altText" height="26" width="26" class="rounded border border-black" />
-  </div>
+  <img :src="flagSrc" :alt="altText" height="26" width="26" class="rounded dark:border-0 border" />
 </template>
 
 <script setup>

@@ -1,9 +1,9 @@
 <template>
   <transition name="fade">
-    <div v-if="!isLoading && nextGrandPrix.name" class="flex items-center">
+    <div v-if="!isLoading && nextGrandPrix.gp_name" class="flex items-center">
       <CountryFlag :country="nextGrandPrix.country" class="mr-2" />
-      <span class="text-sm md:text-lg font-bold text-red-500 uppercase tracking-widest">
-        {{ nextGrandPrix.name }} GP
+      <span class="text-sm md:text-lg font-bold text-primary uppercase tracking-widest">
+        {{ nextGrandPrix.gp_name }}
       </span>
       <span class="text-sm md:text-lg dark:text-white font-bold uppercase"
         >&nbsp;{{ countdown }}</span

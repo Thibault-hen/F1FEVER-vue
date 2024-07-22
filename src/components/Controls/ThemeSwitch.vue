@@ -4,7 +4,7 @@
     <Switch
       v-model="isDark"
       :class="isDark ? 'bg-dark-2 border-2' : 'bg-gray-200 border-zinc-950 border-2'"
-      class="relative inline-flex h-8 w-16 items-center rounded-full transition-colors duration-300 hover:border-red-500 border-2"
+      class="relative inline-flex h-8 w-16 items-center rounded-full transition-colors duration-300 hover:border-primary border-2"
     >
       <span
         :class="isDark ? 'translate-x-9' : 'translate-x-1'"

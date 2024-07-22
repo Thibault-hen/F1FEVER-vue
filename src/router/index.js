@@ -10,7 +10,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: HomeView
+      component: HomeView,
+      meta: { title: 'F1FEVER - Homepage' }
     },
     {
       path: '/standings/:season?',
@@ -34,7 +35,8 @@ const router = createRouter({
         } else {
           next()
         }
-      }
+      },
+      meta: { title: 'F1FEVER - Standings' }
     },
     {
       path: '/grand-prix/:year?/:slug?',

@@ -2,7 +2,7 @@
   <div class="flex items-center mt-2">
     <span
       @click="openModal"
-      class="rounded-md bg-red-950 px-4 py-1 tracking-wider text-sm text-white hover:bg-red-500/70 flex items-center cursor-pointer"
+      class="rounded-md bg-red-950 px-4 py-1 tracking-wider text-sm text-white hover:bg-primary/70 flex items-center cursor-pointer"
     >
       Missing data
       <box-icon name="info-circle" class="items-center ml-2" color="white"></box-icon>

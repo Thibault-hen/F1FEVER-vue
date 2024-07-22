@@ -26,14 +26,14 @@
         leave-to-class="transform scale-95 opacity-0"
       >
         <ListboxOptions
-          class="absolute z-10 min-w-52 shadow items-center dark:text-white rounded-lg border border-slate-50/[0.06] py-1 bg-white dark:bg-dark-2 max-h-60 overflow-auto"
+          class="absolute z-10 min-w-52 shadow items-center dark:text-white rounded-lg border border-slate-50/[0.06] py-1 bg-white dark:bg-dark-2 max-h-60 overflow-auto mt-2"
         >
           <ListboxOption
             v-for="season in seasonList"
             :key="season.year"
             :value="season"
             @click="emitSeason"
-            class="ui-active:bg-red-500 ui-active:bg-opacity-10 ui-active:text-red-500 ui-not-active:bg-white ui-not-active:dark:bg-dark-2 ui-not-active:text-black ui-not-active:dark:text-white text-center"
+            class="ui-active:bg-primary ui-active:bg-opacity-10 ui-active:text-primary ui-not-active:bg-white ui-not-active:dark:bg-dark-2 ui-not-active:text-black ui-not-active:dark:text-white text-center"
           >
             {{ season.year }}
           </ListboxOption>

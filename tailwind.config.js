@@ -4,15 +4,16 @@ export default {
   theme: {
     extend: {
       backgroundColor: {
-        'dark-1': '#1B1B1F',
-        'dark-2': '#202127',
+        'dark-1': '#101112',
+        'dark-2': '#171717',
         gold: 'rgba(236, 195, 117, 0.5)',
         silver: 'rgba(71, 94, 138, 0.4)',
         bronze: 'rgba(119, 78, 55, 0.4)'
       },
       colors: {
-        'dark-1': '#1B1B1F',
-        'dark-2': '#202127',
+        'dark-1': '#101112',
+        'dark-2': '#171717',
+        primary: '#ef4444',
         gold: 'rgba(236, 195, 117, 0.5)',
         silver: 'rgba(71, 94, 138, 0.4)',
         bronze: 'rgba(119, 78, 55, 0.4)'

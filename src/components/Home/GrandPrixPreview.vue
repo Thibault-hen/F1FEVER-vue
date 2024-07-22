@@ -1,10 +1,10 @@
 <template>
   <div
-    class="xl:ml-4 relative flex flex-col bg-white dark:bg-dark-2 rounded p-2 dark:text-white border border-slate-50/[0.06] shadow"
+    class="xl:ml-4 relative flex flex-col bg-white dark:bg-dark-2 rounded border p-2 dark:text-white dark:border-slate-50/[0.06] shadow"
   >
     <!-- Label for Latest Grand Prix -->
     <div
-      class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold rounded px-2 py-1 uppercase tracking-wide"
+      class="absolute top-2 left-2 bg-primary text-white text-xs font-bold rounded px-2 py-1 uppercase tracking-wide"
     >
       {{ $t('home.latest_grandprix.label') }}
     </div>
@@ -29,14 +29,14 @@
         </div>
       </div>
       <hr
-        class="my-4 bg-gradient-to-r from-transparent via-red-500 to-transparent h-0.5 border-transparent"
+        class="my-4 bg-gradient-to-r from-transparent via-primary to-transparent h-0.5 border-transparent"
       />
       <div
         v-for="(result, index) in raceResults"
         :key="index"
-        class="text-xs md:text-sm flex items-center py-2 w-full"
+        class="p-2 text-xs md:text-sm flex items-center py-2 w-full hover:bg-primary/10 rounded"
       >
-        <div class="w-8 font-bold">{{ result.final_position }}</div>
+        <div class="w-8 font-bold"># {{ result.final_position }}</div>
         <NationalityFlag :nationality="result.nationality" />
         <div class="ml-2 flex-grow">{{ result.name }}</div>
         <div class="w-20 text-right">{{ result.time }}</div>
@@ -44,7 +44,7 @@
       <div class="flex justify-center mt-4">
         <RouterLink
           :to="`/grand-prix/${grandPrixInfo.year}/${grandPrixInfo.slug}`"
-          class="rounded bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br text-white px-4 py-2 tracking-wider transition ease-in-out hover:scale-110"
+          class="rounded bg-gradient-to-r from-red-400 via-primary to-red-600 hover:bg-gradient-to-br text-white px-4 py-2 tracking-wider transition ease-in-out hover:scale-110"
         >
           Full result
         </RouterLink>
@@ -59,7 +59,7 @@ import { RouterLink } from 'vue-router'
 import axios from 'axios'
 import NationalityFlag from '../UI/NationalityFlag.vue'
 import CountryFlag from '../UI/CountryFlag.vue'
-import Loader from '../UI/Loader.vue'
+import Loader from '../UI/DefaultLoader.vue'
 
 const grandPrixInfo = ref({})
 const raceResults = ref([])

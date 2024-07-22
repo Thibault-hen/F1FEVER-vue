@@ -1,6 +1,12 @@
 <template>
   <div class="rounded">
-    <img :src="flagSrc" :alt="altText" height="26" width="26" class="rounded border border-black" />
+    <img
+      :src="flagSrc"
+      :alt="altText"
+      height="26"
+      width="26"
+      class="rounded dark:border-0 border"
+    />
   </div>
 </template>
 

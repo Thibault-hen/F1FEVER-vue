@@ -23,7 +23,7 @@
               @click="updateStandings"
               :disabled="isLoading"
               :class="isLoading ? 'bg-opacity-5' : 'bg-opacity-100'"
-              class="bg-red-500 text-white hover:bg-red-600 transition h-10 w-26 xl:w-32 text-xs"
+              class="bg-primary text-white hover:bg-red-600 transition h-10 w-26 xl:w-32 text-xs"
             >
               <LoaderSmall v-if="isLoading" class="mx-auto" />
               <span v-else class="uppercase">afficher</span>
@@ -94,8 +94,8 @@ const updateStandings = async () => {
 
 onMounted(async () => {
   if (!route.params.season) {
-    updateDisplayedSeason()
     await fetchLatestStandings()
+    updateDisplayedSeason()
     updateUrl(selectedSeason.value.year)
   }
 })
