@@ -23,7 +23,7 @@
               @click="updateStandings"
               :disabled="isLoading"
               :class="isLoading ? 'bg-opacity-5' : 'bg-opacity-100'"
-              class="bg-primary text-white hover:bg-red-600 transition h-10 w-26 xl:w-32 text-xs"
+              class="text-white h-10 w-26 xl:w-32 text-xs"
             >
               <LoaderSmall v-if="isLoading" class="mx-auto" />
               <span v-else class="uppercase">afficher</span>

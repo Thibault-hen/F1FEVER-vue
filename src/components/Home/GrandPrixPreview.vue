@@ -4,7 +4,7 @@
   >
     <!-- Label for Latest Grand Prix -->
     <div
-      class="absolute top-2 left-2 bg-primary text-white text-xs font-bold rounded px-2 py-1 uppercase tracking-wide"
+      class="absolute top-2 left-2 bg-primary text-white text-xs rounded px-2 py-1 uppercase tracking-widest"
     >
       {{ $t('home.latest_grandprix.label') }}
     </div>
@@ -44,7 +44,7 @@
       <div class="flex justify-center mt-4">
         <RouterLink
           :to="`/grand-prix/${grandPrixInfo.year}/${grandPrixInfo.slug}`"
-          class="rounded bg-gradient-to-r from-red-400 via-primary to-red-600 hover:bg-gradient-to-br text-white px-4 py-2 tracking-wider transition ease-in-out hover:scale-110"
+          class="rounded text-white px-4 py-2 tracking-wider transition ease-in-out hover:scale-110"
         >
           Full result
         </RouterLink>

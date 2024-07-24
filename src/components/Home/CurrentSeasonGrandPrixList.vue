@@ -3,7 +3,7 @@
     class="relative p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-2 border dark:border-slate-50/[0.06] shadow rounded"
   >
     <div
-      class="absolute top-2 left-2 bg-primary text-white text-xs font-bold rounded px-2 py-1 uppercase tracking-wide"
+      class="absolute top-2 left-2 bg-primary text-white text-xs rounded px-2 py-1 uppercase tracking-widest"
     >
       {{ $t('home.current_grandprix.label') }}
     </div>
