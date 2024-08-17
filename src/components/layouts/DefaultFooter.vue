@@ -1,5 +1,5 @@
 <template>
-  <footer class="sticky top-[100vh]">
+  <footer class="sticky top-[100vh] mt-8">
     <div class="flex flex-col md:flex-row justify-between w-full space-y-3.5 md:space-y-0">
       <div class="flex max-w-xl xl:max-w-3xl">
         <span class="dark:text-white text-xs xl:text-sm">

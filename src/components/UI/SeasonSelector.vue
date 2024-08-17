@@ -2,9 +2,10 @@
   <div class="relative flex">
     <Listbox v-model="selectedSeason" as="div">
       <ListboxButton
-        class="bg-white dark:bg-dark-2 dark:text-white p-2 rounded-lg w-52 shadow border dark:border-slate-100/[0.20] text-left flex justify-between"
+        class="bg-white dark:bg-dark-2 dark:text-white p-2 rounded-lg w-52 shadow border dark:border-slate-100/[0.20] text-left flex justify-between dark:ui-open:border-primary ui-open:border-primary"
       >
         {{ selectedSeason.year }}
+        <slot name="loader"></slot>
         <box-icon
           name="chevron-down"
           class="flex ui-open:hidden"
@@ -69,6 +70,7 @@ const fetchSeasons = async () => {
 
 const emitSeason = () => {
   emit('update:modelValue', selectedSeason.value)
+  console.log('test')
 }
 
 onMounted(async () => {

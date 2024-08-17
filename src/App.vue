@@ -1,21 +1,20 @@
 <template>
   <div class="flex flex-col h-screen">
+    <TopBar />
     <Navbar />
-    <main class="flex-grow lg:ml-64 p-8 overflow-y-auto mt-16 lg:mt-0">
-      <NextGrandPrix />
-
-      <LanguageSelector />
-      <div class="container mx-auto py-12">
+    <PageHeader />
+    <main class="flex-grow lg:ml-64 lg:px-20 lg:py-10 p-4 overflow-y-auto lg:mt-0">
+      <transition enter-active-class="animate-fadeIn" mode="out-in">
         <router-view></router-view>
-      </div>
+      </transition>
       <DefaultFooter />
     </main>
   </div>
 </template>
 
 <script setup>
+import PageHeader from '@/components/layouts/PageHeader.vue'
 import Navbar from '@/components/layouts/SideNav.vue'
 import DefaultFooter from '@/components/layouts/DefaultFooter.vue'
-import LanguageSelector from '@/components/Controls/LanguageSelector.vue'
-import NextGrandPrix from '@/components/UI/NextGrandPrix.vue'
+import TopBar from './components/UI/TopBar.vue'
 </script>

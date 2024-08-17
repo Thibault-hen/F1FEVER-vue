@@ -1,11 +1,9 @@
 <template>
-  <div class="flex flex-col w-full py-2 px-2 overflow-x-auto">
+  <div class="flex flex-col w-full overflow-x-auto">
     <table
       class="min-w-full dark:text-white border-separate border-spacing-y-0.5 table-fixed leading-2"
     >
-      <thead
-        class="dark:bg-dark-1 dark:text-white overflow-hidden tracking-wide text-sm lg:text-base"
-      >
+      <thead class="dark:text-white overflow-hidden tracking-wide text-sm lg:text-base">
         <tr>
           <th class="py-3 px-4 text-left rounded-l-lg font-bold max-w-[20px]">Position</th>
           <th class="min-w-[200px] px-4 text-left font-bold">Name</th>
@@ -18,7 +16,7 @@
         <tr
           v-for="(driver, index) in props.data"
           :key="index"
-          class="dark:bg-dark-1 transition-all ease-in-out duration-50"
+          class="odd:dark:bg-dark-2 odd:bg-zinc-100 transition-all ease-in-out duration-50"
           :class="{
             'hover:bg-gold hover:dark:bg-gold': index === 0,
             'hover:bg-silver hover:dark:bg-silver': index === 1,

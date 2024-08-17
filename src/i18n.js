@@ -26,7 +26,7 @@ const messages = {
     },
     home: {
       welcome: {
-        title: 'Welcome to FORMULA1FEVER',
+        title: 'Welcome to F1FEVER',
         description:
           'Explore Formula 1 with ease! Discover standings, drivers, and constructors info, delve into Grand Prix details and more.',
         powered_by: 'Powered by the F1 Ergast database'
@@ -81,7 +81,7 @@ const messages = {
     },
     home: {
       welcome: {
-        title: 'Bienvenue sur FORMULA1FEVER',
+        title: 'Bienvenue sur F1FEVER',
         description:
           'Découvrez la Formule 1 avec facilité ! Explorez les classements, les pilotes, les informations sur les constructeurs, plongez dans les détails des Grands Prix et bien plus encore.',
         powered_by: 'Powered by the F1 Ergast database'

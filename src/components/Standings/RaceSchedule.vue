@@ -11,7 +11,7 @@
       v-if="props.isLoading"
       class="absolute inset-0 flex justify-center items-center bg-opacity-50 backdrop-blur-sm"
     >
-      <Loader />
+      <CarLoader />
     </div>
     <div class="mt-6 overflow-x-auto">
       <table
@@ -35,7 +35,7 @@
           <tr
             v-for="(grandPrix, index) in props.data"
             :key="index"
-            class="hover:bg-primary/20 hover:dark:bg-primary/20 transition-all ease-in-out duration-100"
+            class="hover:bg-primary/20 hover:dark:bg-primary/20 odd:bg-zinc-100 dark:odd:bg-dark-1 transition-all ease-in-out duration-100"
           >
             <td class="rounded-l-lg px-4 py-4">
               <div class="flex">
@@ -60,7 +60,7 @@
 
 <script setup>
 import { defineProps } from 'vue'
-import Loader from '../UI/DefaultLoader.vue'
+import CarLoader from '../UI/CarLoader.vue'
 import CountryFlag from '../UI/CountryFlag.vue'
 
 const props = defineProps(['season', 'data', 'isLoading'])

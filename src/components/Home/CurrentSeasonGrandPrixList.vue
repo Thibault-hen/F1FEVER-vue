@@ -8,7 +8,7 @@
       {{ $t('home.current_grandprix.label') }}
     </div>
     <div v-if="isLoading" class="flex justify-center items-center h-full">
-      <Loader />
+      <CarLoader />
     </div>
     <div v-else>
       <div class="mt-6 overflow-x-auto">
@@ -34,7 +34,7 @@
             <tr
               v-for="(grandPrix, index) in grandPrixList"
               :key="index"
-              class="hover:bg-primary/10 transition-all ease-in-out duration-100"
+              class="hover:bg-primary/10 transition-all ease-in-out duration-100 odd:bg-zinc-100 dark:odd:bg-dark-1"
             >
               <td class="px-4 py-4 rounded-l-lg">
                 <div class="flex">
@@ -74,8 +74,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import CountryFlag from '../UI/CountryFlag.vue'
-import Loader from '../UI/DefaultLoader.vue'
-
+import CarLoader from '../UI/CarLoader.vue'
 const grandPrixList = ref([])
 const isUpcoming = ref([])
 const isLoading = ref(true)

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full py-2 px-2 overflow-x-auto">
+  <div class="flex flex-col w-full overflow-x-auto">
     <table
       class="min-w-full dark:text-white border-separate border-spacing-y-0.5 table-fixed leading-2"
     >
@@ -18,7 +18,7 @@
         <tr
           v-for="(constructor, index) in props.data"
           :key="index"
-          class="dark:bg-dark-1 transition-all ease-in-out duration-50"
+          class="dark:odd:bg-dark-2 odd:bg-zinc-100 transition-all ease-in-out duration-50"
           :class="{
             'hover:bg-gold hover:dark:bg-gold': index === 0,
             'hover:bg-silver hover:dark:bg-silver': index === 1,

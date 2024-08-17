@@ -12,10 +12,10 @@
   font-weight: normal;
 }
 html {
-  transition: all 0.3s ease;
+  transition: all 0.3s ease !important;
 }
 body {
-  transition: all 0.3s ease;
+  transition: all 0.3s ease !important;
   line-height: 1.6;
   font-family: 'Bai Jamjuree', sans-serif;
   font-size: 15px;
@@ -24,20 +24,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 .gradient-bar {
-  -o-border-image: linear-gradient(139deg, #fb1717, #640101, #570e0e, #420909) 3;
-  border-image: linear-gradient(139deg, #fb1717, #630101, #5f1010, #4b0c0c) 3;
+  background-color: linear-gradient(139deg, #fb1717, #640101, #570e0e, #420909) 3;
   animation: gradient-animation 5s infinite linear; /* Animation settings */
 }
 
 @keyframes gradient-animation {
   0% {
-    border-image: linear-gradient(139deg, #fb1717, #640101, #570e0e, #2b0606) 3;
+    background-color: linear-gradient(139deg, #fb1717, #640101, #570e0e, #2b0606) 3;
   }
   50% {
-    border-image: linear-gradient(139deg, #420909, #570e0e, #640101, #fb1717) 3;
+    background-color: linear-gradient(139deg, #420909, #570e0e, #640101, #fb1717) 3;
   }
   100% {
-    border-image: linear-gradient(139deg, #fb1717, #630101, #5f1010, #2b0606) 3;
+    background-color: linear-gradient(139deg, #fb1717, #630101, #5f1010, #2b0606) 3;
   }
 }
 

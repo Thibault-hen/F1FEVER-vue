@@ -11,9 +11,7 @@
     </p>
   </section>
 
-  <hr
-    class="my-4 bg-gradient-to-r from-transparent via-primary to-transparent h-0.5 border-transparent"
-  />
+  <LineSeparator class="mx-auto" />
 
   <section class="py-4">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
@@ -55,4 +53,5 @@
 </template>
 <script setup>
 import GradientTitle from '../UI/GradientTitle.vue'
+import LineSeparator from '../UI/LineSeparator.vue'
 </script>

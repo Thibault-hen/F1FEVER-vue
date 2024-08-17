@@ -5,7 +5,7 @@ import Welcome from '@/components/Home/WelcomeMessage.vue'
 </script>
 
 <template>
-  <div class="animate-slideLeft">
+  <div>
     <Welcome />
 
     <div class="xl:flex mt-6">

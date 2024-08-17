@@ -9,7 +9,7 @@
       {{ $t('home.latest_grandprix.label') }}
     </div>
     <div v-if="isLoading" class="flex justify-center items-center h-full">
-      <Loader />
+      <CarLoader class="mt-6" />
     </div>
     <div v-else>
       <div
@@ -21,16 +21,16 @@
             {{ grandPrixInfo.name }}
           </span>
         </div>
-        <div class="space-x-2 flex items-center">
+        <div class="space-x-2 flex items-center mb-5">
           <box-icon name="calendar-event" color="red"></box-icon>
           <span>{{ grandPrixInfo.date }}</span>
           <box-icon name="time-five" color="red"></box-icon>
           <span>{{ grandPrixInfo.time }}</span>
         </div>
       </div>
-      <hr
-        class="my-4 bg-gradient-to-r from-transparent via-primary to-transparent h-0.5 border-transparent"
-      />
+
+      <LineSeparator class="mx-auto" />
+
       <div
         v-for="(result, index) in raceResults"
         :key="index"
@@ -59,7 +59,8 @@ import { RouterLink } from 'vue-router'
 import axios from 'axios'
 import NationalityFlag from '../UI/NationalityFlag.vue'
 import CountryFlag from '../UI/CountryFlag.vue'
-import Loader from '../UI/DefaultLoader.vue'
+import CarLoader from '../UI/CarLoader.vue'
+import LineSeparator from '../UI/LineSeparator.vue'
 
 const grandPrixInfo = ref({})
 const raceResults = ref([])

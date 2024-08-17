@@ -1,5 +1,5 @@
 <template>
-  <div class="animate-slideLeft">
+  <div>
     <div class="space-y-4">
       <StandingsHeroSection
         :selected-season="selectedSeason.year"
@@ -13,21 +13,18 @@
       >
         <template #selector>
           <div class="md:ml-auto flex items-center md:flex-end">
+            <span class="dark:text-white mr-1 px-4 tracking-wide">Season : </span>
             <SeasonSelector
+              :disabled="isLoading"
               v-model="selectedSeason"
               :updated-season="updatedSeason"
               class="mr-2 items-center"
-            />
-
-            <DefaultButton
-              @click="updateStandings"
-              :disabled="isLoading"
-              :class="isLoading ? 'bg-opacity-5' : 'bg-opacity-100'"
-              class="text-white h-10 w-26 xl:w-32 text-xs"
+              @update:modelValue="updateStandings"
             >
-              <LoaderSmall v-if="isLoading" class="mx-auto" />
-              <span v-else class="uppercase">afficher</span>
-            </DefaultButton>
+              <template #loader>
+                <LoaderSmall v-if="isLoading" class="ml-auto" />
+              </template>
+            </SeasonSelector>
           </div>
         </template>
       </StandingsTabs>
@@ -43,7 +40,6 @@ import { useRoute, useRouter } from 'vue-router'
 import StandingsHeroSection from '@/components/Standings/StandingsHeroSection.vue'
 import RaceSchedule from '@/components/Standings/RaceSchedule.vue'
 import StandingsTabs from '@/components/Standings/StandingsTabs.vue'
-import DefaultButton from '@/components/UI/DefaultButton.vue'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
 import LoaderSmall from '@/components/UI/LoaderSmall.vue'
 
