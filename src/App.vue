@@ -16,5 +16,5 @@
 import PageHeader from '@/components/layouts/PageHeader.vue'
 import Navbar from '@/components/layouts/SideNav.vue'
 import DefaultFooter from '@/components/layouts/DefaultFooter.vue'
-import TopBar from './components/UI/TopBar.vue'
+import TopBar from './components/layouts/TopBar.vue'
 </script>

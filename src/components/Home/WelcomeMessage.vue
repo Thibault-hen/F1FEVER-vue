@@ -52,6 +52,6 @@
   </section>
 </template>
 <script setup>
-import GradientTitle from '../UI/GradientTitle.vue'
-import LineSeparator from '../UI/LineSeparator.vue'
+import GradientTitle from '../UI/Misc/GradientTitle.vue'
+import LineSeparator from '../UI/Misc/LineSeparator.vue'
 </script>

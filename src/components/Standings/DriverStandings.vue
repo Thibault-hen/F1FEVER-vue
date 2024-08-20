@@ -5,11 +5,19 @@
     >
       <thead class="dark:text-white overflow-hidden tracking-wide text-sm lg:text-base">
         <tr>
-          <th class="py-3 px-4 text-left rounded-l-lg font-bold max-w-[20px]">Position</th>
-          <th class="min-w-[200px] px-4 text-left font-bold">Name</th>
-          <th class="min-w-[80px] px-4 text-left font-bold">Wins</th>
-          <th class="min-w-[80px] px-4 text-left font-bold">Points</th>
-          <th class="min-w-[80px] px-4 text-left rounded-r-lg font-bold">Gap</th>
+          <th class="py-3 px-4 text-left rounded-l-lg font-bold max-w-[20px]">
+            <box-icon
+              type="solid"
+              name="bar-chart-alt-2"
+              :color="isDark ? 'white' : 'black'"
+            ></box-icon>
+          </th>
+          <th class="min-w-[200px] px-4 text-left tracking-wide uppercase text-sm">Name</th>
+          <th class="min-w-[80px] px-4 text-left tracking-wide uppercase text-sm">Wins</th>
+          <th class="min-w-[80px] px-4 text-left tracking-wide uppercase text-sm">Points</th>
+          <th class="min-w-[80px] px-4 text-left rounded-r-lg tracking-wide uppercase text-sm">
+            Gap
+          </th>
         </tr>
       </thead>
       <tbody class="text-xs lg:text-sm">
@@ -42,22 +50,33 @@
               {{ driver.name }}
             </div>
           </td>
-          <td
-            class="p-4 min-w-[80px] text-left"
-            :class="{
-              'dark:text-yellow-300 text-yellow-600': driver.wins > 0
-            }"
-          >
-            {{ driver.wins }}
+          <td class="p-4 min-w-[80px] text-left tracking-widest">
+            <span
+              class="px-2"
+              :class="{
+                'dark:text-yellow-300 text-yellow-600 bg-gold rounded px-2': driver.wins > 0
+              }"
+            >
+              {{ driver.wins }}</span
+            >
           </td>
-          <td class="p-4 min-w-[80px] text-left">
-            {{ driver.points }}
+          <td class="p-4 min-w-[80px] text-left tracking-widest">
+            <span
+              class="px-2 rounded"
+              :class="{ 'bg-blue-800/30 dark:text-blue-400 text-blue-800': driver.points > 0 }"
+            >
+              {{ driver.points }}</span
+            >
           </td>
-          <td
-            class="rounded-r-lg p-4 min-w-[80px] text-left"
-            :class="{ 'text-primary': driver.gap > 0 }"
-          >
-            {{ formatGap(driver.gap) }}
+          <td class="rounded-r-lg p-4 min-w-[80px] text-left">
+            <span
+              :class="{
+                'text-primary px-2 dark:bg-primary/20 bg-primary/30 rounded tracking-widest':
+                  driver.gap > 0
+              }"
+            >
+              {{ formatGap(driver.gap) }}</span
+            >
           </td>
         </tr>
       </tbody>
@@ -67,16 +86,23 @@
 
 <script setup>
 import { defineProps } from 'vue'
-import NationalityFlag from '../UI/NationalityFlag.vue'
+import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
 import { useStandings } from '@/composables/useStandings'
+import { useDark } from '@vueuse/core'
+import 'boxicons'
 
 const props = defineProps(['season', 'data'])
 
 const { isLoading } = useStandings()
+const isDark = useDark()
 
 console.log(isLoading.value)
 
 const formatGap = (gap) => {
-  return gap > 0 ? `-${gap}` : ''
+  if (gap > 0 && gap.split('.').length >= 2) {
+    return Math.round(gap * 100) / 100
+  } else if (gap > 0) {
+    return `-${gap}`
+  } else return 'LEADER'
 }
 </script>

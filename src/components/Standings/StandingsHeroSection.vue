@@ -20,9 +20,9 @@
 </template>
 
 <script setup>
-import DataMissingInfo from '../UI/DataMissingInfo.vue'
-import GradientTitle from '../UI/GradientTitle.vue'
-import LineSeparator from '../UI/LineSeparator.vue'
+import DataMissingInfo from '../UI/Misc/DataMissingInfo.vue'
+import GradientTitle from '../UI/Misc/GradientTitle.vue'
+import LineSeparator from '../UI/Misc/LineSeparator.vue'
 
 const props = defineProps(['selectedSeason', 'updatedSeason'])
 </script>

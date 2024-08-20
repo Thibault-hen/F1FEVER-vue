@@ -2,16 +2,16 @@
   <TabGroup>
     <div class="flex md:items-end flex-col-reverse md:flex-row">
       <TabList
-        class="flex p-2 gap-2 bg-white dark:bg-dark-2 rounded-lg border shadow dark:border-slate-50/[0.06] md:mt-0 mt-4 w-auto max-w-max"
+        class="flex p-2 gap-2 rounded-lg border shadow dark:border-slate-50/[0.06] md:mt-0 mt-4 w-auto max-w-max"
       >
         <Tab
           selected
-          class="hover:text-white ui-selected:text-white text-sm py-2 px-6 rounded border-none outline-none duration-200 ease-in-out transition-all transform active:scale-95 dark:ui-selected:bg-primary ui-selected:bg-primary/60 ui-not-selected:hover:bg-primary/90 dark:ui-not-selected:hover:bg-primary/20 dark:ui-selected:text-white ui-not-selected:bg-white dark:ui-not-selected:bg-dark-2 dark:ui-not-selected:text-white"
+          class="border border-transparent hover:text-white ui-selected:text-white text-sm py-2 px-6 rounded outline-none duration-200 ease-in-out transition-all transform active:scale-95 dark:ui-selected:bg-primary/20 ui-selected:border-primary ui-selected:bg-primary/60 ui-not-selected:hover:bg-primary/90 dark:ui-not-selected:hover:bg-primary/20 dark:ui-selected:text-white ui-not-selected:bg-white dark:ui-not-selected:bg-dark-1 dark:ui-not-selected:text-white"
         >
           Drivers Standings
         </Tab>
         <Tab
-          class="hover:text-white ui-selected:text-white text-sm py-2 px-6 rounded border-none outline-none duration-200 ease-in-out transition-all transform active:scale-95 dark:ui-selected:bg-primary ui-selected:bg-primary/60 ui-not-selected:hover:bg-primary/90 dark:ui-not-selected:hover:bg-primary/20 dark:ui-selected:text-white ui-not-selected:bg-white dark:ui-not-selected:bg-dark-2 dark:ui-not-selected:text-white"
+          class="border border-transparent hover:text-white ui-selected:text-white text-sm py-2 px-6 rounded outline-none duration-200 ease-in-out transition-all transform active:scale-95 dark:ui-selected:bg-primary/20 ui-selected:border-primary ui-selected:bg-primary/60 ui-not-selected:hover:bg-primary/90 dark:ui-not-selected:hover:bg-primary/20 dark:ui-selected:text-white ui-not-selected:bg-white dark:ui-not-selected:bg-dark-1 dark:ui-not-selected:text-white"
         >
           Constructors Standings
         </Tab>
@@ -57,7 +57,7 @@
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import DriverStandings from '@/components/Standings/DriverStandings.vue'
 import ConstructorStandings from '@/components/Standings/ConstructorStandings.vue'
-import CarLoader from '../UI/CarLoader.vue'
+import CarLoader from '../UI/Loader/CarLoader.vue'
 
 const props = defineProps([
   'driverStandings',

@@ -60,7 +60,7 @@
 <script setup>
 import { ref } from 'vue'
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue'
-import DefaultButton from './DefaultButton.vue'
+import DefaultButton from '../Misc/DefaultButton.vue'
 
 const isOpen = ref(false)
 

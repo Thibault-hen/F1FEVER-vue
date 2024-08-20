@@ -19,7 +19,7 @@
               v-model="selectedSeason"
               :updated-season="updatedSeason"
               class="mr-2 items-center"
-              @update:modelValue="updateStandings"
+              @update:modelValue="onSeasonSelected"
             >
               <template #loader>
                 <LoaderSmall v-if="isLoading" class="ml-auto" />
@@ -41,10 +41,11 @@ import StandingsHeroSection from '@/components/Standings/StandingsHeroSection.vu
 import RaceSchedule from '@/components/Standings/RaceSchedule.vue'
 import StandingsTabs from '@/components/Standings/StandingsTabs.vue'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
-import LoaderSmall from '@/components/UI/LoaderSmall.vue'
+import LoaderSmall from '@/components/UI/Loader/LoaderSmall.vue'
 
 const selectedSeason = ref({ year: null })
 const updatedSeason = ref(null)
+const manualUpdate = ref(false) // Flag to control manual updates
 const router = useRouter()
 const route = useRoute()
 
@@ -63,24 +64,12 @@ const updateDisplayedSeason = () => {
 
 const updateDisplayedSeasonFromUrl = (season) => {
   updatedSeason.value = season
-  selectedSeason.value.year = season
+  selectedSeason.value.year = season // Programmatically set the selected season
 }
 
 const updateUrl = (season) => {
   router.push({ name: 'Standings', params: { season } })
 }
-
-watch(
-  () => route.params.season,
-  async (season) => {
-    if (season && season !== updatedSeason.value) {
-      updateDisplayedSeasonFromUrl(season)
-      await fetchStandings(season)
-      updateUrl(season)
-    }
-  },
-  { immediate: true }
-)
 
 const updateStandings = async () => {
   await fetchStandings(selectedSeason.value.year)
@@ -88,11 +77,25 @@ const updateStandings = async () => {
   updateUrl(selectedSeason.value.year)
 }
 
+const onSeasonSelected = async () => {
+  if (manualUpdate.value) {
+    await updateStandings()
+  }
+}
+
 onMounted(async () => {
-  if (!route.params.season) {
+  manualUpdate.value = false // Prevent the updateStandings from being triggered on mount
+
+  if (route.params.season) {
+    updateDisplayedSeasonFromUrl(route.params.season)
+    await fetchStandings(updatedSeason.value)
+  } else {
     await fetchLatestStandings()
     updateDisplayedSeason()
     updateUrl(selectedSeason.value.year)
   }
+
+  // Allow manual updates to trigger the function after initial mount
+  manualUpdate.value = true
 })
 </script>

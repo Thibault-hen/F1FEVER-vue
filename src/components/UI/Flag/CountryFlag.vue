@@ -12,7 +12,7 @@
 
 <script setup>
 import { defineProps, computed } from 'vue'
-import { countryCodeDict } from './FlagCode.vue'
+import { countryCodeDict } from '../Flag/FlagCode.vue'
 
 const props = defineProps({
   country: {
@@ -25,7 +25,7 @@ const getFlagCode = (country) => {
 }
 
 const getFlagSrc = (code) => {
-  return new URL(`../../assets/flags/4x3/${code.toLowerCase()}.svg`, import.meta.url).href
+  return new URL(`../../../assets/flags/4x3/${code.toLowerCase()}.svg`, import.meta.url).href
 }
 
 const flagSrc = computed(() => {

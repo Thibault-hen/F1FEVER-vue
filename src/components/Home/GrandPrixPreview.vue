@@ -57,10 +57,10 @@
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import axios from 'axios'
-import NationalityFlag from '../UI/NationalityFlag.vue'
-import CountryFlag from '../UI/CountryFlag.vue'
-import CarLoader from '../UI/CarLoader.vue'
-import LineSeparator from '../UI/LineSeparator.vue'
+import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
+import CountryFlag from '../UI/Flag/CountryFlag.vue'
+import CarLoader from '../UI/Loader/CarLoader.vue'
+import LineSeparator from '../UI/Misc/LineSeparator.vue'
 
 const grandPrixInfo = ref({})
 const raceResults = ref([])

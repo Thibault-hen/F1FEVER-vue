@@ -62,20 +62,22 @@ const fetchSeasons = async () => {
   try {
     const response = await axios.get('http://f1fever.test/api/seasons')
     seasonList.value = response.data.data
-    selectedSeason.value = seasonList.value[0]
+    if (props.updatedSeason) {
+      const foundSeason = seasonList.value.find((season) => season.year === props.updatedSeason)
+      selectedSeason.value = foundSeason || seasonList.value[0]
+    } else {
+      selectedSeason.value = seasonList.value[0]
+    }
   } catch (error) {
     console.error('Error while fetching seasons', error)
   }
 }
-
 const emitSeason = () => {
   emit('update:modelValue', selectedSeason.value)
-  console.log('test')
 }
 
 onMounted(async () => {
   await fetchSeasons()
-  emit('update:modelValue', selectedSeason.value)
-  selectedSeason.value.year = props.updatedSeason ?? selectedSeason.value.year
+  emitSeason()
 })
 </script>

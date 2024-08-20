@@ -21,7 +21,7 @@
       >
         <!-- ListboxOptions -->
         <ListboxOptions
-          class="bg-white dark:bg-dark-2 absolute w-full shadow items-center flex flex-col rounded py-2"
+          class="bg-white dark:bg-dark-2 absolute w-full rounded shadow border border-slate-50/[0.06] items-center flex flex-col py-2"
         >
           <ListboxOption
             v-for="language in languages"

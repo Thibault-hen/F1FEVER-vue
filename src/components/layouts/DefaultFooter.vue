@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import CountryFlag from '../UI/CountryFlag.vue'
+import CountryFlag from '../UI/Flag/CountryFlag.vue'
 
 const country = 'France'
 </script>
