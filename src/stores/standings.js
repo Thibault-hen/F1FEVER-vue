@@ -14,9 +14,12 @@ export const useStandingsStore = defineStore('standings', () => {
 
   const isLoading = ref(false)
 
-  const fetchStandings = async (season) => {
+  const fetchStandings = async (season, newStandings = false) => {
     isLoading.value = true
-    if (standings.value.season === season || standings.value.season === 'latest') {
+    if (
+      standings.value.season === season ||
+      (standings.value.season === 'latest' && newStandings === false)
+    ) {
       isLoading.value = false
       return
     }

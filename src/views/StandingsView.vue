@@ -46,6 +46,7 @@ import StandingsTabs from '@/components/Standings/StandingsTabs.vue'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
 import LoaderSmall from '@/components/UI/Loader/LoaderSmall.vue'
 import { useStandingsStore } from '@/stores/standings'
+import { useSeasonsStore } from '@/stores/seasons'
 
 const selectedSeason = ref({ year: null })
 const updatedSeason = ref(null)
@@ -54,6 +55,7 @@ const route = useRoute()
 const manualUpdate = ref(false)
 
 const store = useStandingsStore()
+const seasonStore = useSeasonsStore()
 
 const updateDisplayedSeason = () => {
   updatedSeason.value = selectedSeason.value.year
@@ -72,7 +74,7 @@ const updateUrl = (season) => {
 
 const updateStandings = async (season) => {
   updateUrl(season)
-  await store.fetchStandings(season)
+  await store.fetchStandings(season, true)
   updateDisplayedSeason()
 }
 
@@ -89,11 +91,17 @@ onMounted(async () => {
 
   if (store.standings.season) {
     // If standings exist, set the selected season to the stored season
-    selectedSeason.value.year = store.standings.season
-    updatedSeason.value = store.standings.season
+    let storedSeason = store.standings.season
+    if (store.standings.season === 'latest') {
+      storedSeason = seasonStore.seasons.reduce(
+        (max, current) => (current.value > max.value ? current : max),
+        seasonStore.seasons[0].year
+      )
+    }
+    updatedSeason.value = storedSeason
 
     // Update the URL to reflect the selected season
-    updateUrl(store.standings.season)
+    updateUrl(storedSeason)
   } else {
     if (route.params.season) {
       updateDisplayedSeasonFromUrl(route.params.season)
