@@ -85,18 +85,13 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
 import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
-import { useStandings } from '@/composables/useStandings'
 import { useDark } from '@vueuse/core'
 import 'boxicons'
 
 const props = defineProps(['season', 'data'])
 
-const { isLoading } = useStandings()
 const isDark = useDark()
-
-console.log(isLoading.value)
 
 const formatGap = (gap) => {
   if (gap > 0 && gap.split('.').length >= 2) {

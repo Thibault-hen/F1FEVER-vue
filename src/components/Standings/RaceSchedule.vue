@@ -59,7 +59,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
 import CarLoader from '../UI/Loader/CarLoader.vue'
 import CountryFlag from '../UI/Flag/CountryFlag.vue'
 

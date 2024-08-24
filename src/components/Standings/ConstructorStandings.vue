@@ -91,7 +91,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import { defineProps } from 'vue'
 import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
 import MissingDataText from '../UI/Misc/MissingDataText.vue'
 import { useDark } from '@vueuse/core'

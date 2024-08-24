@@ -44,7 +44,7 @@ export default {
         }
       },
       animation: {
-        fadeIn: 'fadeIn ease 0.3s',
+        fadeIn: 'fadeIn ease 0.4s',
         slideDown: 'slideInDown 0.3s',
         slideLeft: 'slideInLeft 0.3s',
         slideInLeftFadeIn: 'slideInLeftFadeIn 0.3s ease-out'

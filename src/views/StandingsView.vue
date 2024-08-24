@@ -6,95 +6,104 @@
         :updated-season="updatedSeason"
       />
       <StandingsTabs
-        :driver-standings="driverStandings"
-        :constructor-standings="constructorStandings"
+        :driver-standings="store.standings.drivers"
+        :constructor-standings="store.standings.constructors"
         :selected-season="selectedSeason.year"
-        :is-loading="isLoading"
+        :is-loading="store.isLoading"
       >
         <template #selector>
           <div class="md:ml-auto flex items-center md:flex-end">
             <span class="dark:text-white mr-1 px-4 tracking-wide">Season : </span>
             <SeasonSelector
-              :disabled="isLoading"
+              :disabled="store.isLoading"
               v-model="selectedSeason"
               :updated-season="updatedSeason"
               class="mr-2 items-center"
               @update:modelValue="onSeasonSelected"
             >
               <template #loader>
-                <LoaderSmall v-if="isLoading" class="ml-auto" />
+                <LoaderSmall v-if="store.isLoading" class="ml-auto" />
               </template>
             </SeasonSelector>
           </div>
         </template>
       </StandingsTabs>
-      <RaceSchedule :season="selectedSeason.year" :data="seasonSchedule" :is-loading="isLoading" />
+      <RaceSchedule
+        :season="selectedSeason.year"
+        :data="store.standings.schedule"
+        :is-loading="store.isLoading"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
-import { useStandings } from '@/composables/useStandings'
+import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import StandingsHeroSection from '@/components/Standings/StandingsHeroSection.vue'
 import RaceSchedule from '@/components/Standings/RaceSchedule.vue'
 import StandingsTabs from '@/components/Standings/StandingsTabs.vue'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
 import LoaderSmall from '@/components/UI/Loader/LoaderSmall.vue'
+import { useStandingsStore } from '@/stores/standings'
 
 const selectedSeason = ref({ year: null })
 const updatedSeason = ref(null)
-const manualUpdate = ref(false) // Flag to control manual updates
 const router = useRouter()
 const route = useRoute()
+const manualUpdate = ref(false)
 
-const {
-  fetchStandings,
-  fetchLatestStandings,
-  driverStandings,
-  constructorStandings,
-  seasonSchedule,
-  isLoading
-} = useStandings()
+const store = useStandingsStore()
 
 const updateDisplayedSeason = () => {
   updatedSeason.value = selectedSeason.value.year
 }
 
 const updateDisplayedSeasonFromUrl = (season) => {
+  manualUpdate.value = false
+  selectedSeason.value.year = season
   updatedSeason.value = season
-  selectedSeason.value.year = season // Programmatically set the selected season
+  manualUpdate.value = true
 }
 
 const updateUrl = (season) => {
   router.push({ name: 'Standings', params: { season } })
 }
 
-const updateStandings = async () => {
-  await fetchStandings(selectedSeason.value.year)
+const updateStandings = async (season) => {
+  updateUrl(season)
+  await store.fetchStandings(season)
   updateDisplayedSeason()
-  updateUrl(selectedSeason.value.year)
 }
 
-const onSeasonSelected = async () => {
+const onSeasonSelected = async (season) => {
   if (manualUpdate.value) {
-    await updateStandings()
+    selectedSeason.value.year = season.year
+    await updateStandings(season.year)
   }
 }
 
+// Handle initial fetch and URL sync
 onMounted(async () => {
   manualUpdate.value = false // Prevent the updateStandings from being triggered on mount
 
-  if (route.params.season) {
-    updateDisplayedSeasonFromUrl(route.params.season)
-    await fetchStandings(updatedSeason.value)
-  } else {
-    await fetchLatestStandings()
-    updateDisplayedSeason()
-    updateUrl(selectedSeason.value.year)
-  }
+  if (store.standings.season) {
+    // If standings exist, set the selected season to the stored season
+    selectedSeason.value.year = store.standings.season
+    updatedSeason.value = store.standings.season
 
+    // Update the URL to reflect the selected season
+    updateUrl(store.standings.season)
+  } else {
+    if (route.params.season) {
+      updateDisplayedSeasonFromUrl(route.params.season)
+      await store.fetchStandings(updatedSeason.value)
+    } else {
+      await store.fetchLatestStandings()
+      updateDisplayedSeason()
+      updateUrl(selectedSeason.value.year)
+    }
+  }
   // Allow manual updates to trigger the function after initial mount
   manualUpdate.value = true
 })

@@ -21,8 +21,8 @@ const router = createRouter({
         const season = to.params.season
 
         if (season) {
-          const isValidSeason = await checkSeason(season)
-          if (isValidSeason) {
+          const isSeasonValid = await checkSeason(season)
+          if (isSeasonValid) {
             next()
           } else {
             next({

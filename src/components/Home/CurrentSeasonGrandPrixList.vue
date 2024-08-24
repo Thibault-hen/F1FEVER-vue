@@ -72,9 +72,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
 import CountryFlag from '../UI/Flag/CountryFlag.vue'
 import CarLoader from '../UI/Loader/CarLoader.vue'
+import api from '@/services/api'
+
 const grandPrixList = ref([])
 const isUpcoming = ref([])
 const isLoading = ref(true)
@@ -97,7 +98,7 @@ const setGrandPrixStatus = () => {
 const fetchData = async () => {
   isLoading.value = true
   try {
-    const response = await axios.get('http://f1fever.test/api/grand-prix-list/current')
+    const response = await api.get('/grand-prix-list/current')
     grandPrixList.value = response.data.data
     setGrandPrixStatus()
   } catch (error) {
