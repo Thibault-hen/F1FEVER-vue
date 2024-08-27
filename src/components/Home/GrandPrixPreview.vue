@@ -1,6 +1,6 @@
 <template>
   <div
-    class="xl:ml-4 relative flex flex-col bg-white dark:bg-dark-2 rounded border p-2 dark:text-white dark:border-slate-50/[0.06] shadow"
+    class="xl:ml-4 relative flex flex-col bg-white dark:bg-dark-1 rounded-lg border p-2 dark:text-white dark:border-slate-50/[0.06] shadow"
   >
     <!-- Label for Latest Grand Prix -->
     <div
@@ -42,47 +42,33 @@
         <div class="w-20 text-right">{{ result.time }}</div>
       </div>
       <div class="flex justify-center mt-4">
-        <RouterLink
-          :to="`/grand-prix/${grandPrixInfo.year}/${grandPrixInfo.slug}`"
-          class="rounded text-white px-4 py-2 tracking-wider transition ease-in-out hover:scale-110"
-        >
-          Full result
-        </RouterLink>
+        <DefaultButton>
+          <RouterLink
+            :to="`/grand-prix/${grandPrixInfo.year}/${grandPrixInfo.slug}`"
+            class="rounded text-white px-4 py-2 tracking-wider transition ease-in-out hover:scale-110"
+          >
+            Full Result
+          </RouterLink>
+        </DefaultButton>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
-import axios from 'axios'
 import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
 import CountryFlag from '../UI/Flag/CountryFlag.vue'
 import CarLoader from '../UI/Loader/CarLoader.vue'
 import LineSeparator from '../UI/Misc/LineSeparator.vue'
+import DefaultButton from '../UI/Misc/DefaultButton.vue'
+import { useGrandPrixPreview } from '@/composables/last-grand-prix-preview'
 
-const grandPrixInfo = ref({})
-const raceResults = ref([])
-const circuit = ref({})
-const isLoading = ref(true)
-
-// Usage
-const fetchData = async () => {
-  isLoading.value = true
-  try {
-    const response = await axios.get('http://f1fever.test/api/grand-prix/latest-preview')
-    grandPrixInfo.value = response.data.data.grand_prix_info
-    raceResults.value = response.data.data.race_result
-    circuit.value = response.data.data.circuit
-  } catch (error) {
-    console.error('Error in fetchData:', error)
-  } finally {
-    isLoading.value = false
-  }
-}
+const { grandPrixInfo, raceResults, circuit, isLoading, fetchGrandPrixPreview } =
+  useGrandPrixPreview()
 
 onMounted(() => {
-  fetchData()
+  fetchGrandPrixPreview()
 })
 </script>

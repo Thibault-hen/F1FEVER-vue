@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-2 border dark:border-slate-50/[0.06] shadow rounded"
+    class="relative p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-1 border dark:border-slate-50/[0.06] shadow rounded-lg"
   >
     <div
       class="absolute top-2 left-2 bg-primary text-white text-xs rounded px-2 py-1 uppercase tracking-widest"
@@ -34,7 +34,7 @@
             <tr
               v-for="(grandPrix, index) in grandPrixList"
               :key="index"
-              class="hover:bg-primary/10 transition-all ease-in-out duration-100 odd:bg-zinc-100 dark:odd:bg-dark-1"
+              class="hover:bg-primary/10 transition-all ease-in-out duration-100 odd:bg-zinc-100 dark:odd:bg-dark-2"
             >
               <td class="px-4 py-4 rounded-l-lg">
                 <div class="flex">
@@ -71,43 +71,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import CountryFlag from '../UI/Flag/CountryFlag.vue'
 import CarLoader from '../UI/Loader/CarLoader.vue'
-import api from '@/services/api'
+import { useCurrentGrandPrixList } from '@/composables/current-grand-prix-list'
 
-const grandPrixList = ref([])
-const isUpcoming = ref([])
-const isLoading = ref(true)
+const { grandPrixList, isUpcoming, isLoading, fetchCurrentGrandPrixList } =
+  useCurrentGrandPrixList()
 
-const getCurrentDate = () => {
-  const today = new Date()
-  const year = String(today.getFullYear())
-  const month = String(today.getMonth() + 1).padStart(2, '0')
-  const day = String(today.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
-}
-
-const setGrandPrixStatus = () => {
-  const currentDate = getCurrentDate()
-  grandPrixList.value.forEach((grandPrix) => {
-    isUpcoming.value.push(grandPrix.date > currentDate)
-  })
-}
-
-const fetchData = async () => {
-  isLoading.value = true
-  try {
-    const response = await api.get('/grand-prix-list/current')
-    grandPrixList.value = response.data.data
-    setGrandPrixStatus()
-  } catch (error) {
-    console.error('Error in fetchdata', error)
-  } finally {
-    isLoading.value = false
-  }
-}
 onMounted(() => {
-  fetchData()
+  fetchCurrentGrandPrixList()
 })
 </script>

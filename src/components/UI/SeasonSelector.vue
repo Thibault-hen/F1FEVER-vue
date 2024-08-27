@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, watch } from 'vue'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
 import { useDark } from '@vueuse/core'
 import { useSeasonsStore } from '@/stores/seasons'
@@ -57,10 +57,9 @@ const isDark = useDark()
 const selectedSeason = ref({})
 
 const emit = defineEmits(['update:modelValue'])
-
 const props = defineProps(['updatedSeason'])
 
-const manualUpdate = ref(false) // Add a flag for manual updates
+const manualUpdate = ref(false)
 
 const getSeasons = async () => {
   await store.fetchSeasons()
@@ -68,9 +67,10 @@ const getSeasons = async () => {
   const foundSeason = props.updatedSeason
     ? seasons.value.find((season) => season.year === props.updatedSeason)
     : seasons.value[0]
-  manualUpdate.value = false // Disable manual update flag during initialization
+
+  manualUpdate.value = false
   selectedSeason.value = foundSeason || seasons.value[0]
-  manualUpdate.value = true // Re-enable manual update flag after initialization
+  manualUpdate.value = true
 }
 
 const emitSeason = (isManual = false) => {
@@ -82,7 +82,21 @@ const emitSeason = (isManual = false) => {
 onMounted(async () => {
   await getSeasons()
   if (!props.updatedSeason) {
-    emitSeason(true) // Only emit on mount if updatedSeason is not provided
+    emitSeason(true)
   }
 })
+
+// Watch for changes in updatedSeason prop
+watch(
+  () => props.updatedSeason,
+  (newSeason) => {
+    const foundSeason = seasons.value.find((season) => season.year === newSeason)
+    if (foundSeason) {
+      manualUpdate.value = false
+      selectedSeason.value = foundSeason
+      manualUpdate.value = true
+    }
+  },
+  { immediate: true }
+)
 </script>

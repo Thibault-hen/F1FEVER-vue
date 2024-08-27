@@ -1,12 +1,12 @@
 <template>
   <div class="flex items-center mt-2">
-    <span
+    <button
       @click="openModal"
-      class="rounded-md bg-red-950 px-4 py-1 tracking-wider text-sm text-white hover:bg-primary/70 flex items-center cursor-pointer"
+      class="flex items-center dark:bg-primary/20 bg-primary/60 hover:bg-primary text-white font-medium text-xs py-1 px-3 rounded-lg shadow-lg transition-transform transform hover:scale-105"
     >
-      Missing data
-      <box-icon name="info-circle" class="items-center ml-2" color="white"></box-icon>
-    </span>
+      Missing Data
+      <box-icon name="info-circle" class="ml-2" color="white" size="sm"></box-icon>
+    </button>
   </div>
 
   <TransitionRoot :show="isOpen" as="template">

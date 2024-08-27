@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import StandingsView from '../views/StandingsView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
+import GrandPrixView from '@/views/GrandPrixView.vue'
 import { checkSeason } from '@/services/seasonService'
 
 const router = createRouter({
@@ -39,8 +40,9 @@ const router = createRouter({
       meta: { title: 'F1FEVER - Standings' }
     },
     {
-      path: '/grand-prix/:year?/:slug?',
-      name: 'Grand-prix'
+      path: '/grand-prix/:season?/:name?',
+      name: 'Grand-prix',
+      component: GrandPrixView
     },
     {
       path: '/drivers',
@@ -66,13 +68,14 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: NotFoundView
-    },
-    {
-      path: '/standings/:pathMatch(.*)*',
-      name: 'StandingsNotFound',
-      component: NotFoundView
     }
-  ]
+  ],
+  scrollBehavior() {
+    return {
+      top: 0,
+      behavior: 'smooth' // This will smoothly scroll to the top
+    }
+  }
 })
 
 export default router

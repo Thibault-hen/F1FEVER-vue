@@ -29,7 +29,7 @@
         </template>
       </StandingsTabs>
       <RaceSchedule
-        :season="selectedSeason.year"
+        :season="selectedSeason.year ?? updatedSeason"
         :data="store.standings.schedule"
         :is-loading="store.isLoading"
       />

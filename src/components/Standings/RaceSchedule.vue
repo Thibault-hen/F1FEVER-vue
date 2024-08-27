@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-2 border dark:border-slate-50/[0.06] rounded"
+    class="relative p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-1 border dark:border-slate-50/[0.06] rounded-lg"
   >
     <div
       class="absolute top-2 left-2 bg-primary text-white text-xs font-bold rounded px-2 py-1 uppercase tracking-wide"
@@ -35,7 +35,7 @@
           <tr
             v-for="(grandPrix, index) in props.data"
             :key="index"
-            class="hover:bg-primary/20 hover:dark:bg-primary/20 odd:bg-zinc-100 dark:odd:bg-dark-1 transition-all ease-in-out duration-100"
+            class="hover:bg-primary/20 hover:dark:bg-primary/20 odd:bg-zinc-100 dark:odd:bg-dark-2 transition-all ease-in-out duration-100"
           >
             <td class="rounded-l-lg px-4 py-4">
               <div class="flex">
