@@ -6,7 +6,10 @@
       <h4 class="text-xs uppercase text-red-500 tracking-widest font-bold">Winner</h4>
       <span class="flex dark:text-white"
         >{{ store.raceWinner.name }}
-        <NationalityFlag class="items-center flex ml-2" :nationality="store.raceWinner.nationality"
+        <NationalityFlag
+          v-if="store.raceWinner.nationality"
+          class="items-center flex ml-2"
+          :nationality="store.raceWinner.nationality"
       /></span>
       <span class="dark:text-white text-xs">Total time : {{ store.raceWinner.time }}</span>
     </div>

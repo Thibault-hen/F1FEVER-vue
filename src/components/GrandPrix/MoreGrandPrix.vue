@@ -38,7 +38,10 @@
             <td class="rounded-l-lg px-4 py-4">
               <div class="flex">
                 <RouterLink
-                  :to="`/grand-prix/${grandPrix.season}/${grandPrix.slug}`"
+                  :to="{
+                    name: 'Grand-prix',
+                    params: { season: grandPrix.season, name: grandPrix.slug }
+                  }"
                   class="font-bold hover:text-primary dark:hover:text-red-400 transition-transform duration-100 text-nowrap"
                 >
                   {{ grandPrix.season }}
@@ -49,14 +52,25 @@
               <div class="flex">
                 <box-icon type="solid" name="trophy" color="#d4af37" class="mr-2"></box-icon>
                 <NationalityFlag
+                  v-if="grandPrix.podium.winner"
                   class="mr-2"
                   :nationality="extractNationality(grandPrix.podium.winner)"
                 />
                 {{ grandPrix.podium.winner.replace(/\s*\(.*?\)\s*/g, '') }}
               </div>
             </td>
-            <td class="px-2 text-nowrap">{{ grandPrix.podium.second }}</td>
-            <td class="px-2 text-nowrap">{{ grandPrix.podium.third }}</td>
+            <td class="px-2 text-nowrap">
+              <div class="flex">
+                <box-icon type="solid" name="trophy" color="#c7d1da" class="mr-2"></box-icon
+                >{{ grandPrix.podium.second }}
+              </div>
+            </td>
+            <td class="px-2 text-nowrap">
+              <div class="flex">
+                <box-icon type="solid" name="trophy" color="#88540b" class="mr-2"></box-icon
+                >{{ grandPrix.podium.third }}
+              </div>
+            </td>
             <td class="px-2 text-nowrap">{{ grandPrix.time ?? 'N/A' }}</td>
             <td class="px-2 text-nowrap rounded-r-lg">{{ grandPrix.date }}</td>
           </tr>

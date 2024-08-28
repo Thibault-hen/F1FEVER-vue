@@ -34,9 +34,24 @@
       <div
         v-for="(result, index) in raceResults"
         :key="index"
-        class="p-2 text-xs md:text-sm flex items-center py-2 w-full hover:bg-primary/10 rounded"
+        class="p-2 text-xs md:text-sm flex items-center py-2 w-full rounded transition-all ease-in-out"
+        :class="{
+          'hover:bg-gold ': index === 0,
+          'hover:bg-silver ': index === 1,
+          'hover:bg-bronze ': index === 2,
+          'hover:bg-primary/20 hover:dark:bg-primary/20': index !== 0 && index !== 1 && index !== 2
+        }"
       >
-        <div class="w-8 font-bold"># {{ result.final_position }}</div>
+        <div
+          class="w-8"
+          :class="{
+            'dark:text-yellow-300 text-yellow-600': index === 0,
+            'text-blue-400': index === 1,
+            'text-amber-800': index === 2
+          }"
+        >
+          # {{ result.final_position }}
+        </div>
         <NationalityFlag :nationality="result.nationality" />
         <div class="ml-2 flex-grow">{{ result.name }}</div>
         <div class="w-20 text-right">{{ result.time }}</div>

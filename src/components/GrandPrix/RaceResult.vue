@@ -5,7 +5,7 @@
     >
       <thead class="dark:text-white overflow-hidden tracking-wide text-sm lg:text-base">
         <tr>
-          <th class="py-3 px-4 text-left rounded-l-lg font-bold max-w-[20px]">
+          <th class="py-3 px-4 text-left rounded-l-lg font-bold min-w-[100px]">
             <box-icon
               type="solid"
               name="bar-chart-alt-2"
@@ -13,7 +13,7 @@
             ></box-icon>
           </th>
           <th class="min-w-[200px] px-4 text-left tracking-wide uppercase text-sm">Name</th>
-          <th class="min-w-[80px] px-4 text-left tracking-wide uppercase text-sm">Team</th>
+          <th class="min-w-[180px] px-4 text-left tracking-wide uppercase text-sm">Team</th>
           <th class="min-w-[80px] px-4 text-left tracking-wide uppercase text-sm">Grid</th>
           <th class="min-w-[80px] px-4 text-left tracking-wide uppercase text-sm">Time</th>
           <th class="min-w-[80px] px-4 text-left tracking-wide uppercase text-sm">laps</th>
@@ -36,7 +36,7 @@
           }"
         >
           <td
-            class="rounded-l-lg p-4 min-w-[20px] text-left font-bold"
+            class="rounded-l-lg p-4 min-w-[60px] text-left font-bold"
             :class="{
               'dark:text-yellow-300 text-yellow-600 bg-gradient-to-r from-gold to-transparent':
                 index === 0,

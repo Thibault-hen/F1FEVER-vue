@@ -92,7 +92,7 @@ watch(
       console.log(`Fetching Grand Prix for season: ${season}`)
       await fetchGrandPrixForSeason(season)
     }
-  }, 300),
+  }, 250),
   { immediate: true }
 )
 

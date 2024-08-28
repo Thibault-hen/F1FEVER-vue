@@ -6,7 +6,10 @@
       <h4 class="text-xs uppercase text-red-500 tracking-widest font-bold">Pole Sitter</h4>
       <span class="flex dark:text-white"
         >{{ store.poleSitter.name }}
-        <NationalityFlag class="items-center flex ml-2" :nationality="store.poleSitter.nationality"
+        <NationalityFlag
+          class="items-center flex ml-2"
+          v-if="store.poleSitter.nationality"
+          :nationality="store.poleSitter.nationality"
       /></span>
       <span class="dark:text-white text-xs">Pole time : {{ store.poleSitter.time }}</span>
     </div>

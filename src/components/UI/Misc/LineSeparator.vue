@@ -1,5 +1,7 @@
 <template>
-  <div class="separator bg-gradient-to-r from-transparent dark:via-primary to-transparent"></div>
+  <div
+    class="separator h-[1px] bg-gradient-to-r from-transparent via-gray-800 to-transparent dark:via-gray-200"
+  ></div>
 </template>
 
 <style scoped>

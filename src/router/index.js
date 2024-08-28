@@ -4,6 +4,7 @@ import StandingsView from '../views/StandingsView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import GrandPrixView from '@/views/GrandPrixView.vue'
 import { checkSeason } from '@/services/seasonService'
+import { checkGrandPrix } from '@/services/grandPrixService'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,7 +43,27 @@ const router = createRouter({
     {
       path: '/grand-prix/:season?/:name?',
       name: 'Grand-prix',
-      component: GrandPrixView
+      component: GrandPrixView,
+      beforeEnter: async (to, from, next) => {
+        const season = to.params.season
+        const name = to.params.name
+        if (season && name) {
+          const isGrandPrixValid = await checkGrandPrix(season, name)
+          if (isGrandPrixValid) {
+            next()
+          } else {
+            next({
+              name: 'NotFound',
+              params: { pathMatch: to.path.substring(1).split('/') },
+              query: to.hash,
+              hash: to.hash
+            })
+          }
+        } else {
+          next()
+        }
+      },
+      meta: { title: 'F1FEVER - Grand Prix' }
     },
     {
       path: '/drivers',
@@ -70,10 +91,16 @@ const router = createRouter({
       component: NotFoundView
     }
   ],
-  scrollBehavior() {
-    return {
-      top: 0,
-      behavior: 'smooth' // This will smoothly scroll to the top
+  scrollBehavior: function (to, _from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    if (to.hash) {
+      return { el: to.hash, behavior: 'smooth' }
+    } else {
+      setTimeout(() => {
+        window.scrollTo(0, 0)
+      }, 500)
     }
   }
 })

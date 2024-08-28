@@ -10,6 +10,8 @@
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+  scrollbar-width: thin;
+  scrollbar-color: red transparent;
 }
 html {
   transition: all 0.3s ease !important;
@@ -51,7 +53,7 @@ body {
 
 *::-webkit-scrollbar-thumb {
   background-color: #ef4444;
-  border-radius: 25px;
+  border-radius: 15px;
 }
 
 @media screen and (max-width: 1024px) {

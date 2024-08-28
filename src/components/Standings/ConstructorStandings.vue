@@ -1,10 +1,7 @@
 <template>
   <div class="flex flex-col w-full overflow-x-auto">
-    <div v-if="!hasData">
-      <MissingDataText :title="errorTitle" :description="errorDesc" />
-    </div>
     <table
-      v-else
+      v-if="store.standings.constructors.length > 0"
       class="min-w-full dark:text-white border-separate border-spacing-y-0.5 table-fixed leading-2"
     >
       <thead
@@ -28,7 +25,7 @@
       </thead>
       <tbody class="text-xs lg:text-sm">
         <tr
-          v-for="(constructor, index) in props.data"
+          v-for="(constructor, index) in store.standings.constructors"
           :key="index"
           class="dark:odd:bg-dark-2 odd:bg-zinc-100 transition-all ease-in-out duration-50"
           :class="{
@@ -86,36 +83,24 @@
         </tr>
       </tbody>
     </table>
+    <div v-else>
+      <MissingDataText>
+        Constructors standings for this selected season might be unavailable or something went wrong
+        while retrieving the data
+      </MissingDataText>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
 import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
 import MissingDataText from '../UI/Misc/MissingDataText.vue'
 import { useDark } from '@vueuse/core'
+import { useStandingsStore } from '@/stores/standings'
 import 'boxicons'
 
-const props = defineProps(['season', 'data'])
-
+const store = useStandingsStore()
 const isDark = useDark()
-
-const errorTitle = 'No Constructor Standings Available'
-const errorDesc =
-  'Constructor standings are currently unavailable for this season. Please check back later or select another season'
-
-const hasData = computed(() => {
-  if (props.data == null) {
-    return false
-  }
-  if (Array.isArray(props.data)) {
-    return props.data.length > 0
-  }
-  if (typeof props.data === 'object') {
-    return Object.keys(props.data).length > 0
-  }
-  return false
-})
 
 const formatGap = (gap) => {
   if (gap > 0 && gap.split('.').length >= 2) {
