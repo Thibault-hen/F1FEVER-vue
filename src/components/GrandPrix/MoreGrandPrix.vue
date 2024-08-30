@@ -19,14 +19,16 @@
       >
         <thead class="dark:bg-dark-1">
           <tr class="text-left border-b tracking-wide text-sm md:text-base">
-            <th class="px-2 py-2 font-bold min-w-24 rounded-l-lg">Season</th>
-            <th class="px-2 py-2 font-bold min-w-64">Winner</th>
-            <th class="px-2 py-2 font-bold min-w-64">Second</th>
-            <th class="px-2 py-2 font-bold min-w-64">Third</th>
-            <th class="px-2 font-bold">
+            <th class="px-2 py-2 text-sm uppercase min-w-24 rounded-l-lg">Season</th>
+            <th class="px-2 py-2 text-sm uppercase min-w-64">Winner</th>
+            <th class="px-2 py-2 text-sm uppercase min-w-64">Second</th>
+            <th class="px-2 py-2 text-sm uppercase min-w-64">Third</th>
+            <th class="px-2 text-sm uppercase">
               {{ $t('home.current_grandprix.time') }}
             </th>
-            <th class="px-2 font-bold rounded-r-lg">{{ $t('home.current_grandprix.date') }}</th>
+            <th class="px-2 text-sm uppercase rounded-r-lg">
+              {{ $t('home.current_grandprix.date') }}
+            </th>
           </tr>
         </thead>
         <tbody class="dark:bg-dark-1 rounded-lg">

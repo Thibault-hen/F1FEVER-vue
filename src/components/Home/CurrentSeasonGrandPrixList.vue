@@ -17,16 +17,20 @@
         >
           <thead class="dark:bg-dark-1 bg-white-2">
             <tr class="text-left border-b tracking-wide text-sm md:text-base">
-              <th class="px-2 py-4 font-bold min-w-64 rounded-l-lg">
-                {{ $t('home.current_grandprix.name') }}
+              <th class="px-2 py-4 min-w-64 rounded-l-lg">
+                <span class="uppercase text-sm"> {{ $t('home.current_grandprix.name') }}</span>
               </th>
-              <th class="px-2 py-4 font-bold">
-                {{ $t('home.current_grandprix.location') }}
+              <th class="px-2 py-4">
+                <span class="uppercase text-sm"> {{ $t('home.current_grandprix.location') }}</span>
               </th>
-              <th class="px-2 py-4 font-bold">{{ $t('home.current_grandprix.time') }}</th>
-              <th class="px-2 py-4 font-bold">{{ $t('home.current_grandprix.date') }}</th>
-              <th class="px-2 py-4 font-bold rounded-r-lg">
-                {{ $t('home.current_grandprix.status') }}
+              <th class="px-2 py-4">
+                <span class="uppercase text-sm"> {{ $t('home.current_grandprix.time') }}</span>
+              </th>
+              <th class="px-2 py-4">
+                <span class="uppercase text-sm"> {{ $t('home.current_grandprix.date') }}</span>
+              </th>
+              <th class="px-2 py-4 rounded-r-lg">
+                <span class="uppercase text-sm"> {{ $t('home.current_grandprix.status') }}</span>
               </th>
             </tr>
           </thead>

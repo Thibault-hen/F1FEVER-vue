@@ -5,6 +5,7 @@ import NotFoundView from '../views/NotFoundView.vue'
 import GrandPrixView from '@/views/GrandPrixView.vue'
 import { checkSeason } from '@/services/seasonService'
 import { checkGrandPrix } from '@/services/grandPrixService'
+import RecordsView from '@/views/RecordsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -79,7 +80,8 @@ const router = createRouter({
     },
     {
       path: '/records',
-      name: 'Records'
+      name: 'Records',
+      component: RecordsView
     },
     {
       path: '/analysis',
@@ -90,19 +92,7 @@ const router = createRouter({
       name: 'NotFound',
       component: NotFoundView
     }
-  ],
-  scrollBehavior: function (to, _from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    }
-    if (to.hash) {
-      return { el: to.hash, behavior: 'smooth' }
-    } else {
-      setTimeout(() => {
-        window.scrollTo(0, 0)
-      }, 500)
-    }
-  }
+  ]
 })
 
 export default router
