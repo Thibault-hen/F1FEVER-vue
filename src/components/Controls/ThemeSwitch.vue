@@ -11,9 +11,16 @@
         aria-hidden="true"
         :class="isDark ? 'translate-x-9 bg-black/90' : 'translate-x-0 bg-white'"
         class="pointer-events-none inline-block h-[26px] w-[24px] transform rounded-full shadow-lg ring-0 !transition duration-200 ease-in-out"
-        ><box-icon name="sun" class="p-1" v-if="!isDark"></box-icon
-        ><box-icon name="moon" color="white" class="p-1" v-else></box-icon
-      ></span>
+      >
+        <Icon
+          icon="line-md:sunny-outline-twotone-loop"
+          height="24px"
+          wdith="24px"
+          color="black"
+          v-if="!isDark" />
+
+        <Icon icon="line-md:moon-rising-loop" height="24px" wdith="24px" color="white" v-else
+      /></span>
     </Switch>
   </div>
 </template>
@@ -21,6 +28,7 @@
 <script setup>
 import { Switch } from '@headlessui/vue'
 import { useDark } from '@vueuse/core'
+import { Icon } from '@iconify/vue'
 
 const isDark = useDark()
 </script>

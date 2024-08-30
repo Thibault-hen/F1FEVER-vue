@@ -9,11 +9,13 @@
       >
         <tr>
           <th class="py-3 px-4 text-left rounded-l-lg max-w-[20px]">
-            <box-icon
-              type="solid"
-              name="bar-chart-alt-2"
+            <Icon
+              icon="material-symbols-light:leaderboard-rounded"
+              height="32px"
+              wdith="32px"
+              class="mr-2"
               :color="isDark ? 'white' : 'black'"
-            ></box-icon>
+            />
           </th>
           <th class="min-w-[200px] px-4 text-left tracking-wide uppercase text-sm">Name</th>
           <th class="min-w-[80px] px-4 text-left tracking-wide uppercase text-sm">Wins</th>
@@ -95,11 +97,12 @@
 <script setup>
 import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
 import MissingDataText from '../UI/Misc/MissingDataText.vue'
+import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
 import { useStandingsStore } from '@/stores/standings'
-import 'boxicons'
 
 const store = useStandingsStore()
+
 const isDark = useDark()
 
 const formatGap = (gap) => {

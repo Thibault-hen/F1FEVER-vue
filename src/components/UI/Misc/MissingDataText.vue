@@ -15,7 +15,6 @@
 
 <script setup>
 import { useDark } from '@vueuse/core'
-import 'boxicons'
 
 const isDark = useDark()
 </script>

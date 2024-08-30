@@ -2,10 +2,10 @@
   <div class="flex items-center mt-2">
     <button
       @click="openModal"
-      class="flex items-center dark:bg-primary/20 bg-primary/60 hover:bg-primary text-white font-medium text-xs py-1 px-3 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+      class="flex items-center dark:bg-primary/20 bg-primary/60 hover:bg-primary text-white font-medium text-xs py-2 px-3 rounded-lg shadow-lg transition-transform transform hover:scale-105"
     >
       Missing Data
-      <box-icon name="info-circle" class="ml-2" color="white" size="sm"></box-icon>
+      <Icon icon="bi:database-fill-exclamation" height="18px" wdith="18px" class="ml-2" />
     </button>
   </div>
 
@@ -59,6 +59,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { Icon } from '@iconify/vue'
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue'
 import DefaultButton from '../Misc/DefaultButton.vue'
 

@@ -6,11 +6,13 @@
       <thead class="dark:text-white overflow-hidden tracking-wide text-sm lg:text-base">
         <tr>
           <th class="py-3 px-4 text-left rounded-l-lg font-bold min-w-[100px]">
-            <box-icon
-              type="solid"
-              name="bar-chart-alt-2"
+            <Icon
+              icon="material-symbols-light:leaderboard-rounded"
+              height="32px"
+              wdith="32px"
+              class="mr-2"
               :color="isDark ? 'white' : 'black'"
-            ></box-icon>
+            />
           </th>
           <th class="min-w-[200px] px-4 text-left tracking-wide uppercase text-sm">Name</th>
           <th class="min-w-[180px] px-4 text-left tracking-wide uppercase text-sm">Team</th>
@@ -45,29 +47,27 @@
             }"
           >
             <div class="flex">
-              # {{ race.final_position }}
-              <box-icon
+              <span class="mr-1"># {{ race.final_position }}</span>
+              <Icon
                 v-if="positionDiffType(race.starting_position, race.final_position) === 1"
-                class="mx-1"
-                size="xs"
-                type="solid"
-                name="up-arrow"
+                icon="mingcute:up-fill"
+                height="20px"
+                width="20px"
                 color="green"
-              ></box-icon>
-              <box-icon
+              />
+              <Icon
                 v-if="positionDiffType(race.starting_position, race.final_position) === -1"
-                class="mx-1"
-                size="xs"
-                type="solid"
-                name="down-arrow"
+                icon="mingcute:down-fill"
+                height="20px"
+                width="20px"
                 color="red"
-              ></box-icon>
+              />
               <span
-                class="flex"
+                class="flex items-center"
                 :class="{
                   'dark:text-primary text-red-900':
                     positionDiffType(race.starting_position, race.final_position) === -1,
-                  'dark:text-green-500 text-green-800':
+                  'dark:text-green-500 text-green-600':
                     positionDiffType(race.starting_position, race.final_position) === 1
                 }"
               >
@@ -105,6 +105,7 @@
 <script setup>
 import { useGrandPrix } from '@/stores/grand-prix'
 import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
+import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
 
 const store = useGrandPrix()

@@ -22,9 +22,19 @@
           </span>
         </div>
         <div class="space-x-2 flex items-center mb-5">
-          <box-icon name="calendar-event" color="red"></box-icon>
+          <Icon
+            icon="material-symbols-light:event-outline"
+            height="26px"
+            wdith="26px"
+            :color="isDark ? 'white' : 'black'"
+          />
           <span>{{ grandPrixInfo.date }}</span>
-          <box-icon name="time-five" color="red"></box-icon>
+          <Icon
+            icon="material-symbols-light:timer-outline"
+            height="26px"
+            wdith="26px"
+            :color="isDark ? 'white' : 'black'"
+          />
           <span>{{ grandPrixInfo.time }}</span>
         </div>
       </div>
@@ -79,6 +89,10 @@ import CarLoader from '../UI/Loader/CarLoader.vue'
 import LineSeparator from '../UI/Misc/LineSeparator.vue'
 import DefaultButton from '../UI/Misc/DefaultButton.vue'
 import { useGrandPrixPreview } from '@/composables/last-grand-prix-preview'
+import { Icon } from '@iconify/vue'
+import { useDark } from '@vueuse/core'
+
+const isDark = useDark()
 
 const { grandPrixInfo, raceResults, circuit, isLoading, fetchGrandPrixPreview } =
   useGrandPrixPreview()

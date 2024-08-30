@@ -14,14 +14,24 @@
       <span class="dark:text-white text-xs">Total time : {{ store.raceWinner.time }}</span>
     </div>
     <div class="flex items-center">
-      <box-icon name="trophy" type="solid" size="md" color="red"></box-icon>
+      <Icon
+        icon="fluent:trophy-24-filled"
+        height="46px"
+        wdith="46px"
+        class="bg-primary/20 p-1 rounded border border-primary mr-2"
+        :color="isDark ? 'white' : 'black'"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
 import { useGrandPrix } from '@/stores/grand-prix'
+import { Icon } from '@iconify/vue'
+import { useDark } from '@vueuse/core'
 import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
 
 const store = useGrandPrix()
+
+const isDark = useDark()
 </script>

@@ -9,13 +9,17 @@
         }}</span>
 
         <slot name="loader"></slot>
-        <box-icon
-          name="chevron-down"
+        <Icon
+          icon="solar:alt-arrow-down-outline"
+          height="24px"
+          width="24px"
           class="flex ui-open:hidden"
           :color="isDark ? 'white' : 'black'"
         />
-        <box-icon
-          name="chevron-up"
+        <Icon
+          icon="solar:alt-arrow-up-outline"
+          height="24px"
+          width="24px"
           class="hidden ui-open:flex"
           :color="isDark ? 'white' : 'black'"
         />
@@ -51,6 +55,7 @@
 <script setup>
 import { debounce } from 'lodash'
 import { ref, computed, onMounted, watch } from 'vue'
+import { Icon } from '@iconify/vue'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
 import { useDark } from '@vueuse/core'
 import { useGrandPrixNameStore } from '@/stores/grand-prix-name'

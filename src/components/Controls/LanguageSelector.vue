@@ -9,7 +9,20 @@
         <span class="tracking-wide px-1 hidden lg:flex font-bold text-xs dark:text-white">
           {{ selectedLanguage.text }}</span
         >
-        <box-icon name="chevron-down" :color="isDark ? 'white' : 'black'"></box-icon>
+        <Icon
+          icon="solar:alt-arrow-down-outline"
+          height="24px"
+          width="24px"
+          class="flex ui-open:hidden"
+          :color="isDark ? 'white' : 'black'"
+        />
+        <Icon
+          icon="solar:alt-arrow-up-outline"
+          height="24px"
+          width="24px"
+          class="hidden ui-open:flex"
+          :color="isDark ? 'white' : 'black'"
+        />
       </ListboxButton>
       <transition
         enter-active-class="transition duration-100 ease-out"
@@ -51,6 +64,7 @@ import { ref, watch, computed, watchEffect, onMounted } from 'vue'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
 import { useDark } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
+import { Icon } from '@iconify/vue'
 
 // Import the flag images
 import gbFlag from '../../assets/flags/4x3/gb.svg'

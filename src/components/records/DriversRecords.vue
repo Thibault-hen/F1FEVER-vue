@@ -146,7 +146,6 @@
 <script setup>
 import { useRecordsStore } from '@/stores/records'
 import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
-import 'boxicons'
 
 const store = useRecordsStore()
 </script>

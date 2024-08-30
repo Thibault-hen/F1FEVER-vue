@@ -86,7 +86,6 @@
 import { useGrandPrix } from '@/stores/grand-prix'
 import NationalityFlag from '../UI/Flag/NationalityFlag.vue'
 import CarLoader from '../UI/Loader/CarLoader.vue'
-import 'boxicons'
 
 const props = defineProps(['grandPrixName'])
 const store = useGrandPrix()

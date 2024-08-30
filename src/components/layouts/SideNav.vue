@@ -15,13 +15,20 @@
           </h1>
         </RouterLink>
         <span class="lg:hidden flex ml-auto" @click="toggleMobileNav">
-          <box-icon
-            class="mr-4"
-            name="menu-alt-right"
+          <Icon
+            icon="quill:hamburger"
+            height="36px"
+            wdith="36px"
             :color="isDark ? 'white' : 'black'"
             v-if="!isMobileActive"
-          ></box-icon>
-          <box-icon class="mr-4" name="x" :color="isDark ? 'white' : 'black'" v-else></box-icon>
+          />
+          <Icon
+            icon="material-symbols-light:close-rounded"
+            height="36px"
+            wdith="36px"
+            :color="isDark ? 'white' : 'black'"
+            v-else
+          />
         </span>
       </div>
 
@@ -36,12 +43,13 @@
             class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
-            <!-- Icon and Text -->
-            <box-icon
-              class="mr-4"
-              name="home-alt"
+            <Icon
+              icon="material-symbols-light:home-outline"
+              height="22px"
+              wdith="22px"
+              class="mr-2"
               :color="$route.name === 'Home' ? 'red' : isDark ? 'white' : 'black'"
-            ></box-icon>
+            />
             {{ $t('nav.home') }}
           </RouterLink>
 
@@ -61,12 +69,13 @@
             class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
-            <!-- Icon and Text -->
-            <box-icon
-              class="mr-4"
-              name="medal"
+            <Icon
+              icon="material-symbols-light:leaderboard-outline-rounded"
+              height="22px"
+              wdith="22px"
+              class="mr-2"
               :color="$route.name === 'Standings' ? 'red' : isDark ? 'white' : 'black'"
-            ></box-icon>
+            />
             {{ $t('nav.standings') }}
           </RouterLink>
 
@@ -86,12 +95,13 @@
             class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
-            <!-- Icon and Text -->
-            <box-icon
-              class="mr-4"
-              name="trophy"
+            <Icon
+              icon="material-symbols-light:trophy-outline"
+              height="22px"
+              wdith="22px"
+              class="mr-2"
               :color="$route.name === 'Grand-prix' ? 'red' : isDark ? 'white' : 'black'"
-            ></box-icon>
+            />
             {{ $t('nav.grandprix') }}
           </RouterLink>
 
@@ -111,12 +121,13 @@
             class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
-            <!-- Icon and Text -->
-            <box-icon
-              class="mr-4"
-              name="star"
+            <Icon
+              icon="mdi:achievement-award"
+              height="22px"
+              wdith="22px"
+              class="mr-2"
               :color="$route.name === 'Records' ? 'red' : isDark ? 'white' : 'black'"
-            ></box-icon>
+            />
             {{ $t('nav.records') }}
           </RouterLink>
 
@@ -136,12 +147,13 @@
             class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
-            <!-- Icon and Text -->
-            <box-icon
-              class="mr-4"
-              name="user"
+            <Icon
+              icon="mdi:racing-helmet"
+              height="22px"
+              wdith="22px"
+              class="mr-2"
               :color="$route.name === 'Drivers' ? 'red' : isDark ? 'white' : 'black'"
-            ></box-icon>
+            />
             {{ $t('nav.drivers') }}
           </RouterLink>
 
@@ -161,12 +173,13 @@
             class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
-            <!-- Icon and Text -->
-            <box-icon
-              class="mr-4"
-              name="group"
+            <Icon
+              icon="mdi:car-wrench"
+              height="22px"
+              wdith="22px"
+              class="mr-2"
               :color="$route.name === 'Constructors' ? 'red' : isDark ? 'white' : 'black'"
-            ></box-icon>
+            />
             {{ $t('nav.constructors') }}
           </RouterLink>
 
@@ -186,12 +199,13 @@
             class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
-            <!-- Icon and Text -->
-            <box-icon
-              class="mr-4"
-              name="map-pin"
-              :color="$route.name === 'Citcuits' ? 'red' : isDark ? 'white' : 'black'"
-            ></box-icon>
+            <Icon
+              icon="healthicons:paved-road-outline"
+              height="22px"
+              wdith="22px"
+              class="mr-2"
+              :color="$route.name === 'Circuits' ? 'red' : isDark ? 'white' : 'black'"
+            />
             {{ $t('nav.circuits') }}
           </RouterLink>
 
@@ -211,12 +225,13 @@
             class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
-            <!-- Icon and Text -->
-            <box-icon
-              class="mr-4"
-              name="analyse"
+            <Icon
+              icon="material-symbols-light:query-stats"
+              height="22px"
+              wdith="22px"
+              class="mr-2"
               :color="$route.name === 'Analysis' ? 'red' : isDark ? 'white' : 'black'"
-            ></box-icon>
+            />
             {{ $t('nav.analysis') }}
           </RouterLink>
 
@@ -245,8 +260,8 @@
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
 import { useDark } from '@vueuse/core'
-import 'boxicons'
 import ThemeSwitch from '../Controls/ThemeSwitch.vue'
+import { Icon } from '@iconify/vue'
 
 const isMobileActive = ref(false)
 

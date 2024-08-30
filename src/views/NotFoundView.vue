@@ -30,6 +30,5 @@
 
 <script setup>
 import DefaultButton from '@/components/UI/Misc/DefaultButton.vue'
-import 'boxicons'
 import { RouterLink } from 'vue-router'
 </script>
