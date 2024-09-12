@@ -5,14 +5,13 @@
         <div class="w-full px-4">
           <div class="mx-auto max-w-[400px] text-center">
             <div class="flex justify-center">
-              <box-icon
-                class="mb-4"
-                animation="tada"
-                name="car-crash"
-                type="solid"
-                color="red"
-                size="100px"
-              ></box-icon>
+              <Icon
+                icon="line-md:emoji-cry-filled"
+                height="64px"
+                wdith="64px"
+                class="mb-8"
+                :color="isDark ? 'white' : 'red'"
+              />
             </div>
             <h4 class="mb-3 text-lg leading-tight dark:text-white">Oops! something went wrong</h4>
             <p class="mb-8 text-base dark:text-white">The page you are looking for do not exist</p>
@@ -31,4 +30,8 @@
 <script setup>
 import DefaultButton from '@/components/UI/Misc/DefaultButton.vue'
 import { RouterLink } from 'vue-router'
+import { useDark } from '@vueuse/core'
+import { Icon } from '@iconify/vue'
+
+const isDark = useDark()
 </script>

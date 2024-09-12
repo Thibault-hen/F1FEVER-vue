@@ -19,4 +19,7 @@ import PageHeader from '@/components/layouts/PageHeader.vue'
 import Navbar from '@/components/layouts/SideNav.vue'
 import DefaultFooter from '@/components/layouts/DefaultFooter.vue'
 import TopBar from './components/layouts/TopBar.vue'
+import { useTitle } from '@vueuse/core'
+
+useTitle('F1FEVER')
 </script>

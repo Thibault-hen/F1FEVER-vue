@@ -2,8 +2,13 @@
   <div class="relative flex">
     <Listbox v-model="selectedGrandPrix" as="div">
       <ListboxButton
-        class="bg-white dark:bg-dark-2 dark:text-white p-2 rounded-lg w-52 shadow border dark:border-slate-100/[0.20] text-left flex justify-between dark:ui-open:border-primary ui-open:border-primary"
+        class="bg-white dark:bg-dark-2 dark:text-white p-2 rounded-lg w-52 shadow border dark:border-slate-100/[0.20] text-left flex items-center justify-between dark:ui-open:border-primary ui-open:border-primary"
       >
+        <CountryFlag
+          :country="selectedGrandPrix.country"
+          v-if="selectedGrandPrix"
+          class="mr-2 flex items-center"
+        />
         <span class="truncate">{{
           selectedGrandPrix ? selectedGrandPrix.name : 'Select Grand Prix'
         }}</span>
@@ -59,7 +64,7 @@ import { Icon } from '@iconify/vue'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
 import { useDark } from '@vueuse/core'
 import { useGrandPrixNameStore } from '@/stores/grand-prix-name'
-import CountryFlag from './Flag/CountryFlag.vue'
+import CountryFlag from '@/components/UI/Flag/CountryFlag.vue'
 
 const isDark = useDark()
 const store = useGrandPrixNameStore()
@@ -94,7 +99,6 @@ watch(
   () => props.selectedSeason.year,
   debounce(async (season) => {
     if (season) {
-      console.log(`Fetching Grand Prix for season: ${season}`)
       await fetchGrandPrixForSeason(season)
     }
   }, 250),

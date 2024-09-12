@@ -1,7 +1,7 @@
 <script setup>
-import GrandPrixPreview from '@/components/Home/GrandPrixPreview.vue'
-import GrandPrixList from '@/components/Home/CurrentSeasonGrandPrixList.vue'
-import Welcome from '@/components/Home/WelcomeMessage.vue'
+import GrandPrixPreview from '@/components/Pages/home/GrandPrixPreview.vue'
+import GrandPrixList from '@/components/Pages/home/CurrentSeasonGrandPrixList.vue'
+import Welcome from '@/components/Pages/home/WelcomeMessage.vue'
 </script>
 
 <template>

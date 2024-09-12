@@ -7,12 +7,6 @@ import { createPinia } from 'pinia'
 
 const app = createApp(App)
 
-router.beforeEach((to, from, next) => {
-  const defaultTitle = 'F1FEVER'
-  document.title = to.meta.title || defaultTitle
-  next()
-})
-
 app.use(i18n)
 app.use(router)
 app.use(createPinia())

@@ -61,7 +61,7 @@
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue'
-import DefaultButton from '../Misc/DefaultButton.vue'
+import DefaultButton from '@/components/UI/Misc/DefaultButton.vue'
 
 const isOpen = ref(false)
 

@@ -13,7 +13,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
-import CountryFlag from './Flag/CountryFlag.vue'
+import CountryFlag from '@/components/UI/Flag/CountryFlag.vue'
 import { useI18n } from 'vue-i18n'
 
 const nextGrandPrix = ref({})

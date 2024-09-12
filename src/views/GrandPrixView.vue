@@ -8,9 +8,9 @@
       >
         <CarLoader class="mx-auto" />
       </div>
-      <CircuitName v-if="store.circuit" />
-      <PoleSitter v-if="store.poleSitter" />
-      <RaceWinner v-if="store.raceWinner" />
+      <CircuitName v-if="store.grandPrixData.circuit" />
+      <PoleSitter v-if="store.grandPrixData.poleSitter" />
+      <RaceWinner v-if="store.grandPrixData.raceWinner" />
     </div>
     <GrandPrixTabs>
       <template #selector>
@@ -37,23 +37,27 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useGrandPrix } from '@/stores/grand-prix'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
 import GrandPrixSelector from '@/components/UI/GrandPrixSelector.vue'
-import { useGrandPrix } from '@/stores/grand-prix'
-import GrandPrixTabs from '@/components/GrandPrix/GrandPrixTabs.vue'
-import CircuitName from '@/components/GrandPrix/CircuitName.vue'
-import PoleSitter from '@/components/GrandPrix/PoleSitter.vue'
-import RaceWinner from '@/components/GrandPrix/RaceWinner.vue'
-import MoreGrandPrix from '@/components/GrandPrix/MoreGrandPrix.vue'
+import GrandPrixTabs from '@/components/Pages/grand-prix/GrandPrixTabs.vue'
+import CircuitName from '@/components/Pages/grand-prix/CircuitName.vue'
+import PoleSitter from '@/components/Pages/grand-prix/PoleSitter.vue'
+import RaceWinner from '@/components/Pages/grand-prix/RaceWinner.vue'
+import MoreGrandPrix from '@/components/Pages/grand-prix/MoreGrandPrix.vue'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'
-import { useRoute, useRouter } from 'vue-router'
-import GpHeroSection from '@/components/GrandPrix/GpHeroSection.vue'
+import GpHeroSection from '@/components/Pages/grand-prix/GpHeroSection.vue'
 
 const route = useRoute()
 const router = useRouter()
 
 const store = useGrandPrix()
+const storedSeason = computed(() => store.grandPrixData.season)
+const storedGpName = computed(() => store.grandPrixData.name)
+const storedGpRef = computed(() => store.grandPrixData.ref)
+
 const selectedSeason = ref({ year: null })
 
 const selectedGrandPrix = ref()
@@ -67,6 +71,7 @@ const updateDisplayedGrandPrix = (season, name) => {
 }
 
 const updateUrl = (season, name) => {
+  console.log(name)
   router.push({ name: 'Grand-prix', params: { season, name } })
 }
 
@@ -78,13 +83,18 @@ const onGrandPrixSelected = async (payload) => {
 }
 
 onMounted(async () => {
-  if (route.params.season && route.params.name) {
-    await store.fetchGrandPrix(route.params.season, route.params.name)
-    updateDisplayedGrandPrix(store.grandPrixName.year, store.grandPrixName.name)
+  if (storedSeason.value) {
+    updateDisplayedGrandPrix(storedSeason.value, storedGpName.value)
+    updateUrl(storedSeason.value, storedGpRef.value)
   } else {
-    await store.fetchLatestGrandPrix()
-    updateDisplayedGrandPrix(store.grandPrixName.year, store.grandPrixName.name)
-    updateUrl(store.grandPrixName.year, store.grandPrixName.slug)
+    if (route.params.season && route.params.name) {
+      await store.fetchGrandPrix(route.params.season, route.params.name)
+      updateDisplayedGrandPrix(storedSeason.value, storedGpName.value)
+    } else {
+      await store.fetchLatestGrandPrix()
+      updateDisplayedGrandPrix(storedSeason.value, storedGpName.value)
+      updateUrl(storedSeason.value, storedGpRef.value)
+    }
   }
 })
 </script>

@@ -16,16 +16,16 @@
         </RouterLink>
         <span class="lg:hidden flex ml-auto" @click="toggleMobileNav">
           <Icon
-            icon="quill:hamburger"
-            height="36px"
-            wdith="36px"
+            icon="game-icons:hamburger-menu"
+            height="20px"
+            wdith="20px"
             :color="isDark ? 'white' : 'black'"
             v-if="!isMobileActive"
           />
           <Icon
-            icon="material-symbols-light:close-rounded"
-            height="36px"
-            wdith="36px"
+            icon="mingcute:close-fill"
+            height="20px"
+            wdith="20px"
             :color="isDark ? 'white' : 'black'"
             v-else
           />
@@ -44,7 +44,7 @@
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
-              icon="material-symbols-light:home-outline"
+              icon="fluent:home-48-regular"
               height="22px"
               wdith="22px"
               class="mr-2"
@@ -70,7 +70,7 @@
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
-              icon="material-symbols-light:leaderboard-outline-rounded"
+              icon="material-symbols:leaderboard-outline-rounded"
               height="22px"
               wdith="22px"
               class="mr-2"
@@ -96,7 +96,7 @@
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
-              icon="material-symbols-light:trophy-outline"
+              icon="mage:trophy"
               height="22px"
               wdith="22px"
               class="mr-2"
@@ -122,7 +122,7 @@
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
-              icon="mdi:achievement-award"
+              icon="circum:medal"
               height="22px"
               wdith="22px"
               class="mr-2"
@@ -260,7 +260,7 @@
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
 import { useDark } from '@vueuse/core'
-import ThemeSwitch from '../Controls/ThemeSwitch.vue'
+import ThemeSwitch from '@/components/Controls/ThemeSwitch.vue'
 import { Icon } from '@iconify/vue'
 
 const isMobileActive = ref(false)

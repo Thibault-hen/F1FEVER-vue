@@ -10,16 +10,11 @@ export const useStandingsStore = defineStore('standings', () => {
     season: null
   })
 
-  const lastSelected = ref(null)
-
   const isLoading = ref(false)
 
-  const fetchStandings = async (season, newStandings = false) => {
+  const fetchStandings = async (season) => {
     isLoading.value = true
-    if (
-      standings.value.season === season ||
-      (standings.value.season === 'latest' && newStandings === false)
-    ) {
+    if (standings.value.season === season) {
       isLoading.value = false
       return
     }
@@ -30,13 +25,13 @@ export const useStandingsStore = defineStore('standings', () => {
         api.get(`/grand-prix-list/season/${season}`)
       ])
       standings.value = {
-        drivers: driverResponse.data.data,
-        constructors: constructorResponse.data.data,
+        drivers: driverResponse.data.data.standings,
+        constructors: constructorResponse.data.data.standings,
         schedule: scheduleResponse.data.data,
-        season: season
+        season: driverResponse.data.data.season
       }
-      lastSelected.value = season
-      console.log('normal')
+      console.log(standings.value.season)
+      console.log('new')
     } catch (error) {
       console.log('Error while fecthing standings', error)
     } finally {
@@ -57,10 +52,10 @@ export const useStandingsStore = defineStore('standings', () => {
         api.get('/grand-prix-list/season')
       ])
       standings.value = {
-        drivers: driverResponse.data.data,
-        constructors: constructorReponse.data.data,
+        drivers: driverResponse.data.data.standings,
+        constructors: constructorReponse.data.data.standings,
         schedule: scheduleResponse.data.data,
-        season: 'latest'
+        season: driverResponse.data.data.season
       }
       console.log('latest')
     } catch (error) {

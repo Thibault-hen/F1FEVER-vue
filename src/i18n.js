@@ -4,6 +4,9 @@ import { createI18n } from 'vue-i18n'
 // Define the translation messages
 const messages = {
   en: {
+    loader: {
+      loading_message: 'Loading'
+    },
     nav: {
       home: 'Home',
       standings: 'Standings',
@@ -59,6 +62,9 @@ const messages = {
     }
   },
   fr: {
+    loader: {
+      loading_message: 'Chargement'
+    },
     nav: {
       home: 'Accueil',
       standings: 'Classement',
