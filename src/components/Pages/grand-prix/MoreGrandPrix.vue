@@ -1,12 +1,16 @@
 <template>
-  <div
-    class="relative p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-1 border dark:border-slate-50/[0.06] rounded-lg"
+  <h1
+    v-if="store.grandPrixData.circuit"
+    class="flex items-center border-primary border-l-4 dark:text-white font-bold text-xs dark:font-thin px-2 py-1 uppercase tracking-wide"
   >
-    <div
-      class="absolute top-2 left-2 border-primary border-l-4 dark:text-white text-xs font-bold dark:font-thin px-2 py-1 uppercase tracking-wide"
-    >
-      more {{ props.grandPrixName }}
-    </div>
+    <span class="mr-1">more </span
+    ><CountryFlag :country="store.grandPrixData.circuit.country" class="mr-1" />{{
+      props.grandPrixName
+    }}
+  </h1>
+  <div
+    class="relative mt-2 p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-1 border dark:border-slate-50/[0.06] rounded-lg"
+  >
     <div
       v-if="store.isLoading"
       class="absolute inset-0 flex justify-center items-center bg-opacity-50 backdrop-blur-sm"
@@ -103,6 +107,7 @@
 <script setup>
 import { useGrandPrix } from '@/stores/grand-prix'
 import NationalityFlag from '@/components/UI/Flag/NationalityFlag.vue'
+import CountryFlag from '@/components/UI/Flag/CountryFlag.vue'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 import { Icon } from '@iconify/vue'
 

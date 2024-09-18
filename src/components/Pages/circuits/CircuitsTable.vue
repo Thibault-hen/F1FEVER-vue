@@ -42,24 +42,26 @@
       <tbody class="dark:bg-dark-1 bg-white">
         <tr
           class="hover:bg-primary/10 dark:hover:bg-primary/10 transition-all ease-in-out duration-100 odd:bg-zinc-100 dark:odd:bg-dark-2"
-          v-for="(circuits, index) in filteredData"
-          :key="circuits.name"
+          v-for="(circuit, index) in filteredData"
+          :key="circuit.name"
         >
           <template v-if="inRange(index)">
             <td class="px-4 py-4 rounded-l-lg">
-              {{ circuits.name }}
+              <RouterLink :to="`/circuit/${circuit.slug}`">
+                {{ circuit.name }}
+              </RouterLink>
             </td>
             <td class="px-4 py-4">
               <div class="flex">
-                <CountryFlag :country="circuits.country" class="mr-2" />{{ circuits.location }}
+                <CountryFlag :country="circuit.country" class="mr-2" />{{ circuit.location }}
               </div>
             </td>
             <td class="px-4 py-4 rounded-r-lg">
               <a
                 target="_blank"
-                :href="circuits.wikipedia_link"
+                :href="circuit.wikipedia_link"
                 class="tracking-wider text-primary"
-                >{{ circuits.wikipedia_link }}</a
+                >{{ circuit.wikipedia_link }}</a
               >
             </td>
           </template>
@@ -119,7 +121,7 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue'
-import { useCircuits } from '@/stores/Circuits/Circuits'
+import { useCircuits } from '@/stores/Circuits/circuits'
 import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'

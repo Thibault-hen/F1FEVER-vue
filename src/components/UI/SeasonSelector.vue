@@ -4,7 +4,7 @@
       <ListboxButton
         class="bg-white dark:bg-dark-2 dark:text-white p-2 rounded-lg w-52 shadow border dark:border-slate-100/[0.20] text-left flex justify-between dark:ui-open:border-primary ui-open:border-primary"
       >
-        {{ selectedSeason.year }}
+        {{ selectedSeason.year ?? 'something went wrong' }}
         <slot name="loader"></slot>
         <Icon
           icon="solar:alt-arrow-down-outline"
@@ -60,7 +60,6 @@ const seasons = computed(() => store.seasons)
 
 const isDark = useDark()
 const selectedSeason = ref({})
-
 const emit = defineEmits(['update:modelValue'])
 const props = defineProps(['updatedSeason'])
 
@@ -68,12 +67,10 @@ const manualUpdate = ref(false)
 
 const getSeasons = async () => {
   await store.fetchSeasons()
-
   const foundSeason = props.updatedSeason
     ? seasons.value.find((season) => season.year === props.updatedSeason)
     : seasons.value[0]
 
-  manualUpdate.value = false
   selectedSeason.value = foundSeason || seasons.value[0]
   manualUpdate.value = true
 }
@@ -86,6 +83,7 @@ const emitSeason = (isManual = false) => {
 
 onMounted(async () => {
   await getSeasons()
+  // Emit update event only if no updatedSeason prop is provided initially
   if (!props.updatedSeason) {
     emitSeason(true)
   }
@@ -95,11 +93,11 @@ onMounted(async () => {
 watch(
   () => props.updatedSeason,
   (newSeason) => {
-    const foundSeason = seasons.value.find((season) => season.year === newSeason)
-    if (foundSeason) {
-      manualUpdate.value = false
-      selectedSeason.value = foundSeason
-      manualUpdate.value = true
+    if (!manualUpdate.value) {
+      const foundSeason = seasons.value.find((season) => season.year === newSeason)
+      if (foundSeason) {
+        selectedSeason.value = foundSeason
+      }
     }
   },
   { immediate: true }

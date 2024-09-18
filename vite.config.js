@@ -14,6 +14,9 @@ export default defineConfig({
       }
     })
   ],
+  devServer: {
+    proxy: 'http://f1fever.test' // Replace with your API server
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

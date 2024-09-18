@@ -14,7 +14,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { useConstructors } from '@/stores/Constructors/Constructors'
+import { useConstructors } from '@/stores/Constructors/constructors'
 import ConstructorsHero from '@/components/Pages/constructors/ConstructorsHero.vue'
 import ConstructorsTable from '@/components/Pages/constructors/ConstructorsTable.vue'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
@@ -46,7 +46,6 @@ onMounted(async () => {
     const season = route.params.season
     await store.fetchConstructorsBySeason(season)
     updatedSeason.value = season
-    updateUrl(season)
   } else {
     await store.fetchAllConstructors()
   }

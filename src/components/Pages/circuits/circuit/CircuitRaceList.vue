@@ -1,19 +1,16 @@
 <template>
   <div class="flex flex-col">
     <span
-      class="border-primary border-l-4 dark:text-white font-bold text-xs dark:font-thin px-2 py-1 uppercase tracking-wide"
+      class="border-primary border-l-4 dark:text-white font-bold dark:font-thin text-xs px-2 py-1 tracking-widest uppercase my-2 flex items-center"
     >
-      {{ store.standings.season }} Season Grand Prix List
+      <CountryFlag :country="store.circuitData.circuit_info.country" class="mr-2" />{{
+        store.circuitData.circuit_info.name
+      }}
+      grand prix list
     </span>
     <div
-      class="relative mt-2 p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-1 border dark:border-slate-50/[0.06] rounded-lg"
+      class="gap-2 p-2 flex flex-grow flex-col w-full bg-white dark:bg-dark-1 border dark:border-slate-50/[0.06] rounded-lg"
     >
-      <div
-        v-if="store.isLoading"
-        class="absolute inset-0 flex justify-center items-center bg-opacity-50 backdrop-blur-sm"
-      >
-        <CarLoader />
-      </div>
       <div class="overflow-x-auto">
         <table
           class="dark:text-white min-w-full leading-normal border-separate border-spacing-y-0.5 text-xs md:text-sm"
@@ -36,20 +33,17 @@
           </thead>
           <tbody class="dark:bg-dark-1 rounded-lg">
             <tr
-              v-for="(grandPrix, index) in store.standings.schedule"
+              v-for="(grandPrix, index) in store.circuitData.races_list"
               :key="index"
               class="hover:bg-primary/20 hover:dark:bg-primary/20 odd:bg-zinc-100 dark:odd:bg-dark-2 transition-all ease-in-out duration-100"
             >
               <td class="rounded-l-lg px-4 py-4">
-                <div class="flex">
-                  <CountryFlag :country="grandPrix.country" class="mr-2" />
-                  <RouterLink
-                    :to="`/grand-prix/${grandPrix.year}/${grandPrix.slug}`"
-                    class="font-bold hover:text-primary transition-transform duration-100 text-nowrap"
-                  >
-                    {{ grandPrix.name }}
-                  </RouterLink>
-                </div>
+                <RouterLink
+                  :to="`/grand-prix/${grandPrix.season}/${grandPrix.slug}`"
+                  class="font-bold hover:text-primary transition-transform duration-100 text-nowrap"
+                >
+                  {{ grandPrix.season }} {{ grandPrix.name }}
+                </RouterLink>
               </td>
               <td class="px-2 text-nowrap">{{ grandPrix.location }}</td>
               <td class="px-2 text-nowrap">{{ grandPrix.time ?? 'N/A' }}</td>
@@ -63,9 +57,8 @@
 </template>
 
 <script setup>
-import CarLoader from '@/components/UI/Loader/CarLoader.vue'
+import { useCircuit } from '@/stores/Circuits/circuit'
 import CountryFlag from '@/components/UI/Flag/CountryFlag.vue'
-import { useStandingsStore } from '@/stores/standings'
 
-const store = useStandingsStore()
+const store = useCircuit()
 </script>

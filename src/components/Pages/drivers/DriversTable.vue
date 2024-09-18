@@ -31,8 +31,10 @@
       </div>
       <thead class="dark:bg-dark-1 bg-white-2">
         <tr class="text-left tracking-wide text-sm md:text-base">
-          <th class="px-2 py-4 rounded-l-lg"><span class="uppercase text-sm">Name</span></th>
-          <th class="px-2 py-4 rounded-l-lg">
+          <th class="px-2 py-4 rounded-l-lg min-w-44">
+            <span class="uppercase text-sm">Name</span>
+          </th>
+          <th class="px-2 py-4 rounded-l-lg min-w-44">
             <span class="uppercase text-sm">Date of birth</span>
           </th>
           <th class="px-2 py-4 rounded-r-lg">
@@ -50,9 +52,10 @@
           <template v-if="inRange(index)">
             <td class="px-4 py-4 rounded-l-lg">
               <div class="flex">
-                <NationalityFlag :nationality="drivers.nationality" class="mr-2" />{{
-                  drivers.name
-                }}
+                <NationalityFlag :nationality="drivers.nationality" class="mr-2" />
+                <RouterLink :to="`/driver/${drivers.slug}`">
+                  {{ drivers.name }}
+                </RouterLink>
               </div>
             </td>
             <td class="px-4 py-4">{{ drivers.date_of_birth }}</td>
@@ -121,7 +124,7 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue'
-import { useDrivers } from '@/stores/Drivers/Drivers'
+import { useDrivers } from '@/stores/Drivers/drivers'
 import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'

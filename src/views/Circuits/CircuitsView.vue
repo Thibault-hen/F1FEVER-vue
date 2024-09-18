@@ -7,7 +7,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { useCircuits } from '@/stores/Circuits/Circuits'
+import { useCircuits } from '@/stores/Circuits/circuits'
 import CircuitsHeader from '@/components/Pages/circuits/CircuitsHeader.vue'
 import CircuitsTable from '@/components/Pages/circuits/CircuitsTable.vue'
 

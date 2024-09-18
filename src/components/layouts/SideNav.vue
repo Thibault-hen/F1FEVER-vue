@@ -36,18 +36,18 @@
         class="lg:flex lg:flex-col flex-grow text-sm text-black dark:text-white"
         :class="isMobileActive ? 'flex flex-col border-b border-zinc-700' : 'hidden'"
       >
-        <div class="relative group">
+        <div class="relative group items-center">
           <RouterLink
             :to="{ name: 'Home' }"
             active-class="text-primary dark:text-primary"
-            class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
+            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
               icon="fluent:home-48-regular"
               height="22px"
               wdith="22px"
-              class="mr-2"
+              class="mr-2 flex"
               :color="$route.name === 'Home' ? 'red' : isDark ? 'white' : 'black'"
             />
             {{ $t('nav.home') }}
@@ -66,7 +66,7 @@
           <RouterLink
             :to="{ name: 'Standings' }"
             active-class="text-primary dark:text-primary"
-            class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
+            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease-in-out hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
@@ -92,7 +92,7 @@
           <RouterLink
             :to="{ name: 'Grand-prix' }"
             active-class="text-primary dark:text-primary"
-            class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
+            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
@@ -118,7 +118,7 @@
           <RouterLink
             :to="{ name: 'Records' }"
             active-class="text-primary dark:text-primary"
-            class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
+            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
@@ -144,7 +144,7 @@
           <RouterLink
             :to="{ name: 'Drivers' }"
             active-class="text-primary dark:text-primary"
-            class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
+            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
@@ -161,7 +161,7 @@
           <span
             class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
             :class="{
-              'bg-primary': $route.name === 'Drivers'
+              'bg-primary': $route.name === 'Drivers' || $route.name === 'Driver'
             }"
           ></span>
         </div>
@@ -170,7 +170,7 @@
           <RouterLink
             :to="{ name: 'Constructors' }"
             active-class="text-primary dark:text-primary"
-            class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
+            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
@@ -196,7 +196,7 @@
           <RouterLink
             :to="{ name: 'Circuits' }"
             active-class="text-primary dark:text-primary"
-            class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
+            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon
@@ -222,7 +222,7 @@
           <RouterLink
             :to="{ name: 'Analysis' }"
             active-class="text-primary dark:text-primary"
-            class="font-bold relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
+            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
             :class="{ 'border-r-0': isMobileActive }"
           >
             <Icon

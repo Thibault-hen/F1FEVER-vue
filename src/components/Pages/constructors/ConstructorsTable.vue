@@ -41,23 +41,24 @@
       <tbody class="dark:bg-dark-1 bg-white">
         <tr
           class="hover:bg-primary/10 dark:hover:bg-primary/10 transition-all ease-in-out duration-100 odd:bg-zinc-100 dark:odd:bg-dark-2"
-          v-for="(constructors, index) in filteredData"
-          :key="constructors.name"
+          v-for="(constructor, index) in filteredData"
+          :key="constructor.name"
         >
           <template v-if="inRange(index)">
             <td class="px-4 py-4 rounded-l-lg">
               <div class="flex">
-                <NationalityFlag :nationality="constructors.nationality" class="mr-2" />{{
-                  constructors.name
-                }}
+                <NationalityFlag :nationality="constructor.nationality" class="mr-2" />
+                <RouterLink :to="`/constructor/${constructor.slug}`">
+                  {{ constructor.name }}
+                </RouterLink>
               </div>
             </td>
             <td class="px-4 py-4 rounded-r-lg">
               <a
                 target="_blank"
-                :href="constructors.wikipedia_link"
+                :href="constructor.wikipedia_link"
                 class="tracking-wider text-primary"
-                >{{ constructors.wikipedia_link }}</a
+                >{{ constructor.wikipedia_link }}</a
               >
             </td>
           </template>
@@ -119,7 +120,7 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue'
-import { useConstructors } from '@/stores/Constructors/Constructors'
+import { useConstructors } from '@/stores/Constructors/constructors'
 import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'

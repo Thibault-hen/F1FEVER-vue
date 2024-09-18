@@ -12,14 +12,9 @@
         :class="isDark ? 'translate-x-9 bg-dark-2' : 'translate-x-0 bg-white'"
         class="pointer-events-none inline-block h-[26px] w-[26px] transform rounded-full shadow-lg ring-0 !transition duration-100 ease-in-out"
       >
-        <Icon
-          icon="line-md:sunny-outline-twotone-loop"
-          height="24px"
-          wdith="24px"
-          color="black"
-          v-if="!isDark" />
+        <Icon icon="ph:sun-thin" height="24px" wdith="24px" color="black" v-if="!isDark" />
 
-        <Icon icon="line-md:moon-twotone-loop" height="24px" wdith="24px" color="white" v-else
+        <Icon icon="ph:moon-thin" height="24px" wdith="24px" color="white" v-else
       /></span>
     </Switch>
   </div>

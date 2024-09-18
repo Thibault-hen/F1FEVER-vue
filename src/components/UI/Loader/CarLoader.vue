@@ -172,7 +172,7 @@
       </g>
     </svg>
 
-    <span class="text-center dark:text-white tracking-wide mt-2">{{
+    <span class="text-center dark:text-white mt-2 uppercase text-xs tracking-widest">{{
       $t('loader.loading_message')
     }}</span>
   </div>

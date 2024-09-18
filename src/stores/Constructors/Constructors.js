@@ -8,9 +8,11 @@ export const useConstructors = defineStore('constructors', () => {
 
   const fetchAllConstructors = async () => {
     isLoading.value = true
+
     try {
       const response = await api.get('/constructors')
       constructorsData.value = response.data.data
+      console.log('not fetched')
     } catch (error) {
       console.error('Error while fetching constructors list', error)
     } finally {

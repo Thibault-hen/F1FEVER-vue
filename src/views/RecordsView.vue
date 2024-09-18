@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div v-if="store.isLoading" class="mt-36 flex justify-center">
+    <CarLoader />
+  </div>
+  <div v-else>
     <RecordsHeroSection />
-    <div v-if="store.isLoading" class="mt-36 flex justify-center">
-      <CarLoader />
-    </div>
     <div>
       <DriversRecords v-if="store.driversRecords" />
       <ConstructorsRecords v-if="store.constructorsRecords" />

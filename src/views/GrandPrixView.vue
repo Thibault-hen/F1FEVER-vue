@@ -71,7 +71,6 @@ const updateDisplayedGrandPrix = (season, name) => {
 }
 
 const updateUrl = (season, name) => {
-  console.log(name)
   router.push({ name: 'Grand-prix', params: { season, name } })
 }
 
