@@ -20,9 +20,13 @@ export default {
         bronze: 'rgba(119, 78, 55, 0.4)'
       },
       keyframes: {
-        fadeIn: {
+        fadeInDown: {
           '0%': { opacity: 0, transform: 'translateY(30px)' },
           '100%': { opacity: 1, transform: 'translateY(0)' }
+        },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 }
         },
         slideInLeft: {
           from: {
@@ -44,7 +48,8 @@ export default {
         }
       },
       animation: {
-        fadeIn: 'fadeIn ease 0.4s',
+        fadeInDown: 'fadeInDown ease 0.4s',
+        fadeIn: 'fadeIn ease 0.3s',
         slideDown: 'slideInDown 0.3s',
         slideLeft: 'slideInLeft 0.3s',
         slideInLeftFadeIn: 'slideInLeftFadeIn 0.3s ease-out'

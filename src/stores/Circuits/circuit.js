@@ -8,7 +8,6 @@ export const useCircuit = defineStore('circuit', () => {
 
   const fetchCircuit = async (name) => {
     isLoading.value = true
-    console.log('zebi')
     try {
       const response = await api.get(`circuit/${name}`)
       circuitData.value = response.data.data

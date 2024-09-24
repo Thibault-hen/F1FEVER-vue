@@ -12,7 +12,6 @@ export const useConstructors = defineStore('constructors', () => {
     try {
       const response = await api.get('/constructors')
       constructorsData.value = response.data.data
-      console.log('not fetched')
     } catch (error) {
       console.error('Error while fetching constructors list', error)
     } finally {

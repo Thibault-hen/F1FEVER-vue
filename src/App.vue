@@ -5,7 +5,7 @@
     <PageHeader />
     <main class="flex-grow lg:ml-64 lg:px-20 lg:py-10 p-4 overflow-y-auto lg:mt-0">
       <router-view v-slot="{ Component }">
-        <transition enter-active-class="animate-fadeIn" mode="out-in">
+        <transition enter-active-class="animate-fadeInDown" mode="out-in">
           <component :is="Component" />
         </transition>
       </router-view>

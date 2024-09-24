@@ -239,7 +239,7 @@
           <span
             class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
             :class="{
-              'bg-primary': $route.name === 'Analysis'
+              'bg-primary': $route.name === 'Analysis' || $route.name === 'LapTimes'
             }"
           ></span>
         </div>

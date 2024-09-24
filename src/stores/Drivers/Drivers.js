@@ -11,7 +11,6 @@ export const useDrivers = defineStore('drivers', () => {
     try {
       const response = await api.get('/drivers')
       driversData.value = response.data.data
-      console.log('not ok')
     } catch (error) {
       console.error('Error while fetching drivers list', error)
     } finally {

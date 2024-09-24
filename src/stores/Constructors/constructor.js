@@ -8,7 +8,6 @@ export const useConstructor = defineStore('constructor', () => {
 
   const fetchConstructor = async (name) => {
     isLoading.value = true
-    console.log('zebi')
     try {
       const response = await api.get(`constructor/${name}`)
       constructorData.value = response.data.data
