@@ -72,11 +72,6 @@ const getTimeDiff = (index) => {
   const firstDriverLapTime = store.lapTimes.firstDriver.lap_times[index]?.milliseconds
   const secondDriverLapTime = store.lapTimes.secondDriver.lap_times[index]?.milliseconds
 
-  if (firstDriverLapTime == null || secondDriverLapTime == null) {
-    console.error('Lap time is undefined or null for one of the drivers')
-    return ''
-  }
-
   // Calculate the difference in milliseconds
   const timeDiffInMilliseconds = firstDriverLapTime - secondDriverLapTime
 

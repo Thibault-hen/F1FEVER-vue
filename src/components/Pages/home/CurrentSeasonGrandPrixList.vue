@@ -7,10 +7,7 @@
     >
       {{ $t('home.current_grandprix.label') }}
     </div>
-    <div v-if="isLoading" class="flex justify-center items-center h-full">
-      <CarLoader class="mt-6" />
-    </div>
-    <div v-else>
+    <div>
       <div class="mt-6 overflow-x-auto">
         <table
           class="dark:text-white min-w-full leading-normal border-separate border-spacing-y-0.5 text-xs md:text-sm mt-2"
@@ -36,7 +33,7 @@
           </thead>
           <tbody class="dark:bg-dark-1 bg-white">
             <tr
-              v-for="(grandPrix, index) in grandPrixList"
+              v-for="(grandPrix, index) in store.grandPrixList"
               :key="index"
               class="hover:bg-primary/10 transition-all ease-in-out duration-100 odd:bg-zinc-100 dark:odd:bg-dark-2"
             >
@@ -57,10 +54,10 @@
               <td class="px-2 rounded-r-lg border-b border-transparent text-nowrap">
                 <span
                   class="rounded-md py-1 px-2 text-white text-center items-center text-nowrap rounded-r-lg"
-                  :class="isUpcoming[index] ? 'bg-blue-500' : 'bg-green-700'"
+                  :class="store.isUpcoming[index] ? 'bg-blue-500' : 'bg-green-700'"
                 >
                   {{
-                    isUpcoming[index]
+                    store.isUpcoming[index]
                       ? $t('home.current_grandprix.status_upcoming')
                       : $t('home.current_grandprix.status_completed')
                   }}
@@ -75,15 +72,8 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
 import CountryFlag from '@/components/UI/Flag/CountryFlag.vue'
-import CarLoader from '@/components/UI/Loader/CarLoader.vue'
-import { useCurrentGrandPrixList } from '@/composables/current-grand-prix-list'
+import { useHomeData } from '@/stores/home'
 
-const { grandPrixList, isUpcoming, isLoading, fetchCurrentGrandPrixList } =
-  useCurrentGrandPrixList()
-
-onMounted(() => {
-  fetchCurrentGrandPrixList()
-})
+const store = useHomeData()
 </script>

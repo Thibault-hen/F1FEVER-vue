@@ -19,12 +19,6 @@
       <slot name="selector"></slot>
     </div>
     <TabPanels class="relative flex w-full rounded p-2">
-      <div
-        v-if="store.isLoading"
-        class="absolute inset-0 flex justify-center items-center bg-opacity-50 backdrop-blur-sm"
-      >
-        <CarLoader />
-      </div>
       <transition
         enter-active-class="transition-transform duration-200 ease-out"
         enter-from-class="transform -translate-x-full opacity-0"
@@ -57,8 +51,4 @@
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import DriverStandings from '@/components/Pages/standings/DriverStandings.vue'
 import ConstructorStandings from '@/components/Pages/standings/ConstructorStandings.vue'
-import CarLoader from '@/components/UI/Loader/CarLoader.vue'
-import { useStandingsStore } from '@/stores/standings'
-
-const store = useStandingsStore()
 </script>

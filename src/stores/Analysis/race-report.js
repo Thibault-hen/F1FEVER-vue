@@ -4,9 +4,10 @@ import { defineStore } from 'pinia'
 
 export const useRaceReport = defineStore('race-report', () => {
   const isLoading = ref(false)
-  const raceReport = ref()
+  const raceReport = ref(null)
 
   const fetchRaceReport = async (season, grandPrix, driver) => {
+    isLoading.value = true
     try {
       const response = await api.get(`/race-report/${season}/${grandPrix}/${driver}`)
       raceReport.value = response.data.data

@@ -5,29 +5,29 @@
         :selected-season="selectedSeason.year"
         :updated-season="updatedSeason"
       />
-      <StandingsTabs>
-        <template #selector>
-          <div class="md:ml-auto flex items-center md:flex-end">
-            <span class="dark:text-white mr-1 px-4 tracking-wide">Season : </span>
-            <SeasonSelector
-              :disabled="store.isLoading"
-              v-model="selectedSeason"
-              :updated-season="updatedSeason"
-              class="mr-2 items-center"
-              @update:modelValue="onSeasonSelected"
-            >
-              <template #loader>
-                <LoaderSmall v-if="store.isLoading" class="ml-auto" />
-              </template>
-            </SeasonSelector>
-          </div>
-        </template>
-      </StandingsTabs>
-      <RaceSchedule
-        :season="selectedSeason.year ?? updatedSeason"
-        :data="store.standings.schedule"
-        :is-loading="store.isLoading"
-      />
+      <transition enter-active-class="animate-fadeInDown" mode="out-in">
+        <div v-if="store.isLoading" class="flex justify-center">
+          <CarLoader class="mt-16" />
+        </div>
+        <div v-else>
+          <StandingsTabs>
+            <template #selector>
+              <div class="md:ml-auto flex items-center md:flex-end">
+                <span class="dark:text-white mr-1 px-4 tracking-wide">Season : </span>
+                <SeasonSelector
+                  :disabled="store.isLoading"
+                  v-model="selectedSeason"
+                  :updated-season="updatedSeason"
+                  class="mr-2 items-center"
+                  @update:modelValue="onSeasonSelected"
+                >
+                </SeasonSelector>
+              </div>
+            </template>
+          </StandingsTabs>
+          <RaceSchedule :season="selectedSeason.year ?? updatedSeason" />
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -39,9 +39,9 @@ import StandingsHeroSection from '@/components/Pages/standings/StandingsHeroSect
 import RaceSchedule from '@/components/Pages/standings/RaceSchedule.vue'
 import StandingsTabs from '@/components/Pages/standings/StandingsTabs.vue'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
-import LoaderSmall from '@/components/UI/Loader/LoaderSmall.vue'
 import { useStandingsStore } from '@/stores/standings'
 import { useTitle } from '@vueuse/core'
+import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 
 const selectedSeason = ref({ year: null })
 const updatedSeason = ref(null)
