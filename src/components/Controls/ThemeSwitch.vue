@@ -1,20 +1,19 @@
 <template>
   <div class="flex">
-    <span class="flex items-center mr-4">Appearance</span>
     <Switch
       v-model="isDark"
       :class="isDark ? 'bg-dark-1' : 'bg-zinc-100'"
-      class="shadow-lg dark:hover:bg-primary/20 hover:bg-primary/40 border-primaryrelative inline-flex h-[30px] w-[64px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-all duration-400 ease-in-out"
+      class="hover:!border-primary dark:border-zinc-700 border-gray-300 shadow-lg relative inline-flex h-[22px] w-[46px] cursor-pointer rounded-full border transition-all duration-400 ease-in-out"
     >
       <span class="sr-only">Use setting</span>
       <span
         aria-hidden="true"
-        :class="isDark ? 'translate-x-9 bg-dark-2' : 'translate-x-0 bg-white'"
-        class="pointer-events-none inline-block h-[26px] w-[26px] transform rounded-full shadow-lg ring-0 !transition duration-100 ease-in-out"
+        :class="isDark ? 'translate-x-6 bg-dark-2' : 'translate-x-0 bg-white'"
+        class="flex pointer-events-none h-[20px] w-[20px] transform rounded-full !transition duration-100 ease-in-out items-center"
       >
-        <Icon icon="ph:sun-thin" height="24px" wdith="24px" color="black" v-if="!isDark" />
+        <Icon icon="ph:sun-thin" height="20px" wdith="20px" color="black" v-if="!isDark" />
 
-        <Icon icon="ph:moon-thin" height="24px" wdith="24px" color="white" v-else
+        <Icon icon="ph:moon-thin" height="20px" wdith="20px" color="white" v-else
       /></span>
     </Switch>
   </div>

@@ -1,19 +1,30 @@
 <template>
   <nav
-    class="fixed z-20 top-0 left-0 dark:bg-dark-2 lg:bg-transparent lg:flex lg:flex-col lg:w-64 bg-white shadow-md border-r dark:border-slate-50/[0.06] border-gray-300 w-full transition-all duration-200 ease-in lg:min-h-screen"
+    class="fixed z-20 top-0 left-0 dark:bg-dark-2 lg:bg-transparent lg:flex lg:flex-col bg-white shadow-md border-r dark:border-slate-50/[0.06] border-gray-300 transition-all duration-200 ease-in lg:min-h-screen"
+    :class="isSideNavCollapsed ? 'w-32' : 'lg:w-64 w-full'"
   >
     <div class="lg:flex lg:flex-col lg:flex-grow text-white">
       <div
-        class="p-2 flex items-center shadow-inner dark:bg-dark-2 border-b dark:border-zinc-700 border-gray-300 h-20"
+        class="p-4 flex items-center justify-between shadow-inner dark:bg-dark-2 border-b dark:border-zinc-700 border-gray-300 h-20"
       >
-        <img src="/racing-car.png" alt="Logo" class="ml-2 h-8" />
-        <RouterLink :to="{ name: 'Home' }" class="p-4">
-          <h1
-            class="hover:text-primary dark:text-white text-black dark:hover:text-primary uppercase tracking-widest text-base transition-all ease duration-300"
-          >
-            F1FEVER
-          </h1>
-        </RouterLink>
+        <span class="hidden lg:flex" @click="toggleSideNav">
+          <Icon
+            icon="game-icons:hamburger-menu"
+            height="20px"
+            wdith="20px"
+            :color="isDark ? 'white' : 'black'"
+          />
+        </span>
+        <div class="flex items-center mr-4">
+          <img src="/racing-car.png" alt="Logo" class="ml-2 h-8" />
+          <RouterLink :to="{ name: 'Home' }" class="p-4">
+            <h1
+              class="hover:text-primary dark:text-white text-black dark:hover:text-primary uppercase tracking-widest text-base transition-all ease duration-300"
+            >
+              F1FEVER
+            </h1>
+          </RouterLink>
+        </div>
         <span class="lg:hidden flex ml-auto" @click="toggleMobileNav">
           <Icon
             icon="game-icons:hamburger-menu"
@@ -264,11 +275,16 @@ import ThemeSwitch from '@/components/Controls/ThemeSwitch.vue'
 import { Icon } from '@iconify/vue'
 
 const isMobileActive = ref(false)
+const isSideNavCollapsed = ref(false)
 
 const isDark = useDark()
 
 // Toggle the mobile menu
 const toggleMobileNav = () => {
   isMobileActive.value = !isMobileActive.value
+}
+
+const toggleSideNav = () => {
+  isSideNavCollapsed.value = !isSideNavCollapsed.value
 }
 </script>

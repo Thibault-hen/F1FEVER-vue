@@ -66,11 +66,15 @@
   </div>
 
   <span
+    v-if="store.raceReport.quali_results"
     class="bg-primary/20 border border-primary rounded dark:text-white dark:font-thin text-xs tracking-widest px-2 py-1 uppercase"
   >
     Qualifying result
   </span>
-  <div class="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-5 gap-2 my-2">
+  <div
+    v-if="store.raceReport.quali_results"
+    class="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-5 gap-2 my-2"
+  >
     <div
       class="dark:text-white flex flex-col rounded border p-2 dark:border-slate-50/[0.06] border-l-4 border-l-primary dark:border-l-primary shadow items-start justify-between"
     >

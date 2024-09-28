@@ -51,7 +51,7 @@
             driver in the chosen Grand Prix, providing an in-depth view of their race performance.
           </span>
           <RouterLink
-            to="/analysis/race-report"
+            :to="{ name: 'RaceReport' }"
             class="uppercase tracking-widest text-xs self-start w-auto text-white bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary dark:text-white border border-primary p-2 px-4 rounded-md my-2 transition-all duration-150"
           >
             Race report

@@ -15,11 +15,13 @@
             </div>
             <h4 class="mb-3 text-lg leading-tight dark:text-white">Oops! something went wrong</h4>
             <p class="mb-8 text-base dark:text-white">The page you are looking for do not exist</p>
-            <DefaultButton>
-              <RouterLink :to="{ name: 'Home' }" class="rounded-lg px-6 py-2 text-center text-base">
-                Go To Home
-              </RouterLink>
-            </DefaultButton>
+            <RouterLink
+              :to="{ name: 'Home' }"
+              class="mx-auto gap-2 flex items-center max-w-44 justify-center uppercase tracking-widest text-sm text-white bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary dark:text-white border border-primary p-2 px-4 rounded-lg my-2 transition-all duration-150"
+            >
+              <Icon icon="humbleicons:arrow-go-back" height="20px" />
+              <span>Go To Home</span>
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -28,10 +30,9 @@
 </template>
 
 <script setup>
-import DefaultButton from '@/components/UI/Misc/DefaultButton.vue'
+import { Icon } from '@iconify/vue'
 import { RouterLink } from 'vue-router'
 import { useDark } from '@vueuse/core'
-import { Icon } from '@iconify/vue'
 
 const isDark = useDark()
 </script>

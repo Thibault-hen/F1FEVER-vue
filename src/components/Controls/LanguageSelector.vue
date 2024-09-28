@@ -1,5 +1,6 @@
 <template>
-  <div class="relative">
+  <!-- Wrapper div that makes sure the selector is always at the top-right -->
+  <div class="fixed md:top-0 top-20 right-0 z-50 m-4">
     <Listbox v-model="selectedLanguage">
       <!-- ListboxButton -->
       <ListboxButton
@@ -7,8 +8,8 @@
       >
         <img :src="flagSrc" width="24px" class="rounded-sm" />
         <span class="tracking-wide px-1 hidden lg:flex font-bold text-xs dark:text-white">
-          {{ selectedLanguage.text }}</span
-        >
+          {{ selectedLanguage.text }}
+        </span>
         <Icon
           icon="solar:alt-arrow-down-outline"
           height="24px"
@@ -50,8 +51,8 @@
             <span
               class="tracking-wide hidden lg:flex items-center font-bold text-xs dark:text-white"
             >
-              {{ language.text }}</span
-            >
+              {{ language.text }}
+            </span>
           </ListboxOption>
         </ListboxOptions>
       </transition>

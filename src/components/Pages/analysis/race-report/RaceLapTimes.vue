@@ -28,7 +28,15 @@
                 {{ lapTimes.lap }}
               </td>
               <td class="px-2 text-nowrap">{{ lapTimes.position }}</td>
-              <td class="px-2 text-nowrap">{{ lapTimes.time ?? 'N/A' }}</td>
+              <td class="px-2 text-nowrap">
+                <div class="flex gap-2 items-center" v-if="getFastestTime() === lapTimes.time">
+                  <span class="text-yellow-500">{{ lapTimes.time }}</span>
+                  <Icon icon="meteocons:lightning-bolt" height="40px" width="40px" color="white" />
+                </div>
+                <div v-else>
+                  <span>{{ lapTimes.time ?? 'N/A' }}</span>
+                </div>
+              </td>
               <td
                 class="px-2 text-nowrap rounded-r-lg"
                 :class="{
@@ -55,9 +63,20 @@
 <script setup>
 import { useRaceReport } from '@/stores/Analysis/race-report'
 import MissingDataText from '@/components/UI/Misc/MissingDataText.vue'
+import { Icon } from '@iconify/vue'
 
 const store = useRaceReport()
 
+const getFastestTime = () => {
+  return store.raceReport.lap_times.reduce((fastest, current) => {
+    if (!fastest) return current.time
+    if (!current.time) return fastest
+
+    return current.time < fastest ? current.time : fastest
+  }, null)
+}
+
+console.log(getFastestTime())
 const getTimeDiff = (index) => {
   const previousLap = store.raceReport.lap_times[index - 1]?.milliseconds
   const currentLap = store.raceReport.lap_times[index]?.milliseconds

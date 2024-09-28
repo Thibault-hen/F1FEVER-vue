@@ -84,7 +84,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRaceReport } from '@/stores/Analysis/race-report'
 import SeasonSelector from '@/components/UI/Selectors/Analysis/SeasonSelector.vue'
 import GrandPrixSelector from '@/components/UI/Selectors/Analysis/GrandPrixSelector.vue'
@@ -127,4 +127,8 @@ const handleCompare = async () => {
 
   console.log(store.raceReport)
 }
+
+onMounted(() => {
+  console.log('test')
+})
 </script>
