@@ -13,6 +13,7 @@ export const useRaceReport = defineStore('race-report', () => {
       raceReport.value = response.data.data
     } catch (error) {
       console.error('Error while fetching this race report', error)
+      throw error
     } finally {
       isLoading.value = false
     }

@@ -1,290 +1,214 @@
 <template>
-  <nav
-    class="fixed z-20 top-0 left-0 dark:bg-dark-2 lg:bg-transparent lg:flex lg:flex-col bg-white shadow-md border-r dark:border-slate-50/[0.06] border-gray-300 transition-all duration-200 ease-in lg:min-h-screen"
-    :class="isSideNavCollapsed ? 'w-32' : 'lg:w-64 w-full'"
+  <aside
+    class="w-full md:h-full dark:bg-dark-2 bg-zinc-100 fixed z-40 top-0 left-0 flex flex-col md:overflow-hidden md:min-h-[100vh] transition-all ease-in-out duration-300 border-r dark:border-zinc-700 border-gray-300"
+    :class="isExpanded ? 'aside-expanded' : 'aside'"
   >
-    <div class="lg:flex lg:flex-col lg:flex-grow text-white">
-      <div
-        class="p-4 flex items-center justify-between shadow-inner dark:bg-dark-2 border-b dark:border-zinc-700 border-gray-300 h-20"
-      >
-        <span class="hidden lg:flex" @click="toggleSideNav">
+    <div
+      class="flex items-center justify-between md:justify-start min-h-20 border-b dark:border-zinc-700 border-gray-300"
+    >
+      <div class="md:flex hidden mx-4">
+        <button @click="toggleMenu">
           <Icon
             icon="game-icons:hamburger-menu"
             height="20px"
             wdith="20px"
             :color="isDark ? 'white' : 'black'"
           />
-        </span>
-        <div class="flex items-center mr-4">
-          <img src="/racing-car.png" alt="Logo" class="ml-2 h-8" />
-          <RouterLink :to="{ name: 'Home' }" class="p-4">
-            <h1
-              class="hover:text-primary dark:text-white text-black dark:hover:text-primary uppercase tracking-widest text-base transition-all ease duration-300"
-            >
-              F1FEVER
-            </h1>
-          </RouterLink>
-        </div>
-        <span class="lg:hidden flex ml-auto" @click="toggleMobileNav">
-          <Icon
-            icon="game-icons:hamburger-menu"
-            height="20px"
-            wdith="20px"
-            :color="isDark ? 'white' : 'black'"
-            v-if="!isMobileActive"
-          />
-          <Icon
-            icon="mingcute:close-fill"
-            height="20px"
-            wdith="20px"
-            :color="isDark ? 'white' : 'black'"
-            v-else
-          />
-        </span>
+        </button>
       </div>
+      <RouterLink :to="{ name: 'Home' }" class="p-4 flex items-center gap-2">
+        <img src="/racing-car.png" alt="Logo" class="h-8" />
+        <h1
+          class="hover:text-primary dark:text-white text-black dark:hover:text-primary uppercase tracking-widest text-base transition-all ease duration-300"
+        >
+          F1FEVER
+        </h1>
+      </RouterLink>
 
-      <div
-        class="lg:flex lg:flex-col flex-grow text-sm text-black dark:text-white"
-        :class="isMobileActive ? 'flex flex-col border-b border-zinc-700' : 'hidden'"
-      >
-        <div class="relative group items-center">
-          <RouterLink
-            :to="{ name: 'Home' }"
-            active-class="text-primary dark:text-primary"
-            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
-            :class="{ 'border-r-0': isMobileActive }"
-          >
-            <Icon
-              icon="fluent:home-48-regular"
-              height="22px"
-              wdith="22px"
-              class="mr-2 flex"
-              :color="$route.name === 'Home' ? 'red' : isDark ? 'white' : 'black'"
-            />
-            {{ $t('nav.home') }}
-          </RouterLink>
-
-          <!-- Sliding bar on hover and active -->
-          <span
-            class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
-            :class="{
-              'bg-primary': $route.name === 'Home'
-            }"
-          ></span>
-        </div>
-
-        <div class="relative group">
-          <RouterLink
-            :to="{ name: 'Standings' }"
-            active-class="text-primary dark:text-primary"
-            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease-in-out hover:text-primary"
-            :class="{ 'border-r-0': isMobileActive }"
-          >
-            <Icon
-              icon="material-symbols:leaderboard-outline-rounded"
-              height="22px"
-              wdith="22px"
-              class="mr-2"
-              :color="$route.name === 'Standings' ? 'red' : isDark ? 'white' : 'black'"
-            />
-            {{ $t('nav.standings') }}
-          </RouterLink>
-
-          <!-- Sliding bar on hover and active -->
-          <span
-            class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
-            :class="{
-              'bg-primary': $route.name === 'Standings'
-            }"
-          ></span>
-        </div>
-
-        <div class="relative group">
-          <RouterLink
-            :to="{ name: 'Grand-prix' }"
-            active-class="text-primary dark:text-primary"
-            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
-            :class="{ 'border-r-0': isMobileActive }"
-          >
-            <Icon
-              icon="mage:trophy"
-              height="22px"
-              wdith="22px"
-              class="mr-2"
-              :color="$route.name === 'Grand-prix' ? 'red' : isDark ? 'white' : 'black'"
-            />
-            {{ $t('nav.grandprix') }}
-          </RouterLink>
-
-          <!-- Sliding bar on hover and active -->
-          <span
-            class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
-            :class="{
-              'bg-primary': $route.name === 'Grand-prix'
-            }"
-          ></span>
-        </div>
-
-        <div class="relative group">
-          <RouterLink
-            :to="{ name: 'Records' }"
-            active-class="text-primary dark:text-primary"
-            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
-            :class="{ 'border-r-0': isMobileActive }"
-          >
-            <Icon
-              icon="circum:medal"
-              height="22px"
-              wdith="22px"
-              class="mr-2"
-              :color="$route.name === 'Records' ? 'red' : isDark ? 'white' : 'black'"
-            />
-            {{ $t('nav.records') }}
-          </RouterLink>
-
-          <!-- Sliding bar on hover and active -->
-          <span
-            class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
-            :class="{
-              'bg-primary': $route.name === 'Records'
-            }"
-          ></span>
-        </div>
-
-        <div class="relative group border-t dark:border-zinc-700 border-gray-300">
-          <RouterLink
-            :to="{ name: 'Drivers' }"
-            active-class="text-primary dark:text-primary"
-            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
-            :class="{ 'border-r-0': isMobileActive }"
-          >
-            <Icon
-              icon="mdi:racing-helmet"
-              height="22px"
-              wdith="22px"
-              class="mr-2"
-              :color="$route.name === 'Drivers' ? 'red' : isDark ? 'white' : 'black'"
-            />
-            {{ $t('nav.drivers') }}
-          </RouterLink>
-
-          <!-- Sliding bar on hover and active -->
-          <span
-            class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
-            :class="{
-              'bg-primary': $route.name === 'Drivers' || $route.name === 'Driver'
-            }"
-          ></span>
-        </div>
-
-        <div class="relative group">
-          <RouterLink
-            :to="{ name: 'Constructors' }"
-            active-class="text-primary dark:text-primary"
-            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
-            :class="{ 'border-r-0': isMobileActive }"
-          >
-            <Icon
-              icon="mdi:car-wrench"
-              height="22px"
-              wdith="22px"
-              class="mr-2"
-              :color="$route.name === 'Constructors' ? 'red' : isDark ? 'white' : 'black'"
-            />
-            {{ $t('nav.constructors') }}
-          </RouterLink>
-
-          <!-- Sliding bar on hover and active -->
-          <span
-            class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
-            :class="{
-              'bg-primary': $route.name === 'Constructors'
-            }"
-          ></span>
-        </div>
-
-        <div class="relative group border-b dark:border-zinc-700 border-gray-300">
-          <RouterLink
-            :to="{ name: 'Circuits' }"
-            active-class="text-primary dark:text-primary"
-            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
-            :class="{ 'border-r-0': isMobileActive }"
-          >
-            <Icon
-              icon="healthicons:paved-road-outline"
-              height="22px"
-              wdith="22px"
-              class="mr-2"
-              :color="$route.name === 'Circuits' ? 'red' : isDark ? 'white' : 'black'"
-            />
-            {{ $t('nav.circuits') }}
-          </RouterLink>
-
-          <!-- Sliding bar on hover and active -->
-          <span
-            class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
-            :class="{
-              'bg-primary': $route.name === 'Circuits'
-            }"
-          ></span>
-        </div>
-
-        <div class="relative group">
-          <RouterLink
-            :to="{ name: 'Analysis' }"
-            active-class="text-primary dark:text-primary"
-            class="uppercase tracking-widest text-xs relative flex p-4 items-center transition-all duration-300 ease hover:text-primary"
-            :class="{ 'border-r-0': isMobileActive }"
-          >
-            <Icon
-              icon="material-symbols-light:query-stats"
-              height="22px"
-              wdith="22px"
-              class="mr-2"
-              :color="$route.name === 'Analysis' ? 'red' : isDark ? 'white' : 'black'"
-            />
-            {{ $t('nav.analysis') }}
-          </RouterLink>
-
-          <!-- Sliding bar on hover and active -->
-          <span
-            class="absolute left-0 top-0 h-full w-1 transition-all duration-300 ease rounded-r-3xl group-hover:bg-primary"
-            :class="{
-              'bg-primary': $route.name === 'Analysis' || $route.name === 'LapTimes'
-            }"
-          ></span>
-        </div>
-
-        <!-- Spacer to push ThemeSwitch to bottom -->
-        <div class="flex-grow"></div>
-        <div class="p-4 border-t dark:border-zinc-700 border-gray-300">
-          <div class="flex flex-row row-end-auto justify-center">
-            <ThemeSwitch class="" />
-          </div>
-        </div>
+      <div class="md:hidden flex mx-4">
+        <button @click="toggleMobile">
+          <Icon
+            icon="game-icons:hamburger-menu"
+            height="20px"
+            wdith="20px"
+            :color="isDark ? 'white' : 'black'"
+          />
+        </button>
       </div>
     </div>
-  </nav>
+
+    <div class="dark:text-white md:flex flex-col h-full" :class="isMobile ? 'flex' : 'hidden'">
+      <!-- Top section of the navbar links -->
+      <div class="flex-grow">
+        <RouterLink
+          v-for="(link, index) in navLinks"
+          :key="index"
+          activeClass="text-primary border-l-2 border-l-primary"
+          :to="{ name: link.route }"
+          class="group flex items-center p-1 border-l-2 border-transparent hover:cursor-pointer gap-2 uppercase tracking-widest text-xs hover:border-l-2 hover:border-l-primary !transition-all !ease-in !duration-200"
+          :class="
+            link.divider
+              ? 'border-b dark:border-b-zinc-700 border-b-gray-300'
+              : 'border-b-transparent'
+          "
+        >
+          <div class="flex p-3 gap-6">
+            <!-- Apply group-hover to the Icon -->
+            <Icon
+              :icon="link.icon"
+              height="20px"
+              width="20px"
+              class="group-hover:text-red-500 transition-all ease-in"
+            />
+            <!-- Apply group-hover to the span -->
+            <span class="group-hover:text-red-500 text flex items-center transition-all ease-in">
+              {{ link.text }}
+            </span>
+          </div>
+        </RouterLink>
+      </div>
+      <div
+        class="flex justify-center items-center py-4 gap-2 dark:border-zinc-700 border-gray-300 border-t"
+      >
+        <span
+          :class="isExpanded ? 'flex' : 'hidden'"
+          class="text-xs tracking-widest dark:text-white"
+        >
+          Appearance
+        </span>
+        <ThemeSwitch />
+      </div>
+    </div>
+  </aside>
+  <main
+    class="transition-all ease-in-out duration-300 h-screen"
+    :class="isExpanded ? 'main' : 'main-expanded'"
+  >
+    <slot name="content"> </slot>
+  </main>
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
-import { ref } from 'vue'
-import { useDark } from '@vueuse/core'
-import ThemeSwitch from '@/components/Controls/ThemeSwitch.vue'
+import { ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
+import { useDark, useBreakpoints } from '@vueuse/core'
+import ThemeSwitch from '../Controls/ThemeSwitch.vue'
+import { RouterLink } from 'vue-router'
 
-const isMobileActive = ref(false)
-const isSideNavCollapsed = ref(false)
-
+const isExpanded = ref(true)
+const isMobile = ref(false)
 const isDark = useDark()
 
-// Toggle the mobile menu
-const toggleMobileNav = () => {
-  isMobileActive.value = !isMobileActive.value
+const navLinks = [
+  {
+    text: 'Homepage',
+    route: 'Home',
+    icon: 'fluent:home-48-regular',
+    divider: false
+  },
+  {
+    text: 'Standings',
+    route: 'Standings',
+    icon: 'material-symbols:leaderboard-outline-rounded',
+    divider: false
+  },
+  {
+    text: 'GrandPrix',
+    route: 'Grand-prix',
+    icon: 'mage:trophy',
+    divider: false
+  },
+  {
+    text: 'Records',
+    route: 'Records',
+    icon: 'circum:medal',
+    divider: true
+  },
+  {
+    text: 'Drivers',
+    route: 'Drivers',
+    icon: 'mdi:racing-helmet',
+    divider: false
+  },
+  {
+    text: 'Constructors',
+    route: 'Constructors',
+    icon: 'mdi:car-wrench',
+    divider: false
+  },
+  {
+    text: 'Circuits',
+    route: 'Circuits',
+    icon: 'healthicons:paved-road-outline',
+    divider: true
+  },
+  {
+    text: 'Analysis',
+    route: 'Analysis',
+    icon: 'material-symbols-light:query-stats',
+    divider: false
+  }
+]
+
+// Define your breakpoints (these can be custom)
+const breakpoints = useBreakpoints({
+  md: 768,
+  xl: 1280
+})
+
+// Watch for screen size changes using VueUse breakpoints
+const isBelowMd = breakpoints.smaller('md')
+const isBelowXl = breakpoints.smaller('xl')
+
+const toggleMenu = () => {
+  isExpanded.value = !isExpanded.value
 }
 
-const toggleSideNav = () => {
-  isSideNavCollapsed.value = !isSideNavCollapsed.value
+const toggleMobile = () => {
+  isMobile.value = !isMobile.value
 }
+
+watch(isBelowMd, (belowMd) => {
+  if (belowMd) {
+    isExpanded.value = false
+    isMobile.value = false
+  }
+})
+
+watch(isBelowXl, (belowXl) => {
+  if (belowXl) {
+    isExpanded.value = false
+  } else {
+    isExpanded.value = true
+  }
+})
 </script>
+
+<style scoped>
+.main {
+  margin-left: 250px;
+}
+.main-expanded {
+  margin-left: calc(2rem + 32px);
+}
+.aside {
+  width: calc(2rem + 30px);
+}
+.aside-expanded {
+  width: 250px;
+}
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0px;
+  }
+  .main-expanded {
+    margin-left: 0px;
+  }
+  .aside {
+    width: 100% !important;
+  }
+  .aside.expanded {
+    width: 100% !important;
+  }
+}
+</style>

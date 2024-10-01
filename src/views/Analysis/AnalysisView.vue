@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BreadCrumbs :links-data="breadCrumbLinks" />
     <AnalysisHeader />
     <div class="flex flex-col lg:flex-row space-around gap-10">
       <div class="flex flex-col w-full gap-2">
@@ -67,6 +68,13 @@ import AnalysisHeader from '@/components/Pages/analysis/AnalysisHeader.vue'
 import { RouterLink } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
+import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 
 const isDark = useDark()
+const breadCrumbLinks = [
+  {
+    text: 'Analysis',
+    route: 'Analysis'
+  }
+]
 </script>

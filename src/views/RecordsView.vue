@@ -3,6 +3,7 @@
     <CarLoader />
   </div>
   <div v-else>
+    <BreadCrumbs :links-data="breadCrumbLinks" />
     <RecordsHeroSection />
     <div>
       <DriversRecords v-if="store.driversRecords" />
@@ -18,8 +19,15 @@ import ConstructorsRecords from '@/components/Pages/records/ConstructorsRecords.
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 import { useRecordsStore } from '@/stores/records'
 import { onMounted } from 'vue'
+import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 
 const store = useRecordsStore()
+const breadCrumbLinks = [
+  {
+    text: 'Records',
+    route: 'Records'
+  }
+]
 
 onMounted(async () => {
   await store.fetchRecords()

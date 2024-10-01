@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BreadCrumbs :links-data="breadCrumbLinks" />
     <ConstructorsHero :updated-season="updatedSeason" />
     <ConstructorsTable>
       <template #selector>
@@ -20,12 +21,20 @@ import ConstructorsTable from '@/components/Pages/constructors/ConstructorsTable
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
 import LoaderSmall from '@/components/UI/Loader/LoaderSmall.vue'
 import { useRoute, useRouter } from 'vue-router'
+import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 
 const updatedSeason = ref(null)
 const store = useConstructors()
 const manualUpdate = ref(false)
 const router = useRouter()
 const route = useRoute()
+
+const breadCrumbLinks = [
+  {
+    text: 'Constructors',
+    route: 'Constructors'
+  }
+]
 
 const updateUrl = (season) => {
   router.push({ name: 'Constructors', params: { season } })

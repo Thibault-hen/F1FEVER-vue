@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BreadCrumbs :links-data="breadCrumbLinks" />
     <DriversHero :updated-season="updatedSeason" />
     <DriversTable>
       <template #selector>
@@ -24,12 +25,20 @@ import DriversTable from '@/components/Pages/drivers/DriversTable.vue'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
 import LoaderSmall from '@/components/UI/Loader/LoaderSmall.vue'
 import { useRoute, useRouter } from 'vue-router'
+import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 
 const updatedSeason = ref(null)
 const store = useDrivers()
 const manualUpdate = ref(false) // Tracks whether the user manually selected the season
 const router = useRouter()
 const route = useRoute()
+
+const breadCrumbLinks = [
+  {
+    text: 'Drivers',
+    route: 'Drivers'
+  }
+]
 
 const updateUrl = (season) => {
   router.push({ name: 'Drivers', params: { season } })

@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="space-y-4">
+      <BreadCrumbs :links-data="breadCrumbLinks" />
       <StandingsHeroSection
         :selected-season="selectedSeason.year"
         :updated-season="updatedSeason"
@@ -42,6 +43,7 @@ import SeasonSelector from '@/components/UI/SeasonSelector.vue'
 import { useStandingsStore } from '@/stores/standings'
 import { useTitle } from '@vueuse/core'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'
+import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 
 const selectedSeason = ref({ year: null })
 const updatedSeason = ref(null)
@@ -49,6 +51,13 @@ const router = useRouter()
 const route = useRoute()
 const manualUpdate = ref(false)
 const title = useTitle()
+
+const breadCrumbLinks = [
+  {
+    text: 'Standings',
+    route: 'Standings'
+  }
+]
 
 const store = useStandingsStore()
 

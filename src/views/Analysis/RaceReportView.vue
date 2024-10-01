@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BreadCrumbs :links-data="breadCrumbLinks" />
     <RaceReportHeader />
     <div
       class="rounded-lg shadow-md p-6 max-w-xl w-full border bg-gradient-to-br dark:from-dark-1 dark:via-dark-1 dark:to-dark-2 from-white via-white bg-white to-zinc-100 dark:border-slate-50/[0.06]"
@@ -84,7 +85,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useRaceReport } from '@/stores/Analysis/race-report'
 import SeasonSelector from '@/components/UI/Selectors/Analysis/SeasonSelector.vue'
 import GrandPrixSelector from '@/components/UI/Selectors/Analysis/GrandPrixSelector.vue'
@@ -97,14 +98,28 @@ import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 import RaceReportInformation from '@/components/Pages/analysis/race-report/RaceReportInformation.vue'
 import RaceLapTimes from '@/components/Pages/analysis/race-report/RaceLapTimes.vue'
 import RacePitstops from '@/components/Pages/analysis/race-report/RacePitstops.vue'
+import { useToastHelpers } from '@/helpers/toastHelpers'
+import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 
 const selectedSeason = ref()
 const selectedGrandPrix = ref()
 const selectedDriver = ref()
 
 const isDark = useDark()
+const notifications = useToastHelpers()
 
 const store = useRaceReport()
+
+const breadCrumbLinks = [
+  {
+    text: 'Analysis',
+    route: 'Analysis'
+  },
+  {
+    text: 'Race report',
+    route: 'RaceReport'
+  }
+]
 
 const setSeason = (season) => {
   selectedSeason.value = season
@@ -119,16 +134,17 @@ const setDriver = (driver) => {
 }
 
 const handleCompare = async () => {
-  await store.fetchRaceReport(
-    selectedSeason.value.season,
-    selectedGrandPrix.value.slug,
-    selectedDriver.value.slug
-  )
-
-  console.log(store.raceReport)
+  try {
+    await store.fetchRaceReport(
+      selectedSeason.value.season,
+      selectedGrandPrix.value.slug,
+      selectedDriver.value.slug
+    )
+    notifications.success(
+      `${store.raceReport.driver_info.name} / ${store.raceReport.race_info.season} - ${store.raceReport.race_info.name}`
+    )
+  } catch (error) {
+    notifications.error('Something went wrong while fetching this race report')
+  }
 }
-
-onMounted(() => {
-  console.log('test')
-})
 </script>

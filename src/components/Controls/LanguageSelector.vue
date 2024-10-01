@@ -4,7 +4,7 @@
     <Listbox v-model="selectedLanguage">
       <!-- ListboxButton -->
       <ListboxButton
-        class="flex items-center bg-white dark:bg-dark-2 p-2 rounded shadow border border-slate-50/[0.06] mb-2"
+        class="flex items-center bg-white dark:bg-dark-1 p-2 rounded shadow border border-slate-50/[0.06] mb-2"
       >
         <img :src="flagSrc" width="24px" class="rounded-sm" />
         <span class="tracking-wide px-1 hidden lg:flex font-bold text-xs dark:text-white">
@@ -35,7 +35,7 @@
       >
         <!-- ListboxOptions -->
         <ListboxOptions
-          class="bg-white dark:bg-dark-2 absolute w-full rounded shadow border border-slate-50/[0.06] items-center flex flex-col py-2"
+          class="bg-white dark:bg-dark-1 absolute w-full rounded shadow border border-slate-50/[0.06] items-center flex flex-col py-2"
         >
           <ListboxOption
             v-for="language in languages"

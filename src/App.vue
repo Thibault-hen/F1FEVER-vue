@@ -1,12 +1,12 @@
 <template>
   <TopBar />
   <div class="flex flex-col">
-    <SideNav2>
+    <SideNav>
       <template #content>
         <div class="flex flex-col h-screen">
           <PageHeader />
           <LanguageSelector />
-          <div class="p-6 h-screen mt-40 md:mt-20">
+          <div class="p-6 h-screen mt-40 md:mt-20 overflow-y-auto">
             <router-view v-slot="{ Component }">
               <transition enter-active-class="animate-fadeInDown" mode="out-in">
                 <component :is="Component" />
@@ -14,7 +14,7 @@
             </router-view>
             <DefaultFooter />
           </div></div></template
-    ></SideNav2>
+    ></SideNav>
   </div>
 </template>
 
@@ -22,7 +22,7 @@
 import PageHeader from '@/components/layouts/PageHeader.vue'
 import DefaultFooter from '@/components/layouts/DefaultFooter.vue'
 import TopBar from './components/layouts/TopBar.vue'
-import SideNav2 from './components/layouts/SideNav2.vue'
+import SideNav from './components/layouts/SideNav.vue'
 import LanguageSelector from './components/Controls/LanguageSelector.vue'
 import { useTitle } from '@vueuse/core'
 

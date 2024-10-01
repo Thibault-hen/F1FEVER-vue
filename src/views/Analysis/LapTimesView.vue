@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BreadCrumbs :links-data="breadCrumbLinks" />
     <LapTimesHeader />
     <div
       class="rounded-lg shadow-md p-6 max-w-xl w-full border bg-gradient-to-br dark:from-dark-1 dark:via-dark-1 dark:to-dark-2 from-white via-white bg-white to-zinc-100 dark:border-slate-50/[0.06]"
@@ -113,6 +114,7 @@ import SecondDriverSelector from '@/components/UI/Selectors/lap-times/SecondDriv
 import DriverInformation from '@/components/Pages/analysis/lap-times/DriverInformation.vue'
 import LapTimesInformation from '@/components/Pages/analysis/lap-times/LapTimesInformation.vue'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'
+import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
 
@@ -124,6 +126,16 @@ const selectedSecondDriver = ref()
 const isDriversDifferent = ref(false)
 
 const isDark = useDark()
+const breadCrumbLinks = [
+  {
+    text: 'Analysis',
+    route: 'Analysis'
+  },
+  {
+    text: 'Lap Times',
+    route: 'LapTimes'
+  }
+]
 
 const store = useLapTimes()
 

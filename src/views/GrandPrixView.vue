@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BreadCrumbs :links-data="breadCrumbLinks" />
     <GpHeroSection />
     <div class="relative block lg:flex lg:justify-between lg:content-center gap-3 my-4 min-h-24">
       <div
@@ -49,6 +50,7 @@ import RaceWinner from '@/components/Pages/grand-prix/RaceWinner.vue'
 import MoreGrandPrix from '@/components/Pages/grand-prix/MoreGrandPrix.vue'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 import GpHeroSection from '@/components/Pages/grand-prix/GpHeroSection.vue'
+import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -57,6 +59,12 @@ const store = useGrandPrix()
 const storedSeason = computed(() => store.grandPrixData.season)
 const storedGpName = computed(() => store.grandPrixData.name)
 const storedGpRef = computed(() => store.grandPrixData.ref)
+const breadCrumbLinks = [
+  {
+    text: 'Grandprix',
+    route: 'Grand-prix'
+  }
+]
 
 const selectedSeason = ref({ year: null })
 
