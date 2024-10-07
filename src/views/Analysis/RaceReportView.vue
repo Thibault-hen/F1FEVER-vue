@@ -75,7 +75,7 @@
       <div v-else>
         <RaceReportInformation v-if="store.raceReport" />
         <RaceProgression v-if="store.raceReport" />
-        <div class="flex md:flex-row flex-col gap-6">
+        <div class="flex lg:flex-row flex-col gap-4">
           <RaceLapTimes v-if="store.raceReport" />
           <RacePitstops v-if="store.raceReport" />
         </div>

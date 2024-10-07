@@ -8,7 +8,7 @@
       >
         Pole Sitter
       </h4>
-      <span class="flex dark:text-white"
+      <span class="flex dark:text-white truncate"
         >{{ store.grandPrixData.poleSitter.name }}
         <NationalityFlag
           class="items-center flex ml-2"

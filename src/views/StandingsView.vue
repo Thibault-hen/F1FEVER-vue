@@ -13,16 +13,21 @@
         <div v-else>
           <StandingsTabs>
             <template #selector>
-              <div class="md:ml-auto flex items-center md:flex-end">
-                <span class="dark:text-white mr-1 px-4 tracking-wide">Season : </span>
+              <div class="md:ml-auto gap-2 flex items-center lg:justify-between">
                 <SeasonSelector
                   :disabled="store.isLoading"
                   v-model="selectedSeason"
                   :updated-season="updatedSeason"
-                  class="mr-2 items-center"
+                  class="items-center"
                   @update:modelValue="onSeasonSelected"
                 >
                 </SeasonSelector>
+                <button
+                  @click="updateStandings"
+                  class="uppercase tracking-widest text-xs self-start w-auto text-white bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary dark:text-white border border-primary p-2 px-4 rounded-md my-2 transition-all duration-150"
+                >
+                  SHOW
+                </button>
               </div>
             </template>
           </StandingsTabs>
@@ -49,7 +54,6 @@ const selectedSeason = ref({ year: null })
 const updatedSeason = ref(null)
 const router = useRouter()
 const route = useRoute()
-const manualUpdate = ref(false)
 const title = useTitle()
 
 const breadCrumbLinks = [
@@ -66,10 +70,8 @@ const updateDisplayedSeason = () => {
 }
 
 const updateDisplayedSeasonFromUrl = (season) => {
-  manualUpdate.value = false
   selectedSeason.value.year = season
   updatedSeason.value = season
-  manualUpdate.value = true
 }
 const updateTitle = (season) => {
   title.value = `F1FEVER - ${season} Standings`
@@ -78,22 +80,18 @@ const updateUrl = (season) => {
   router.push({ name: 'Standings', params: { season } })
 }
 
-const updateStandings = async (season) => {
-  updateUrl(season)
-  await store.fetchStandings(season)
+const updateStandings = async () => {
+  updateUrl(selectedSeason.value.year)
+  await store.fetchStandings(selectedSeason.value.year)
   updateDisplayedSeason()
 }
 
-const onSeasonSelected = async (season) => {
-  if (manualUpdate.value) {
-    selectedSeason.value.year = season.year
-    await updateStandings(season.year)
-  }
+const onSeasonSelected = (season) => {
+  selectedSeason.value.year = season.year
 }
 
 // Handle initial fetch and URL sync
 onMounted(async () => {
-  manualUpdate.value = false // Prevent the updateStandings from being triggered on mount
   if (store.standings.season) {
     // If standings exist, set the selected season to the stored season
     let storedSeason = store.standings.season
@@ -114,7 +112,5 @@ onMounted(async () => {
       updateTitle(selectedSeason.value.year)
     }
   }
-  // Allow manual updates to trigger the function after initial mount
-  manualUpdate.value = true
 })
 </script>

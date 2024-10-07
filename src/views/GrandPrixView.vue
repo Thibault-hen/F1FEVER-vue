@@ -29,6 +29,12 @@
             :selected-season="selectedSeason"
             @update:modelValue="onGrandPrixSelected"
           />
+          <button
+            @click="udpateGrandPrix"
+            class="ml-2 uppercase tracking-widest text-xs self-start w-auto text-white bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary dark:text-white border border-primary p-2 px-4 rounded-md my-2 transition-all duration-150"
+          >
+            SHOW
+          </button>
         </div>
       </template>
     </GrandPrixTabs>
@@ -59,6 +65,7 @@ const store = useGrandPrix()
 const storedSeason = computed(() => store.grandPrixData.season)
 const storedGpName = computed(() => store.grandPrixData.name)
 const storedGpRef = computed(() => store.grandPrixData.ref)
+
 const breadCrumbLinks = [
   {
     text: 'Grandprix',
@@ -82,9 +89,11 @@ const updateUrl = (season, name) => {
   router.push({ name: 'Grand-prix', params: { season, name } })
 }
 
+const udpateGrandPrix = async () => {
+  await store.fetchGrandPrix(selectedSeason.value.year, selectedGrandPrix.value)
+  updateUrl(store.grandPrixData.season, store.grandPrixData.ref)
+}
 const onGrandPrixSelected = async (payload) => {
-  await store.fetchGrandPrix(payload.selectedSeason, payload.selectedGrandPrix.slug)
-  updateUrl(payload.selectedSeason, payload.selectedGrandPrix.slug)
   selectedSeason.value.year = payload.selectedSeason
   selectedGrandPrix.value = payload.selectedGrandPrix.name
 }

@@ -2,7 +2,7 @@
   <TabGroup>
     <div class="flex md:items-end flex-col-reverse md:flex-row">
       <TabList
-        class="flex p-2 gap-2 rounded-lg border shadow dark:border-slate-50/[0.06] md:mt-0 mt-4 w-auto max-w-max"
+        class="flex p-2 gap-2 md:mt-0 mt-4 w-full md:w-auto rounded-lg border shadow dark:border-slate-50/[0.06]"
       >
         <Tab
           selected

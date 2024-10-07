@@ -1,14 +1,18 @@
 <template>
-  <div v-if="store.isLoading" class="mt-36 flex justify-center">
-    <CarLoader />
-  </div>
-  <div v-else>
+  <div>
     <BreadCrumbs :links-data="breadCrumbLinks" />
     <RecordsHeroSection />
-    <div>
-      <DriversRecords v-if="store.driversRecords" />
-      <ConstructorsRecords v-if="store.constructorsRecords" />
-    </div>
+    <transition enter-active-class="animate-fadeInDown" mode="out-in">
+      <div v-if="store.isLoading" class="mt-36 flex justify-center">
+        <CarLoader />
+      </div>
+      <div v-else>
+        <div>
+          <DriversRecords v-if="store.driversRecords" />
+          <ConstructorsRecords v-if="store.constructorsRecords" />
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 

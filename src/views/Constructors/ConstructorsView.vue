@@ -2,14 +2,28 @@
   <div>
     <BreadCrumbs :links-data="breadCrumbLinks" />
     <ConstructorsHero :updated-season="updatedSeason" />
-    <ConstructorsTable>
-      <template #selector>
-        <div class="flex items-center">
-          <span class="dark:text-white mr-1 px-4 tracking-wide">Season : </span>
-          <SeasonSelector @update:modelValue="onSeasonSelected" :updated-season="updatedSeason">
-            <template #loader> <LoaderSmall v-if="store.isLoading" class="ml-auto" /> </template
-          ></SeasonSelector></div></template
-    ></ConstructorsTable>
+    <transition enter-active-class="animate-fadeInDown" mode="out-in">
+      <div v-if="store.isLoading" class="flex justify-center">
+        <CarLoader class="mt-16" />
+      </div>
+      <div v-else>
+        <ConstructorsTable>
+          <template #selector>
+            <div class="flex items-center">
+              <span class="dark:text-white mr-1 px-4 tracking-wide">Season : </span>
+              <SeasonSelector @update:modelValue="onSeasonSelected" :updated-season="updatedSeason">
+              </SeasonSelector>
+              <button
+                @click="updateConstructors"
+                class="ml-2 uppercase tracking-widest text-xs w-auto text-white bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary dark:text-white border border-primary p-2 px-4 rounded-md transition-all duration-150"
+              >
+                SHOW
+              </button>
+            </div></template
+          ></ConstructorsTable
+        >
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -19,13 +33,13 @@ import { useConstructors } from '@/stores/Constructors/constructors'
 import ConstructorsHero from '@/components/Pages/constructors/ConstructorsHero.vue'
 import ConstructorsTable from '@/components/Pages/constructors/ConstructorsTable.vue'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
-import LoaderSmall from '@/components/UI/Loader/LoaderSmall.vue'
 import { useRoute, useRouter } from 'vue-router'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
+import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 
 const updatedSeason = ref(null)
+const selectedSeason = ref(null)
 const store = useConstructors()
-const manualUpdate = ref(false)
 const router = useRouter()
 const route = useRoute()
 
@@ -39,18 +53,16 @@ const breadCrumbLinks = [
 const updateUrl = (season) => {
   router.push({ name: 'Constructors', params: { season } })
 }
-
+const updateConstructors = async () => {
+  await store.fetchConstructorsBySeason(selectedSeason.value)
+  updateUrl(selectedSeason.value)
+  updatedSeason.value = selectedSeason.value
+}
 const onSeasonSelected = async (season) => {
-  if (manualUpdate.value) {
-    await store.fetchConstructorsBySeason(season.year)
-    updatedSeason.value = season.year
-    updateUrl(season.year)
-  }
+  selectedSeason.value = season.year
 }
 
 onMounted(async () => {
-  manualUpdate.value = false
-
   if (route.params.season) {
     const season = route.params.season
     await store.fetchConstructorsBySeason(season)
@@ -58,7 +70,5 @@ onMounted(async () => {
   } else {
     await store.fetchAllConstructors()
   }
-
-  manualUpdate.value = true
 })
 </script>

@@ -2,18 +2,30 @@
   <div>
     <BreadCrumbs :links-data="breadCrumbLinks" />
     <DriversHero :updated-season="updatedSeason" />
-    <DriversTable>
-      <template #selector>
-        <div class="flex items-center">
-          <span class="dark:text-white mr-1 px-4 tracking-wide">Season:</span>
-          <SeasonSelector @update:modelValue="onSeasonSelected" :updated-season="updatedSeason">
-            <template #loader>
-              <LoaderSmall v-if="store.isLoading" class="ml-auto" />
-            </template>
-          </SeasonSelector>
-        </div>
-      </template>
-    </DriversTable>
+    <transition enter-active-class="animate-fadeInDown" mode="out-in">
+      <div v-if="store.isLoading" class="flex justify-center">
+        <CarLoader class="mt-16" />
+      </div>
+      <div v-else>
+        <DriversTable>
+          <template #selector>
+            <div class="flex items-center">
+              <span class="dark:text-white mr-1 px-4 tracking-wide">Season:</span>
+              <SeasonSelector
+                @update:modelValue="onSeasonSelected"
+                :updated-season="updatedSeason"
+              />
+              <button
+                @click="updateDrivers"
+                class="ml-2 uppercase tracking-widest text-xs w-auto text-white bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary dark:text-white border border-primary p-2 px-4 rounded-md transition-all duration-150"
+              >
+                SHOW
+              </button>
+            </div>
+          </template>
+        </DriversTable>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -23,13 +35,13 @@ import { useDrivers } from '@/stores/Drivers/drivers'
 import DriversHero from '@/components/Pages/drivers/DriversHero.vue'
 import DriversTable from '@/components/Pages/drivers/DriversTable.vue'
 import SeasonSelector from '@/components/UI/SeasonSelector.vue'
-import LoaderSmall from '@/components/UI/Loader/LoaderSmall.vue'
 import { useRoute, useRouter } from 'vue-router'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
+import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 
 const updatedSeason = ref(null)
+const selectedSeason = ref(null)
 const store = useDrivers()
-const manualUpdate = ref(false) // Tracks whether the user manually selected the season
 const router = useRouter()
 const route = useRoute()
 
@@ -43,20 +55,17 @@ const breadCrumbLinks = [
 const updateUrl = (season) => {
   router.push({ name: 'Drivers', params: { season } })
 }
+const updateDrivers = async () => {
+  await store.fetchDriversBySeason(selectedSeason.value)
+  updateUrl(selectedSeason.value)
+  updatedSeason.value = selectedSeason.value
+}
 
 const onSeasonSelected = async (season) => {
-  // Trigger only when the user manually selects a season
-  if (manualUpdate.value) {
-    await store.fetchDriversBySeason(season.year)
-    updatedSeason.value = season.year
-    updateUrl(season.year)
-  }
+  selectedSeason.value = season.year
 }
 
 onMounted(async () => {
-  // Initially, set manualUpdate to false to prevent dropdown-triggered event
-  manualUpdate.value = false
-
   // Check if a season is provided in the route params
   if (route.params.season) {
     const season = route.params.season
@@ -66,8 +75,5 @@ onMounted(async () => {
     // If no season is provided, fetch all drivers
     await store.fetchAllDrivers()
   }
-
-  // Allow manual dropdown interaction after the initial data load
-  manualUpdate.value = true
 })
 </script>

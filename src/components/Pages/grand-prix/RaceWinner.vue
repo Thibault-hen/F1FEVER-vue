@@ -8,7 +8,7 @@
       >
         Winner
       </h4>
-      <span class="flex dark:text-white">
+      <span class="flex dark:text-white truncate">
         {{ store.grandPrixData.raceWinner.name }}
         <NationalityFlag
           v-if="store.grandPrixData.raceWinner.nationality"

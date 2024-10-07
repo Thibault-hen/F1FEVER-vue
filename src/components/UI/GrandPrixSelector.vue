@@ -2,7 +2,7 @@
   <div class="relative flex">
     <Listbox v-model="selectedGrandPrix" as="div">
       <ListboxButton
-        class="bg-white dark:bg-dark-2 dark:text-white p-2 rounded-lg w-52 shadow border dark:border-slate-100/[0.20] text-left flex items-center justify-between dark:ui-open:border-primary ui-open:border-primary"
+        class="bg-white dark:bg-dark-1 dark:text-white p-2 rounded-lg w-52 shadow border dark:border-slate-100/[0.20] text-left flex items-center justify-between dark:ui-open:border-primary ui-open:border-primary"
       >
         <CountryFlag
           :country="selectedGrandPrix.country"
@@ -39,14 +39,14 @@
         leave-to-class="transform scale-95 opacity-0"
       >
         <ListboxOptions
-          class="absolute z-10 min-w-52 shadow items-center dark:text-white rounded-lg border border-slate-50/[0.06] py-1 bg-white dark:bg-dark-2 max-h-60 overflow-auto mt-2"
+          class="absolute z-10 min-w-52 shadow items-center dark:text-white rounded-lg border border-slate-50/[0.06] py-1 bg-white dark:bg-dark-1 max-h-60 overflow-auto mt-2"
         >
           <ListboxOption
             v-for="gpName in grandPrixName"
             :key="gpName.slug"
             :value="gpName"
             @click="handleSelect(gpName)"
-            class="flex flex-row py-1 ui-active:bg-primary ui-active:bg-opacity-10 ui-active:text-primary ui-not-active:bg-white ui-not-active:dark:bg-dark-2 ui-not-active:text-black ui-not-active:dark:text-white text-left px-2"
+            class="flex flex-row py-1 ui-active:bg-primary ui-active:bg-opacity-10 ui-active:text-primary ui-not-active:bg-white ui-not-active:dark:bg-dark-1 ui-not-active:text-black ui-not-active:dark:text-white text-left px-2"
           >
             <CountryFlag class="mr-2 flex items-center" :country="gpName.country" />
             <span class="truncate">{{ gpName.name }}</span>

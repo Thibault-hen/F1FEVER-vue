@@ -32,7 +32,7 @@
       </span>
     </div>
     <div
-      class="dark:text-white flex flex-col rounded-lg border p-2 dark:border-slate-50/[0.06] border-l-4 border-l-primary dark:border-l-primary shadow items-start justify-between"
+      class="dark:text-white flex flex-col rounded border p-2 dark:border-slate-50/[0.06] border-l-4 border-l-primary dark:border-l-primary shadow items-start justify-between"
     >
       <span class="rounded-md uppercase text-xs p-1"> Final Position </span>
       <span class="mt-1 rounded-md p-0.5 px-1 font-bold text-md">

@@ -8,7 +8,7 @@
       >
         Circuit
       </h4>
-      <span class="flex dark:text-white"
+      <span class="flex dark:text-white truncate"
         >{{ store.grandPrixData.circuit.name }}
         <CountryFlag class="items-center flex ml-2" :country="store.grandPrixData.circuit.country"
       /></span>

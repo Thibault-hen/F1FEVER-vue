@@ -8,20 +8,20 @@
     <div class="mt-2 p-2 bg-white dark:bg-dark-1 border dark:border-slate-50/[0.06] rounded-lg">
       <div v-if="store.raceReport.pitstops.length > 0" class="overflow-x-auto">
         <table
-          class="dark:text-white w-full leading-normal border-separate border-spacing-y-0.5 text-xs md:text-sm"
+          class="dark:text-white w-full leading-normal border-separate border-spacing-y-0.5 text-xs lg:text-sm"
         >
           <thead class="dark:bg-dark-1">
-            <tr class="text-left border-b tracking-wide text-sm md:text-base">
-              <th class="px-2 py-2 uppercase text-sm rounded-l-lg min-w-16">Lap</th>
-              <th class="px-2 text-sm uppercase min-w-32">Time</th>
-              <th class="px-2 text-sm uppercase min-w-32">Duration</th>
+            <tr class="text-left border-b tracking-wide text-xs lg:text-sm md:text-base">
+              <th class="px-2 py-2 uppercase text-xs lg:text-sm rounded-l-lg min-w-16">Lap</th>
+              <th class="px-2 text-xs lg:text-sm uppercase min-w-32">Time</th>
+              <th class="px-2 text-xs lg:text-smuppercase min-w-32">Duration</th>
             </tr>
           </thead>
           <tbody class="dark:bg-dark-1 rounded-lg">
             <tr
               v-for="(pitstop, index) in store.raceReport.pitstops"
               :key="index"
-              class="hover:bg-primary/20 hover:dark:bg-primary/20 odd:bg-zinc-100 dark:odd:bg-dark-2 transition-all ease-in-out duration-100"
+              class="hover:bg-primary/20 hover:dark:bg-primary/20 odd:bg-zinc-100 dark:odd:bg-dark-2 transition-all ease-in-out duration-100 text-xs lg:text-sm"
             >
               <td class="rounded-l-lg px-4 py-4">
                 {{ pitstop.lap }}

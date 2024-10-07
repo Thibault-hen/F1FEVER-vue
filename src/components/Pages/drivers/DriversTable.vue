@@ -21,14 +21,8 @@
   </div>
   <div class="mt-6 overflow-x-auto">
     <table
-      class="relative dark:text-white min-w-full leading-normal border-spacing-y-0.5 text-xs md:text-sm mt-2"
+      class="dark:text-white min-w-full leading-normal border-spacing-y-0.5 text-xs md:text-sm mt-2"
     >
-      <div
-        v-if="store.isLoading"
-        class="absolute inset-0 flex justify-center items-center bg-opacity-50 backdrop-blur-sm"
-      >
-        <CarLoader />
-      </div>
       <thead class="dark:bg-dark-1 bg-white-2">
         <tr class="text-left tracking-wide text-sm md:text-base">
           <th class="px-2 py-4 rounded-l-lg min-w-44">
@@ -127,7 +121,6 @@ import { computed, ref, watch } from 'vue'
 import { useDrivers } from '@/stores/Drivers/drivers'
 import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
-import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 import NationalityFlag from '@/components/UI/Flag/NationalityFlag.vue'
 
 const store = useDrivers()

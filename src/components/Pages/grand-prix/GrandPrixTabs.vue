@@ -33,7 +33,7 @@
         leave-from-class="transform translate-x-0 opacity-100"
         leave-to-class="transform -translate-x-full opacity-0"
       >
-        <TabPanel class="w-full"> <RaceResult /> </TabPanel>
+        <TabPanel class="w-full min-h-80"> <RaceResult /> </TabPanel>
       </transition>
       <transition
         enter-active-class="transition-transform duration-300 ease-out"
