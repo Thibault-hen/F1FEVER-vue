@@ -25,7 +25,9 @@ const messages = {
     countdown: {
       days: 'in {days} day',
       days_plural: 'in {days} days',
-      today: 'today'
+      today: 'today',
+      past: '{days} day ago',
+      past_plural: '{days} days ago'
     },
     home: {
       welcome: {
@@ -83,7 +85,9 @@ const messages = {
     countdown: {
       days: 'dans {days} jour',
       days_plural: 'dans {days} jours',
-      today: "aujourd'hui"
+      today: "aujourd'hui",
+      past: 'il y a {days} jour',
+      past_plural: 'il y a {days} jours'
     },
     home: {
       welcome: {

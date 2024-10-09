@@ -44,7 +44,7 @@
         <div
           v-for="(result, index) in store.raceResults"
           :key="index"
-          class="p-2 text-xs md:text-sm flex items-center py-2 w-full rounded transition-all ease-in-out"
+          class="p-2 flex items-center py-2 w-full rounded transition-all ease-in-out"
           :class="{
             'hover:bg-gold ': index === 0,
             'hover:bg-silver ': index === 1,
@@ -53,10 +53,10 @@
               index !== 0 && index !== 1 && index !== 2
           }"
         >
-          <div class="w-8 font-bold"># {{ result.final_position }}</div>
+          <div class="w-8 font-bold text-xs"># {{ result.final_position }}</div>
           <NationalityFlag :nationality="result.nationality" />
-          <div class="ml-2 flex-grow font-bold">{{ result.name }}</div>
-          <div class="w-20 text-right font-bold">{{ result.time }}</div>
+          <div class="ml-2 flex-grow uppercase tracking-wide text-xs">{{ result.name }}</div>
+          <div class="w-20 text-right font-bold text-xs">{{ result.time }}</div>
         </div>
       </div>
       <div class="py-2 dark:border-slate-50/[0.06] border-b mx-4"></div>
