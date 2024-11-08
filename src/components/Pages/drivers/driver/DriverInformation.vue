@@ -42,6 +42,14 @@
       <span class="dark:text-white truncate">
         {{ store.driverData.driver_info.wikipedia_link }}</span
       >
+      <span
+        class="border-primary border-l-4 dark:text-white font-bold dark:font-thin text-xs px-2 py-1 uppercase tracking-widest my-2"
+      >
+        Total active seasons
+      </span>
+      <span class="dark:text-white truncate">
+        {{ store.driverData.total_active_seasons.total }}</span
+      >
     </div>
   </div>
 </template>

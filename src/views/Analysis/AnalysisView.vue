@@ -69,12 +69,20 @@ import { RouterLink } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
+import { useTitle } from '@vueuse/core'
 
 const isDark = useDark()
+const title = useTitle()
 const breadCrumbLinks = [
   {
     text: 'Analysis',
     route: 'Analysis'
   }
 ]
+
+const updateTitle = () => {
+  title.value = 'F1FEVER - Analysis'
+}
+
+updateTitle()
 </script>

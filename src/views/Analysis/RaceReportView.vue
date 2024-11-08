@@ -100,12 +100,14 @@ import RaceLapTimes from '@/components/Pages/analysis/race-report/RaceLapTimes.v
 import RacePitstops from '@/components/Pages/analysis/race-report/RacePitstops.vue'
 import { useToastHelpers } from '@/helpers/toastHelpers'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
+import { useTitle } from '@vueuse/core'
 
 const selectedSeason = ref()
 const selectedGrandPrix = ref()
 const selectedDriver = ref()
 
 const isDark = useDark()
+const title = useTitle()
 const notifications = useToastHelpers()
 
 const store = useRaceReport()
@@ -120,6 +122,10 @@ const breadCrumbLinks = [
     route: 'RaceReport'
   }
 ]
+
+const updateTitle = () => {
+  title.value = 'F1FEVER - Race Report'
+}
 
 const setSeason = (season) => {
   selectedSeason.value = season
@@ -147,4 +153,6 @@ const handleCompare = async () => {
     notifications.error('Something went wrong while fetching this race report')
   }
 }
+
+updateTitle()
 </script>

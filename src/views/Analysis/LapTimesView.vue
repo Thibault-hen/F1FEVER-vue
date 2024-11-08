@@ -117,6 +117,7 @@ import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
+import { useTitle } from '@vueuse/core'
 
 const selectedSeason = ref()
 const selectedGrandPrix = ref()
@@ -126,6 +127,7 @@ const selectedSecondDriver = ref()
 const isDriversDifferent = ref(false)
 
 const isDark = useDark()
+const title = useTitle()
 const breadCrumbLinks = [
   {
     text: 'Analysis',
@@ -138,6 +140,10 @@ const breadCrumbLinks = [
 ]
 
 const store = useLapTimes()
+
+const updateTitle = () => {
+  title.value = 'F1FEVER - Lap Times Comparator'
+}
 
 const setSeason = (season) => {
   selectedSeason.value = season
@@ -168,4 +174,6 @@ const handleCompare = async () => {
   )
   isDriversDifferent.value = false
 }
+
+updateTitle()
 </script>

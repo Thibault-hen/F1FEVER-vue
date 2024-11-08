@@ -2,10 +2,7 @@
   <div>
     <div class="space-y-4">
       <BreadCrumbs :links-data="breadCrumbLinks" />
-      <StandingsHeroSection
-        :selected-season="selectedSeason.year"
-        :updated-season="updatedSeason"
-      />
+      <StandingsHeroSection :updated-season="updatedSeason" />
       <transition enter-active-class="animate-fadeInDown" mode="out-in">
         <div v-if="store.isLoading" class="flex justify-center">
           <CarLoader class="mt-16" />
@@ -73,9 +70,11 @@ const updateDisplayedSeasonFromUrl = (season) => {
   selectedSeason.value.year = season
   updatedSeason.value = season
 }
+
 const updateTitle = (season) => {
   title.value = `F1FEVER - ${season} Standings`
 }
+
 const updateUrl = (season) => {
   router.push({ name: 'Standings', params: { season } })
 }
@@ -107,9 +106,10 @@ onMounted(async () => {
       await store.fetchStandings(updatedSeason.value)
     } else {
       await store.fetchLatestStandings()
+      selectedSeason.value.year = store.standings.season
       updateDisplayedSeason()
-      updateUrl(selectedSeason.value.year)
-      updateTitle(selectedSeason.value.year)
+      updateUrl(store.standings.season)
+      updateTitle(store.standings.season)
     }
   }
 })

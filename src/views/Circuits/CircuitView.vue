@@ -21,9 +21,12 @@ import CircuitCareerStats from '@/components/Pages/circuits/circuit/CircuitCaree
 import CircuitRaceEntered from '@/components/Pages/circuits/circuit/CircuitRaceEntered.vue'
 import CircuitRaceList from '@/components/Pages/circuits/circuit/CircuitRaceList.vue'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
+import { useTitle } from '@vueuse/core'
 
 const store = useCircuit()
 const route = useRoute()
+const title = useTitle()
+
 const breadCrumbLinks = [
   {
     text: 'Circuits',
@@ -35,8 +38,13 @@ const breadCrumbLinks = [
   }
 ]
 
+const updateTitle = () => {
+  title.value = `F1FEVER - ${store.circuitData.circuit_info.name}`
+}
+
 onMounted(async () => {
   const name = route.params.name
   await store.fetchCircuit(name)
+  updateTitle()
 })
 </script>

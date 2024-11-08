@@ -36,9 +36,11 @@ import SeasonSelector from '@/components/UI/SeasonSelector.vue'
 import { useRoute, useRouter } from 'vue-router'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'
+import { useTitle } from '@vueuse/core'
 
 const updatedSeason = ref(null)
 const selectedSeason = ref(null)
+const title = useTitle()
 const store = useConstructors()
 const router = useRouter()
 const route = useRoute()
@@ -53,10 +55,16 @@ const breadCrumbLinks = [
 const updateUrl = (season) => {
   router.push({ name: 'Constructors', params: { season } })
 }
+
+const updateTitle = () => {
+  title.value = `F1FEVER - Constructors ${updatedSeason.value ?? ''}`
+}
+
 const updateConstructors = async () => {
   await store.fetchConstructorsBySeason(selectedSeason.value)
   updateUrl(selectedSeason.value)
   updatedSeason.value = selectedSeason.value
+  updateTitle()
 }
 const onSeasonSelected = async (season) => {
   selectedSeason.value = season.year
@@ -70,5 +78,6 @@ onMounted(async () => {
   } else {
     await store.fetchAllConstructors()
   }
+  updateTitle()
 })
 </script>

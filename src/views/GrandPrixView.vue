@@ -30,6 +30,8 @@
             @update:modelValue="onGrandPrixSelected"
           />
           <button
+            :disabled="store.isLoading"
+            :class="{ '!cursor-not-allowed opacity-50': store.isLoading }"
             @click="udpateGrandPrix"
             class="ml-2 uppercase tracking-widest text-xs self-start w-auto text-white bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary dark:text-white border border-primary p-2 px-4 rounded-md my-2 transition-all duration-150"
           >
@@ -57,9 +59,11 @@ import MoreGrandPrix from '@/components/Pages/grand-prix/MoreGrandPrix.vue'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 import GpHeroSection from '@/components/Pages/grand-prix/GpHeroSection.vue'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
+import { useTitle } from '@vueuse/core'
 
 const route = useRoute()
 const router = useRouter()
+const title = useTitle()
 
 const store = useGrandPrix()
 const storedSeason = computed(() => store.grandPrixData.season)
@@ -79,19 +83,27 @@ const selectedGrandPrix = ref()
 const updatedGrandPrix = ref(null)
 const updatedSeason = ref(null)
 
-const updateDisplayedGrandPrix = (season, name) => {
-  selectedSeason.value = { year: season }
-  updatedSeason.value = season
-  updatedGrandPrix.value = name
+const updateDisplayedGrandPrix = () => {
+  selectedSeason.value = { year: storedSeason.value }
+  updatedSeason.value = storedSeason.value
+  updatedGrandPrix.value = storedGpName.value
 }
 
-const updateUrl = (season, name) => {
+const updateUrl = () => {
+  const season = storedSeason.value
+  const name = storedGpRef.value
   router.push({ name: 'Grand-prix', params: { season, name } })
+}
+
+const updateTitle = () => {
+  title.value = `F1FEVER - ${storedSeason.value} ${storedGpName.value}`
 }
 
 const udpateGrandPrix = async () => {
   await store.fetchGrandPrix(selectedSeason.value.year, selectedGrandPrix.value)
-  updateUrl(store.grandPrixData.season, store.grandPrixData.ref)
+  console.log(selectedSeason.value.year, selectedGrandPrix)
+  updateUrl()
+  updateTitle()
 }
 const onGrandPrixSelected = async (payload) => {
   selectedSeason.value.year = payload.selectedSeason
@@ -100,17 +112,16 @@ const onGrandPrixSelected = async (payload) => {
 
 onMounted(async () => {
   if (storedSeason.value) {
-    updateDisplayedGrandPrix(storedSeason.value, storedGpName.value)
-    updateUrl(storedSeason.value, storedGpRef.value)
+    updateUrl()
   } else {
     if (route.params.season && route.params.name) {
       await store.fetchGrandPrix(route.params.season, route.params.name)
-      updateDisplayedGrandPrix(storedSeason.value, storedGpName.value)
     } else {
       await store.fetchLatestGrandPrix()
-      updateDisplayedGrandPrix(storedSeason.value, storedGpName.value)
-      updateUrl(storedSeason.value, storedGpRef.value)
+      updateUrl()
     }
   }
+  updateDisplayedGrandPrix()
+  updateTitle()
 })
 </script>

@@ -21,9 +21,11 @@ import { useDriver } from '@/stores/Drivers/driver'
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
+import { useTitle } from '@vueuse/core'
 
 const store = useDriver()
 const route = useRoute()
+const title = useTitle()
 const breadCrumbLinks = [
   {
     text: 'Drivers',
@@ -35,9 +37,13 @@ const breadCrumbLinks = [
   }
 ]
 
+const updateTitle = () => {
+  title.value = `F1FEVER - ${store.driverData.driver_info.name}`
+}
+
 onMounted(async () => {
   const name = route.params.name
   await store.fetchDriver(name)
-  console.log(store.driverData)
+  updateTitle()
 })
 </script>

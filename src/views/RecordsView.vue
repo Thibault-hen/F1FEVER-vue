@@ -24,8 +24,11 @@ import CarLoader from '@/components/UI/Loader/CarLoader.vue'
 import { useRecordsStore } from '@/stores/records'
 import { onMounted } from 'vue'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
+import { useTitle } from '@vueuse/core'
 
 const store = useRecordsStore()
+const title = useTitle()
+
 const breadCrumbLinks = [
   {
     text: 'Records',
@@ -33,7 +36,12 @@ const breadCrumbLinks = [
   }
 ]
 
+const updateTitle = () => {
+  title.value = `F1FEVER - Records`
+}
+
 onMounted(async () => {
   await store.fetchRecords()
+  updateTitle()
 })
 </script>

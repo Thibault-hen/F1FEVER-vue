@@ -38,9 +38,11 @@ import SeasonSelector from '@/components/UI/SeasonSelector.vue'
 import { useRoute, useRouter } from 'vue-router'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
 import CarLoader from '@/components/UI/Loader/CarLoader.vue'
+import { useTitle } from '@vueuse/core'
 
 const updatedSeason = ref(null)
 const selectedSeason = ref(null)
+const title = useTitle()
 const store = useDrivers()
 const router = useRouter()
 const route = useRoute()
@@ -59,21 +61,25 @@ const updateDrivers = async () => {
   await store.fetchDriversBySeason(selectedSeason.value)
   updateUrl(selectedSeason.value)
   updatedSeason.value = selectedSeason.value
+  updateTitle()
 }
 
 const onSeasonSelected = async (season) => {
   selectedSeason.value = season.year
 }
 
+const updateTitle = () => {
+  title.value = `F1FEVER - Drivers ${updatedSeason.value ?? ''}`
+}
+
 onMounted(async () => {
-  // Check if a season is provided in the route params
   if (route.params.season) {
     const season = route.params.season
     await store.fetchDriversBySeason(season)
     updatedSeason.value = season
   } else {
-    // If no season is provided, fetch all drivers
     await store.fetchAllDrivers()
   }
+  updateTitle()
 })
 </script>

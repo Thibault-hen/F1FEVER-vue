@@ -1,6 +1,6 @@
 <template>
   <div class="relative flex">
-    <Listbox v-model="selectedGrandPrix" as="div">
+    <Listbox v-model="selectedGrandPrix" as="div" v-slot="{ open }">
       <ListboxButton
         class="bg-white dark:bg-dark-1 dark:text-white p-2 rounded-lg w-52 shadow border dark:border-slate-100/[0.20] text-left flex items-center justify-between dark:ui-open:border-primary ui-open:border-primary"
       >
@@ -18,14 +18,8 @@
           icon="solar:alt-arrow-down-outline"
           height="24px"
           width="24px"
-          class="flex ui-open:hidden"
-          :color="isDark ? 'white' : 'black'"
-        />
-        <Icon
-          icon="solar:alt-arrow-up-outline"
-          height="24px"
-          width="24px"
-          class="hidden ui-open:flex"
+          class="transition duration-100 ease-in-out"
+          :class="open ? 'rotate-180 transform' : ''"
           :color="isDark ? 'white' : 'black'"
         />
       </ListboxButton>
@@ -100,6 +94,7 @@ watch(
   debounce(async (season) => {
     if (season) {
       await fetchGrandPrixForSeason(season)
+      emitGrandPrixName()
     }
   }, 250),
   { immediate: true }

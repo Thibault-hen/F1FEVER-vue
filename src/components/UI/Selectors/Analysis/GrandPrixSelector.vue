@@ -1,6 +1,6 @@
 <template>
   <div class="relative flex">
-    <Listbox v-model="selectedGrandPrix" as="div" class="w-full">
+    <Listbox v-model="selectedGrandPrix" as="div" class="w-full" v-slot="{ open }">
       <ListboxButton
         class="bg-white dark:bg-dark-2 dark:text-white p-2 rounded-lg w-full sm:w-64 shadow border dark:border-slate-100/[0.20] text-left flex justify-between dark:ui-open:border-primary ui-open:border-primary"
       >
@@ -10,14 +10,8 @@
           icon="solar:alt-arrow-down-outline"
           height="24px"
           width="24px"
-          class="flex ui-open:hidden"
-          :color="isDark ? 'white' : 'black'"
-        />
-        <Icon
-          icon="solar:alt-arrow-up-outline"
-          height="24px"
-          width="24px"
-          class="hidden ui-open:flex"
+          class="transition duration-100 ease-in-out"
+          :class="open ? 'rotate-180 transform' : ''"
           :color="isDark ? 'white' : 'black'"
         />
       </ListboxButton>

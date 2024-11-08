@@ -21,9 +21,11 @@ import ConstructorCareerStats from '@/components/Pages/constructors/constructor/
 import ConstructorRaceEntered from '@/components/Pages/constructors/constructor/ConstructorRaceEntered.vue'
 import ConstructorActiveSeasons from '@/components/Pages/constructors/constructor/ConstructorActiveSeasons.vue'
 import BreadCrumbs from '@/components/UI/Misc/BreadCrumbs.vue'
+import { useTitle } from '@vueuse/core'
 
 const store = useConstructor()
 const route = useRoute()
+const title = useTitle()
 const breadCrumbLinks = [
   {
     text: 'Constructors',
@@ -35,8 +37,13 @@ const breadCrumbLinks = [
   }
 ]
 
+const updateTitle = () => {
+  title.value = `F1FEVER - ${store.constructorData.constructor_info.team}`
+}
+
 onMounted(async () => {
   const name = route.params.name
   await store.fetchConstructor(name)
+  updateTitle()
 })
 </script>
