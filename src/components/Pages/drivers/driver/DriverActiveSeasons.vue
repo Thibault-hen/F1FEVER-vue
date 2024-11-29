@@ -1,7 +1,7 @@
 <template>
-  <div class="my-2">
+  <div class="mt-8 mb-4">
     <span
-      class="bg-primary/20 border border-primary rounded dark:text-white dark:font-thin text-xs tracking-widest p-1 my-2 uppercase"
+      class="dark:bg-primary/20 bg-primary border border-primary rounded text-white dark:font-thin text-xs tracking-widest p-2 uppercase"
     >
       Active seasons
     </span>

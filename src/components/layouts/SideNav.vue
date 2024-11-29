@@ -39,13 +39,13 @@
 
     <div class="dark:text-white md:flex flex-col h-full" :class="isMobile ? 'flex' : 'hidden'">
       <!-- Top section of the navbar links -->
-      <div class="flex-grow">
+      <div class="flex-grow uppercase text-xs tracking-widest">
         <RouterLink
           v-for="(link, index) in navLinks"
           :key="index"
           activeClass="text-primary border-l-2 border-l-primary"
           :to="{ name: link.route }"
-          class="group flex items-center p-1 border-l-2 border-transparent hover:cursor-pointer gap-2 uppercase tracking-widest text-xs hover:border-l-2 hover:border-l-primary !transition-all !ease-in !duration-200"
+          class="group flex items-center p-1 border-l-2 border-transparent hover:cursor-pointer gap-2 hover:border-l-2 hover:border-l-primary !transition-all !ease-in !duration-200"
           :class="
             link.divider
               ? 'border-b dark:border-b-zinc-700 border-b-gray-300'

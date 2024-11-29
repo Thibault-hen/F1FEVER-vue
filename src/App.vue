@@ -6,7 +6,7 @@
         <div class="flex flex-col h-screen">
           <PageHeader />
           <LanguageSelector />
-          <div class="p-6 h-screen mt-40 md:mt-20 overflow-y-auto">
+          <div class="p-6 h-screen mt-40 md:mt-20">
             <router-view v-slot="{ Component }">
               <transition enter-active-class="animate-fadeInDown" mode="out-in">
                 <component :is="Component" />

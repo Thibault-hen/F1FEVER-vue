@@ -1,57 +1,45 @@
 <template>
-  <div class="flex flex-col my-4 space-y-4">
-    <!-- Active seasons title -->
-    <div class="flex items-center">
-      <span
-        class="border-primary border-l-4 dark:text-white font-bold dark:font-thin text-xs px-2 py-1 uppercase tracking-widest"
-      >
-        Active Seasons
-      </span>
-      <Icon
-        icon="fluent:checkbox-checked-20-filled"
-        height="20px"
-        width="20px"
-        class="items-center"
-        :color="isDark ? 'white' : 'black'"
-      />
-    </div>
-
-    <!-- Seasons list box -->
-    <div
-      class="dark:text-white flex flex-col rounded-lg border p-2 dark:border-slate-50/[0.06] shadow-md items-start w-full max-w-lg"
+  <div class="mt-8 mb-4">
+    <span
+      class="dark:bg-primary/20 bg-primary border border-primary rounded text-white dark:font-thin text-xs tracking-widest p-2 uppercase"
     >
-      <span
-        class="mb-3 dark:text-white bg-primary/20 border border-primary rounded-md p-1 uppercase text-xs"
+      Active seasons
+    </span>
+  </div>
+  <div
+    class="max-w-[500px] dark:text-white flex flex-col rounded border p-2 dark:border-slate-50/[0.06] border-l-4 border-l-primary dark:border-l-primary shadow items-start justify-between"
+  >
+    <Disclosure v-slot="{ open }">
+      <DisclosureButton
+        class="flex w-full justify-between px-4 py-2 text-left text-sm uppercase hover:bg-primary/20 rounded-lg items-center"
       >
-        Seasons List
-      </span>
-      <div class="flex flex-wrap gap-2">
-        <span
-          v-for="cosntructor in store.constructorData.total_active_seasons.seasons_list"
-          :key="cosntructor"
-          class="rounded-lg p-1 px-3 text-sm text-center min-w-20"
-        >
-          <RouterLink
-            :to="`/standings/${cosntructor.year}`"
-            class="hover:text-primary transition-all duration-150 hover:bg-primary/20 py-1 px-2 rounded"
+        <span class="text-xs">Active season list</span>
+        <Icon
+          icon="solar:alt-arrow-down-outline"
+          height="24px"
+          width="24px"
+          class="!transition duration-100 ease-in-out"
+          :class="open ? 'rotate-180 transform' : ''"
+          :color="isDark ? 'white' : 'black'"
+        />
+      </DisclosureButton>
+      <DisclosurePanel class="px-4 pb-2 pt-4 text-sm">
+        <div class="flex flex-wrap gap-2">
+          <span
+            v-for="driver in store.constructorData.total_active_seasons.seasons_list"
+            :key="driver"
+            class="rounded-lg p-1 px-3 text-sm text-center min-w-20"
           >
-            {{ cosntructor.year }}
-          </RouterLink>
-        </span>
-      </div>
-    </div>
-
-    <div
-      class="dark:text-white flex rounded-lg border p-2 dark:border-slate-50/[0.06] shadow-md items-center justify-between w-full max-w-lg"
-    >
-      <span
-        class="dark:text-white bg-primary/20 border border-primary rounded-md p-1 uppercase text-xs"
-        >Total Seasons</span
-      >
-      <span class="ml-4 p-1 px-3">
-        {{ store.constructorData.total_active_seasons.total }}
-      </span>
-    </div>
+            <RouterLink
+              :to="`/standings/${driver.year}`"
+              class="hover:text-primary transition-all duration-150 hover:bg-primary/20 py-1 px-2 rounded"
+            >
+              {{ driver.year }}
+            </RouterLink>
+          </span>
+        </div>
+      </DisclosurePanel>
+    </Disclosure>
   </div>
 </template>
 
@@ -59,6 +47,7 @@
 import { useConstructor } from '@/stores/Constructors/constructor'
 import { Icon } from '@iconify/vue'
 import { useDark } from '@vueuse/core'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 
 const store = useConstructor()
 const isDark = useDark()
