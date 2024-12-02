@@ -21,27 +21,11 @@ export const useHomeData = defineStore('home', () => {
       raceResults.value = response1.data.data.race_result
       circuit.value = response1.data.data.circuit
       grandPrixList.value = response2.data.data
-      setGrandPrixStatus()
     } catch (error) {
       console.error('error while fetching grand prix preview', error)
     } finally {
       isLoading.value = false
     }
-  }
-
-  const getCurrentDate = () => {
-    const today = new Date()
-    const year = String(today.getFullYear())
-    const month = String(today.getMonth() + 1).padStart(2, '0')
-    const day = String(today.getDate()).padStart(2, '0')
-    return `${year}-${month}-${day}`
-  }
-
-  const setGrandPrixStatus = () => {
-    const currentDate = getCurrentDate()
-    grandPrixList.value.forEach((grandPrix) => {
-      isUpcoming.value.push(grandPrix.date > currentDate)
-    })
   }
 
   return {
