@@ -6,21 +6,31 @@
       {{ $t('home.current_grandprix.label') }}
     </div>
     <div class="flex gap-2">
-      <button @click="prev">
+      <button @click="prev" :disabled="currentIndex === 0">
         <Icon
           icon="material-symbols-light:navigate-before"
           height="36px"
           width="36px"
-          class="bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary border border-primary rounded-md transition-all duration-300"
+          :class="
+            currentIndex === 0
+              ? 'bg-primary/30 dark:bg-primary/0 hover:bg-primary/70 dark:hover:bg-primary'
+              : 'bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary'
+          "
+          class="border border-primary rounded-md transition-all duration-300"
           color="white"
         />
       </button>
-      <button @click="next">
+      <button @click="next" :disabled="currentIndex === store.grandPrixList.length - itemsPerSlide">
         <Icon
           icon="material-symbols-light:navigate-next"
           height="36px"
           width="36px"
-          class="bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary border border-primary rounded-md transition-all duration-300"
+          :class="
+            currentIndex === store.grandPrixList.length - itemsPerSlide
+              ? 'bg-primary/30 dark:bg-primary/0 hover:bg-primary/70 dark:hover:bg-primary'
+              : 'bg-primary dark:bg-primary/20 hover:bg-primary/70 dark:hover:bg-primary'
+          "
+          class="border border-primary rounded-md transition-all duration-300"
           color="white"
         />
       </button>
@@ -84,18 +94,19 @@ import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useDark, useBreakpoints } from '@vueuse/core'
 
+const store = useHomeData()
+
 const currentIndex = ref(0)
 const isDark = useDark()
 
 const itemsPerSlide = ref(3)
 
-// Define your breakpoints (these can be custom)
 const breakpoints = useBreakpoints({
   md: 768,
   xl: 1280
 })
 
-// Watch for screen size changes using VueUse breakpoints
+// watch for screen size changes
 const isBelowMd = breakpoints.smaller('md')
 const isBelowXl = breakpoints.smaller('xl')
 
@@ -115,8 +126,8 @@ const next = () => {
     currentIndex.value + itemsPerSlide.value < store.grandPrixList.length
       ? currentIndex.value + 1
       : 0
+  console.log(currentIndex)
 }
-const store = useHomeData()
 
 const formatDate = (gpDate) => {
   const date = new Date(gpDate)
