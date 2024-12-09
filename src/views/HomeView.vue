@@ -18,7 +18,7 @@ onMounted(() => {
     <Welcome />
     <transition enter-active-class="animate-fadeInDown" mode="out-in">
       <div v-if="store.isLoading" class="flex justify-center"><CarLoader class="mt-16" /></div>
-      <div v-else class="xl:flex mt-6">
+      <div v-else class="xl:flex mt-6 p-4">
         <div class="flex-none xl:w-1/3 mb-6 xl:order-2">
           <GrandPrixPreview />
         </div>

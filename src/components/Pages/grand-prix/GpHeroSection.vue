@@ -8,10 +8,10 @@
             :country="store.grandPrixData.circuit.country"
             class="mr-2"
           />
-          <GradientTitle class="text-dark text-2xl md:text-3xl uppercase">
+          <h2 class="text-2xl font-extrabold tracking-tight dark:text-white md:text-3xl uppercase">
             {{ store.grandPrixData.season }}
-            {{ store.grandPrixData.name }}
-          </GradientTitle>
+            <span class="font-bold text-primary"> {{ store.grandPrixData.name }}</span>
+          </h2>
         </div>
         <p class="mb-4 text-body-color dark:text-white text-sm font-medium">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultrices lectus sem.
@@ -25,7 +25,6 @@
 <script setup>
 import { useGrandPrix } from '@/stores/grand-prix'
 import DataMissingInfo from '@/components/UI/Misc/DataMissingInfo.vue'
-import GradientTitle from '@/components/UI/Misc/GradientTitle.vue'
 import CountryFlag from '@/components/UI/Flag/CountryFlag.vue'
 
 const store = useGrandPrix()

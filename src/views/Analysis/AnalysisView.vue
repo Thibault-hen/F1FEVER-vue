@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-4">
     <BreadCrumbs :links-data="breadCrumbLinks" />
     <AnalysisHeader />
     <div class="flex flex-col lg:flex-row space-around gap-10">

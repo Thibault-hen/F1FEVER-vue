@@ -1,5 +1,5 @@
 <template>
-  <footer class="sticky top-[100vh] dark:text-white py-2">
+  <footer class="sticky top-[100vh] dark:text-white py-2 p-4">
     <!-- Add a background and padding -->
     <div class="dark:border-zinc-700 border-gray-300 border-t mt-8 py-2"></div>
     <div class="flex flex-col md:flex-row justify-between w-full space-y-3.5 md:space-y-0">

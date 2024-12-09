@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-4">
     <BreadCrumbs :links-data="breadCrumbLinks" />
     <GpHeroSection />
     <div class="relative block lg:flex lg:justify-between lg:content-center gap-3 my-4 min-h-24">

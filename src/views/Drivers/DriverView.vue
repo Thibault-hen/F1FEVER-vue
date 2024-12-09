@@ -1,6 +1,6 @@
 <template>
   <div v-if="store.isLoading" class="flex justify-center items-center mt-36"><CarLoader /></div>
-  <div v-else>
+  <div class="p-4" v-else>
     <BreadCrumbs :links-data="breadCrumbLinks" />
     <div v-if="store.driverData !== null">
       <DriverInformation />

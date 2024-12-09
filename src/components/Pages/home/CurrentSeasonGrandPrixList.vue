@@ -117,16 +117,15 @@ const visibleGPs = computed(() => {
 const prev = () => {
   currentIndex.value =
     currentIndex.value > 0
-      ? currentIndex.value - 1
+      ? currentIndex.value - itemsPerSlide.value
       : store.grandPrixList.length - itemsPerSlide.value
 }
 
 const next = () => {
   currentIndex.value =
     currentIndex.value + itemsPerSlide.value < store.grandPrixList.length
-      ? currentIndex.value + 1
+      ? currentIndex.value + itemsPerSlide.value
       : 0
-  console.log(currentIndex)
 }
 
 const formatDate = (gpDate) => {

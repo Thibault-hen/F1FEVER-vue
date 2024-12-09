@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="space-y-4">
+    <div class="space-y-4 p-4">
       <BreadCrumbs :links-data="breadCrumbLinks" />
       <StandingsHeroSection :updated-season="updatedSeason" />
       <transition enter-active-class="animate-fadeInDown" mode="out-in">

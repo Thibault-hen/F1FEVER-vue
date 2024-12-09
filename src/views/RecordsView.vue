@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-4">
     <BreadCrumbs :links-data="breadCrumbLinks" />
     <RecordsHeroSection />
     <transition enter-active-class="animate-fadeInDown" mode="out-in">
