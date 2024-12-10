@@ -3,6 +3,13 @@ export default {
   content: ['./index.html', './src/**/*.{vue,js,ts}'],
   theme: {
     extend: {
+      fontSize: {
+        xxs: '0.65rem'
+      },
+      fontFamily: {
+        bai: ['Bai Jamjuree', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif']
+      },
       backgroundColor: {
         'dark-1': '#080808',
         'dark-2': '#121418',

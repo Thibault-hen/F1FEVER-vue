@@ -1,5 +1,9 @@
 # F1FEVER-vue
 
+This is an example of the app in action:
+
+![App Preview](src/assets/preview.gif)
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup

@@ -72,7 +72,7 @@ const emitSeason = () => {
 
 onMounted(async () => {
   await getSeasons()
-  // Emit update event only if no updatedSeason prop is provided initially
+  // Emit update event only if no updatedSeason prop is provided
   if (!props.updatedSeason) {
     emitSeason(true)
   }

@@ -1,4 +1,4 @@
-@import url(https://fonts.bunny.net/css?family=bai-jamjuree:400);
+@import url(https://fonts.bunny.net/css?family=bai-jamjuree:400|poppins:200);
 
 @tailwind base;
 @tailwind components;
@@ -7,23 +7,11 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
   scrollbar-width: thin;
   scrollbar-color: red transparent;
 }
-html {
-  transition: all 0.3s ease !important;
-}
 body {
   transition: all 0.3s ease !important;
-  line-height: 1.6;
-  font-family: 'Bai Jamjuree', sans-serif;
-  font-size: 15px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 .gradient-bar {
   background-color: linear-gradient(139deg, #fb1717, #640101, #570e0e, #420909) 3;

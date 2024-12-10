@@ -1,6 +1,6 @@
 <template>
-  <aside
-    class="w-full md:h-full dark:bg-dark-2 bg-zinc-100 fixed z-40 top-0 left-0 flex flex-col md:overflow-hidden md:min-h-[100vh] transition-all ease-in-out duration-300 border-r dark:border-zinc-700 border-gray-300"
+  <nav
+    class="font-poppins w-full md:h-full dark:bg-dark-2 bg-zinc-100 fixed z-40 top-0 left-0 flex flex-col md:overflow-hidden md:min-h-[100vh] transition-all ease-in-out duration-300 border-r dark:border-zinc-700 border-gray-300"
     :class="isExpanded ? 'aside-expanded' : 'aside'"
   >
     <div
@@ -16,10 +16,10 @@
           />
         </button>
       </div>
-      <RouterLink :to="{ name: 'Home' }" class="p-4 flex items-center gap-2">
+      <RouterLink :to="{ name: 'Home' }" class="p-4 flex items-center gap-2 title">
         <img src="/racing-car.png" alt="Logo" class="h-8" />
         <h1
-          class="hover:text-primary dark:text-white text-black dark:hover:text-primary uppercase tracking-widest text-base transition-all ease duration-300"
+          class="font-bai font-bold hover:text-primary dark:text-white text-black dark:hover:text-primary uppercase tracking-widest text-base transition-all ease duration-300"
         >
           F1FEVER
         </h1>
@@ -39,7 +39,7 @@
 
     <div class="dark:text-white md:flex flex-col h-full" :class="isMobile ? 'flex' : 'hidden'">
       <!-- Top section of the navbar links -->
-      <div class="flex-grow uppercase text-xs tracking-widest">
+      <div class="flex-grow text-xs tracking-widest">
         <RouterLink
           v-for="(link, index) in navLinks"
           :key="index"
@@ -61,7 +61,9 @@
               class="group-hover:text-red-500 transition-all ease-in"
             />
             <!-- Apply group-hover to the span -->
-            <span class="group-hover:text-red-500 text flex items-center transition-all ease-in">
+            <span
+              class="group-hover:text-red-500 font-bold text-xxs uppercase flex items-center transition-all ease-in"
+            >
               {{ link.text }}
             </span>
           </div>
@@ -79,7 +81,7 @@
         <ThemeSwitch />
       </div>
     </div>
-  </aside>
+  </nav>
   <main
     class="transition-all ease-in-out duration-300 h-screen"
     :class="isExpanded ? 'main' : 'main-expanded'"
